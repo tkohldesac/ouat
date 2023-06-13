@@ -42,6 +42,12 @@ CREATE TABLE things (
     img_url VARCHAR(256)
 );
 
+-- Create adventures table
+-- CREATE TABLE adventures (
+--     id SERIAL NOT NULL UNIQUE,
+
+-- )
+
 -- Insert an example character
 INSERT INTO characters (character_name, age, physical_description, spells_abilities, bio, image_url)
 VALUES ('Chicken Fry', 29, 'Purdy', 'Bruja magic spell 1, Bruja magic spell 2', 'Queen of all the land', 'img_url');

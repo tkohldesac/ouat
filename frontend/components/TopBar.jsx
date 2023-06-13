@@ -34,8 +34,7 @@ export default function TopBar() {
             <AppBar position="static" style={{ backgroundColor: 'red', height: '60px' }}>
 
             </AppBar>
-
-
+            
         </div>
     );
 };

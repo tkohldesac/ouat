@@ -19,8 +19,7 @@ export default function App() {
               path="/"
               element={<Lander />}
             />
-
-
+            
           </Routes>
         </Container>
       </BrowserRouter>
