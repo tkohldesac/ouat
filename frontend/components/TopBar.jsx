@@ -44,7 +44,7 @@ export default function TopBar() {
     const modalOpen = () => setOpen(true);
     const modalClose = () => setOpen(false);
 
-    
+
     return (
 
         <div style={{ position: "relative" }}>
