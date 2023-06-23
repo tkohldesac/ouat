@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import { AppBar, Toolbar } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 
-
-
+const useStyles = makeStyles((theme) => ({
+    appBar: {
+        width: '100%',
+        top: 0,
+        zIndex: theme.zIndex.drawer + 1,
+    },
+}));
 
 const StyledLink = styled(Link)({
     textDecoration: 'none',
@@ -30,8 +36,8 @@ export default function TopBar() {
 
     return (
 
-        <div style={{ position: "relative" }}>
-            <AppBar position="static" style={{ backgroundColor: 'red', height: '60px' }}>
+        <div style={{ position: "absolute", width: '100%', top: 0, left: 0 }}>
+            <AppBar position="static" style={{ backgroundColor: '#F6E6CC', height: '60px' }}>
                 Words
             </AppBar>
 
