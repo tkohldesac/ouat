@@ -32,9 +32,9 @@ export default function TopBar() {
 
         <div style={{ position: "relative" }}>
             <AppBar position="static" style={{ backgroundColor: 'red', height: '60px' }}>
-
+                Words
             </AppBar>
-            
+
         </div>
     );
 };

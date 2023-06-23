@@ -9,7 +9,7 @@ export default function Lander() {
     return (
         <div>
 
-
+            Test
 
         </div>
     )
