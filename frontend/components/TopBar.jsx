@@ -26,32 +26,14 @@ const cardStyle = {
 
 export default function TopBar() {
 
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
 
 
-
-    // const userLoggedIn = useContext(userContext);
-
-    const [open, setOpen] = useState(false);
-    const modalOpen = () => setOpen(true);
-    const modalClose = () => setOpen(false);
-
-    
     return (
 
         <div style={{ position: "relative" }}>
             <AppBar position="static" style={{ backgroundColor: 'red', height: '60px' }}>
-
+                Words
             </AppBar>
-
 
         </div>
     );
