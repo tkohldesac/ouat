@@ -21,7 +21,7 @@ CREATE TABLE characters (
     physical_description TEXT,
     spells_abilities TEXT,
     bio TEXT,
-    image_url VARCHAR(256)
+    image_url TEXT
 );
 
 -- Create the places table
@@ -30,7 +30,7 @@ CREATE TABLE places (
     place_name VARCHAR(256),
     physical_description TEXT,
     sovereign TEXT,
-    img_url VARCHAR(256)
+    img_url TEXT
 );
 
 -- Create the things table
@@ -39,14 +39,38 @@ CREATE TABLE things (
     thing_name VARCHAR(256),
     physical_description TEXT,
     special_properties TEXT,
-    img_url VARCHAR(256)
+    img_url TEXT
 );
 
 -- Create adventures table
 CREATE TABLE adventures (
     id SERIAL NOT NULL UNIQUE,
     entry_text TEXT,
-    adventure_datetime TIMESTAMP
+    created_at TIMESTAMP
+);
+
+--Create adventure characters join table
+
+CREATE TABLE adventure_characters (
+    id SERIAL NOT NULL UNIQUE,
+    adventure_id INT,
+    character_id INT
+);
+
+--Create adventure places join table
+
+CREATE TABLE adventure_places (
+    id SERIAL NOT NULL UNIQUE,
+    adventure_id INT,
+    place_id INT
+);
+
+--Create adventure things join table
+
+CREATE TABLE adventure_things (
+    id SERIAL NOT NULL UNIQUE,
+    adventure_id INT,
+    thing_id INT
 );
 
 -- Insert an example character
@@ -62,5 +86,17 @@ INSERT INTO things (thing_name, physical_description, special_properties, img_ur
 VALUES ('Hood of Goah', 'White hood resembling a mythic creature', 'Allows one to take the shape of a winged unicorn', 'img_url');
 
 -- Insert an example adventure
-INSERT INTO adventures (entry_text, adventure_datetime)
+INSERT INTO adventures (entry_text, created_at)
 VALUES ('Once upon a time ago some stuff happened. It involved some people. And they all lived happily ever after.', CURRENT_TIMESTAMP);
+
+-- Insert an example adventure character
+INSERT INTO adventure_characters (adventure_id, character_id)
+VALUES (1, 1);
+
+-- Insert an example adventure places
+INSERT INTO adventure_places (adventure_id, place_id)
+VALUES (1, 1);
+
+-- Insert an example adventure
+INSERT INTO adventure_things (adventure_id, thing_id)
+VALUES (1, 1);
