@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Lander from './views/Lander'
 import TopBar from './components/TopBar';
 import { Container } from "@material-ui/core";
-
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import AdventureEntry from "./components/AdventureEntry";
 
