@@ -45,6 +45,7 @@ CREATE TABLE things (
 -- Create adventures table
 CREATE TABLE adventures (
     id SERIAL NOT NULL UNIQUE,
+    entry_title VARCHAR(256),
     entry_text TEXT,
     created_at TIMESTAMP
 );
@@ -86,8 +87,8 @@ INSERT INTO things (thing_name, physical_description, special_properties, img_ur
 VALUES ('Hood of Goah', 'White hood resembling a mythic creature', 'Allows one to take the shape of a winged unicorn', 'img_url');
 
 -- Insert an example adventure
-INSERT INTO adventures (entry_text, created_at)
-VALUES ('Once upon a time ago some stuff happened. It involved some people. And they all lived happily ever after.', CURRENT_TIMESTAMP);
+INSERT INTO adventures (entry_title, entry_text, created_at)
+VALUES ('Once Upon A Time Ago', 'Some stuff happened. It involved some people. And they all lived happily ever after.', CURRENT_TIMESTAMP);
 
 -- Insert an example adventure character
 INSERT INTO adventure_characters (adventure_id, character_id)
@@ -97,6 +98,6 @@ VALUES (1, 1);
 INSERT INTO adventure_places (adventure_id, place_id)
 VALUES (1, 1);
 
--- Insert an example adventure
+-- Insert an example adventure thing
 INSERT INTO adventure_things (adventure_id, thing_id)
 VALUES (1, 1);

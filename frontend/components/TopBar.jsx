@@ -6,9 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Person2Icon from '@mui/icons-material/Person2';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import CreatePersonModal from './modals/CreatePersonModal';
-import CreatePlaceModal from './modals/CreatePlaceModal';
-import CreateThingModal from './modals/CreateThingModal';
+import CreatePersonModal from './forms/CreatePersonModal';
+import CreatePlaceModal from './forms/CreatePlaceModal';
+import CreateThingModal from './forms/CreateThingModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,6 +57,14 @@ export default function TopBar({ theme }) {
 
   return (
     <ThemeProvider theme={theme}>
+      <AppBar display="flex"
+        alignItems="center"
+        justifyContent="center"
+        p={1}>
+        <Box>
+          Hi
+        </Box>
+      </AppBar>
       <AppBar className={classes.root}>
         <Box
           display="flex"
@@ -103,6 +111,6 @@ export default function TopBar({ theme }) {
           </ButtonGroup>
         </Box>
       </AppBar>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
