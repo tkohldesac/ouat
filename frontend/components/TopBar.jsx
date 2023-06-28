@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   modal: {
 
     margin: 'auto',
-    marginTop: '10%',
+    marginTop: '5%',
     width: 400,
 
   }
@@ -66,7 +66,7 @@ export default function TopBar({ theme }) {
         >
           <ButtonGroup variant="text">
             <Button onClick={createPerson} className={classes.button}>
-              <Person2Icon /> Create Person
+              <Person2Icon /> Create A Person
             </Button>
             <Modal
               keepMounted
@@ -78,7 +78,7 @@ export default function TopBar({ theme }) {
             </Modal>
 
             <Button onClick={createPlace} className={classes.button}>
-              <LocationCityIcon /> Create Place
+              <LocationCityIcon /> Create A Place
             </Button>
             <Modal
               keepMounted
@@ -90,7 +90,7 @@ export default function TopBar({ theme }) {
 
             </Modal >
             <Button onClick={createThing} className={classes.button}>
-              <ShoppingBagIcon /> Create Thing
+              <ShoppingBagIcon /> Create A Thing
             </Button>
             <Modal
               open={thingModalOpen}
