@@ -12,7 +12,7 @@ const theme = createTheme({
       main: '#381e99'
     },
     secondary: {
-      main: '#381e99'
+      main: '#f4a2fd'
     }
   }
 })
@@ -22,7 +22,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Container>
-          <TopBar theme={theme}/>
+          <TopBar theme={theme} />
 
           <Routes>
             <Route
