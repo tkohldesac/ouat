@@ -66,7 +66,7 @@ export default function TopBar({ theme }) {
         >
           <ButtonGroup variant="text">
             <Button onClick={createPerson} className={classes.button}>
-              <Person2Icon /> Create A Person
+              <Person2Icon style={{ paddingRight: '.2rem' }} /> Create A Person
             </Button>
             <Modal
               keepMounted
@@ -78,7 +78,7 @@ export default function TopBar({ theme }) {
             </Modal>
 
             <Button onClick={createPlace} className={classes.button}>
-              <LocationCityIcon /> Create A Place
+              <LocationCityIcon style={{ paddingRight: '.2rem' }} /> Create A Place
             </Button>
             <Modal
               keepMounted
@@ -90,7 +90,7 @@ export default function TopBar({ theme }) {
 
             </Modal >
             <Button onClick={createThing} className={classes.button}>
-              <ShoppingBagIcon /> Create A Thing
+              <ShoppingBagIcon style={{ paddingRight: '.2rem' }} />Create A Thing
             </Button>
             <Modal
               open={thingModalOpen}
