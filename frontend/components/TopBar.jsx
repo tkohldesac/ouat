@@ -57,14 +57,7 @@ export default function TopBar({ theme }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar display="flex"
-        alignItems="center"
-        justifyContent="center"
-        p={1}>
-        <Box>
-          Hi
-        </Box>
-      </AppBar>
+
       <AppBar className={classes.root}>
         <Box
           display="flex"

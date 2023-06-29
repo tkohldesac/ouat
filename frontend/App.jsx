@@ -23,14 +23,11 @@ export default function App() {
       <BrowserRouter>
         <Container>
           <TopBar theme={theme} />
-          <AdventureEntry />
           <Routes>
             <Route
               path="/"
-              element={<Lander />}
+              element={<AdventureEntry />}
             />
-
-
           </Routes>
         </Container>
       </BrowserRouter>
