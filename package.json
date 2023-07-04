@@ -6,8 +6,8 @@
   "scripts": {
     "frontend": "npx webpack-dev-server --mode development --config ./frontend/webpack.config.js",
     "backend": "nodemon ./backend/server.js",
-    "seed": "psql -U postgres < ./seed.sql",
-    "admin": "psql -U postgres -d ouata"
+    "seed": "sudo -u postgres psql ouata -f seed.sql",
+    "admin": "sudo -u postgres psql ouata"
   },
   "author": "",
   "license": "ISC",

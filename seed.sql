@@ -1,3 +1,4 @@
+\c postgres
 -- Delete database if it exists
 DROP DATABASE IF EXISTS ouata;
 
