@@ -6,8 +6,9 @@
   "scripts": {
     "frontend": "npx webpack-dev-server --mode development --config ./frontend/webpack.config.js",
     "backend": "nodemon ./backend/server.js",
-    "seed": "sudo -u postgres psql ouata -f seed.sql",
-    "admin": "sudo -u postgres psql ouata"
+    "seed": "psql -U postgres < ./seed.sql",
+    "admin": "psql -U postgres -d ouata",
+    "start-vercel": "bash start.sh"
   },
   "author": "",
   "license": "ISC",
@@ -26,11 +27,12 @@
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.1",
     "js-cookie": "^3.0.1",
     "knex": "^2.4.2",
     "morgan": "^1.10.0",
-    "pg": "^8.10.0",
+    "pg": "^8.11.1",
     "postgres": "^3.3.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
