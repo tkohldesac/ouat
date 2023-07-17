@@ -5,6 +5,7 @@ import TopBar from './components/TopBar';
 import { Container } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import AdventureEntry from "./components/AdventureEntry";
+import AdventureStory from "./components/AdventureStory";
 
 const theme = createTheme({
   palette: {
@@ -27,6 +28,10 @@ export default function App() {
             <Route
               path="/"
               element={<AdventureEntry />}
+            />
+            <Route
+              path="/story"
+              element={<AdventureStory />}
             />
           </Routes>
         </Container>

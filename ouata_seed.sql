@@ -70,7 +70,7 @@ VALUES ('Angela''s Castle', 'Big and full of rainbows and animals and friends', 
 
 -- Insert an example thing
 INSERT INTO ouata_things (thing_name, physical_description, special_properties, img_url)
-VALUES ('Hood of Goah', 'White hood resembling a mythic creature', 'Allows one to take the shape of a winged unicorn', 'img_url');
+VALUES ('Hood of Goah', 'White hood resembling a mythical creature', 'Allows one to take the shape of a winged unicorn', 'img_url');
 
 -- Insert an example adventure
 INSERT INTO ouata_adventures (entry_title, entry_text, created_at)
