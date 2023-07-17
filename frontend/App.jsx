@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import AdventureEntry from "./components/AdventureEntry";
 import AdventureStory from "./components/AdventureStory";
+import ReadWriteLander from './components/ReadWriteLander';
 
 const theme = createTheme({
   palette: {
@@ -16,18 +17,22 @@ const theme = createTheme({
       main: '#f4a2fd'
     }
   }
+
 })
+
+
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Container>
+        <Container style={{marginTop: '3rem'}}>
           <TopBar theme={theme} />
           <Routes>
+
             <Route
               path="/"
-              element={<AdventureEntry />}
+              element={<ReadWriteLander />}
             />
             <Route
               path="/story"
