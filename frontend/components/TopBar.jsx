@@ -100,10 +100,10 @@ export default function TopBar({ theme }) {
       <AppBar className={classes.root}>
         <Box display="flex" alignItems="center" justifyContent="center" p={1}>
           <ButtonGroup variant="text">
-          <Button
+            <Button
               aria-describedby={id}
               variant="contained"
-              onClick={(event) => handlePopoverClick(event, 'place')}
+              onClick={(event) => handlePopoverClick(event, 'people')}
               className={classes.button}
             >
               <Person2Icon style={{ paddingRight: '.2rem' }} /> People
@@ -126,14 +126,14 @@ export default function TopBar({ theme }) {
                 <ListItem button onClick={createPerson}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={viewPlace}>
+                <ListItem button onClick={viewPerson}>
                   <ListItemText primary="View" />
                 </ListItem>
               </List>
             </Popover>
             {/* TEST? */}
 
-            
+
             <Button
               aria-describedby={id}
               variant="contained"
