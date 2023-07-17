@@ -6,9 +6,10 @@
   "scripts": {
     "frontend": "npx webpack-dev-server --mode development --config ./frontend/webpack.config.js",
     "backend": "nodemon ./backend/server.js",
-    "seed": "psql -U postgres < ./seed.sql",
+    "seed": "psql -U postgres -d ouata< ./ouata_seed.sql",
     "admin": "psql -U postgres -d ouata",
-    "start-vercel": "bash start.sh"
+    "start-vercel": "bash start.sh",
+    "seed-vercel": "bash seed.sh"
   },
   "author": "",
   "license": "ISC",
