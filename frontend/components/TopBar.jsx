@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, ThemeProvider, Modal } from '@mui/material';
+import { AppBar, ThemeProvider, Modal, Popover, List, ListItem, ListItemText } from '@mui/material';
 import { Button, Typography, ButtonGroup } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +9,9 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import CreatePersonModal from './forms/CreatePersonModal';
 import CreatePlaceModal from './forms/CreatePlaceModal';
 import CreateThingModal from './forms/CreateThingModal';
+import ViewPersonModal from './forms/ViewPersonModal';
+import ViewPlaceModal from './forms/ViewPlaceModal';
+import ViewThingModal from './forms/ViewThingModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,18 +21,21 @@ const useStyles = makeStyles((theme) => ({
     color: '#f4a2fd',
   },
   modal: {
-
     margin: 'auto',
     marginTop: '5%',
     width: 400,
-
-  }
+  },
 }));
 
 export default function TopBar({ theme }) {
   const [personModalOpen, setPersonModalOpen] = React.useState(false);
   const [placeModalOpen, setPlaceModalOpen] = React.useState(false);
   const [thingModalOpen, setThingModalOpen] = React.useState(false);
+  const [viewPersonModalOpen, setViewPersonModalOpen] = React.useState(false);
+  const [viewPlaceModalOpen, setViewPlaceModalOpen] = React.useState(false);
+  const [viewThingModalOpen, setViewThingModalOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [popoverType, setPopoverType] = React.useState('');
 
   const openPersonModal = () => setPersonModalOpen(true);
   const closePersonModal = () => setPersonModalOpen(false);
@@ -37,6 +43,12 @@ export default function TopBar({ theme }) {
   const closePlaceModal = () => setPlaceModalOpen(false);
   const openThingModal = () => setThingModalOpen(true);
   const closeThingModal = () => setThingModalOpen(false);
+  const openViewPersonModal = () => setViewPersonModalOpen(true);
+  const closeViewPersonModal = () => setViewPersonModalOpen(false);
+  const openViewPlaceModal = () => setViewPlaceModalOpen(true);
+  const closeViewPlaceModal = () => setViewPlaceModalOpen(false);
+  const openViewThingModal = () => setViewThingModalOpen(true);
+  const closeViewThingModal = () => setViewThingModalOpen(false);
 
   const createPerson = () => {
     console.log('Person Modal');
@@ -53,57 +65,165 @@ export default function TopBar({ theme }) {
     openThingModal();
   };
 
+  const viewPerson = () => {
+    console.log('View Person Modal');
+    openViewPersonModal();
+  };
+
+  const viewPlace = () => {
+    console.log('View Place Modal');
+    openViewPlaceModal();
+  };
+
+  const viewThing = () => {
+    console.log('View Thing Modal');
+    openViewThingModal();
+  };
+
+  const handlePopoverClick = (event, popoverType) => {
+    setAnchorEl(event.currentTarget);
+    setPopoverType(popoverType);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setPopoverType('');
+  };
+
   const classes = useStyles();
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   return (
     <ThemeProvider theme={theme}>
-
       <AppBar className={classes.root}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          p={1}
-        >
+        <Box display="flex" alignItems="center" justifyContent="center" p={1}>
           <ButtonGroup variant="text">
-            <Button onClick={createPerson} className={classes.button}>
-              <Person2Icon style={{ paddingRight: '.2rem' }} /> Create A Person
-            </Button>
-            <Modal
-              keepMounted
-              open={personModalOpen}
-              onClose={closePersonModal}
-              className={classes.modal}
+          <Button
+              aria-describedby={id}
+              variant="contained"
+              onClick={(event) => handlePopoverClick(event, 'place')}
+              className={classes.button}
             >
-              <CreatePersonModal />
-            </Modal>
-
-            <Button onClick={createPlace} className={classes.button}>
-              <LocationCityIcon style={{ paddingRight: '.2rem' }} /> Create A Place
+              <Person2Icon style={{ paddingRight: '.2rem' }} /> People
             </Button>
-            <Modal
-              keepMounted
-              open={placeModalOpen}
-              onClose={closePlaceModal}
-              className={classes.modal}
+            <Popover
+              id={id}
+              open={open && popoverType === 'people'}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
             >
-              <CreatePlaceModal />
+              <List>
+                <ListItem button onClick={createPerson}>
+                  <ListItemText primary="Create" />
+                </ListItem>
+                <ListItem button onClick={viewPlace}>
+                  <ListItemText primary="View" />
+                </ListItem>
+              </List>
+            </Popover>
+            {/* TEST? */}
 
-            </Modal >
-            <Button onClick={createThing} className={classes.button}>
-              <ShoppingBagIcon style={{ paddingRight: '.2rem' }} />Create A Thing
+            
+            <Button
+              aria-describedby={id}
+              variant="contained"
+              onClick={(event) => handlePopoverClick(event, 'place')}
+              className={classes.button}
+            >
+              <LocationCityIcon style={{ paddingRight: '.2rem' }} /> Places
             </Button>
-            <Modal
-              open={thingModalOpen}
-              onClose={closeThingModal}
-              className={classes.modal}
+            <Popover
+              id={id}
+              open={open && popoverType === 'place'}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
             >
-              <CreateThingModal />
+              <List>
+                <ListItem button onClick={createPlace}>
+                  <ListItemText primary="Create" />
+                </ListItem>
+                <ListItem button onClick={viewPlace}>
+                  <ListItemText primary="View" />
+                </ListItem>
+              </List>
+            </Popover>
 
-            </Modal>
+            {/* TEST? */}
+            <Button
+              aria-describedby={id}
+              variant="contained"
+              onClick={(event) => handlePopoverClick(event, 'thing')}
+              className={classes.button}
+            >
+              <ShoppingBagIcon style={{ paddingRight: '.2rem' }} /> Things
+            </Button>
+            <Popover
+              id={id}
+              open={open && popoverType === 'thing'}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              <List>
+                <ListItem button onClick={createThing}>
+                  <ListItemText primary="Create" />
+                </ListItem>
+                <ListItem button onClick={viewThing}>
+                  <ListItemText primary="View" />
+                </ListItem>
+              </List>
+            </Popover>
           </ButtonGroup>
         </Box>
       </AppBar>
-    </ThemeProvider >
+
+      <Modal
+        open={viewPersonModalOpen}
+        onClose={closeViewPersonModal}
+        className={classes.modal}
+      >
+
+        <ViewPersonModal />
+      </Modal>
+      <Modal
+        open={viewPlaceModalOpen}
+        onClose={closeViewPlaceModal}
+        className={classes.modal}
+      >
+        <ViewPlaceModal />
+      </Modal>
+      <Modal
+        open={viewThingModalOpen}
+        onClose={closeViewThingModal}
+        className={classes.modal}
+      >
+        <ViewThingModal />
+      </Modal>
+    </ThemeProvider>
   );
 }

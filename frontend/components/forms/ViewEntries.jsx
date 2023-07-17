@@ -19,7 +19,7 @@ export default function EntryForm() {
 
             }}>
 
-                <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far:</Typography>
+                <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
 
 
             </Container>
