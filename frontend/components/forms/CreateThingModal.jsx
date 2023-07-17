@@ -19,7 +19,7 @@ export default function createThingModal() {
     return (
         <div>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
-                <Typography style={{ paddingBottom: '1rem', textAlign: 'center' }}>Create Thing</Typography>
+                <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create Thing</Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
