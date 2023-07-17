@@ -201,14 +201,26 @@ export default function TopBar({ theme }) {
           </ButtonGroup>
         </Box>
       </AppBar>
-
+      <Modal
+        open={personModalOpen}
+        onClose={closePersonModal}
+        className={classes.modal}
+      >
+        <CreatePersonModal />
+      </Modal>
       <Modal
         open={viewPersonModalOpen}
         onClose={closeViewPersonModal}
         className={classes.modal}
       >
-
         <ViewPersonModal />
+      </Modal>
+      <Modal
+        open={placeModalOpen}
+        onClose={closePlaceModal}
+        className={classes.modal}
+      >
+        <CreatePlaceModal />
       </Modal>
       <Modal
         open={viewPlaceModalOpen}
@@ -216,6 +228,13 @@ export default function TopBar({ theme }) {
         className={classes.modal}
       >
         <ViewPlaceModal />
+      </Modal>
+      <Modal
+        open={thingModalOpen}
+        onClose={closeThingModal}
+        className={classes.modal}
+      >
+        <CreateThingModal />
       </Modal>
       <Modal
         open={viewThingModalOpen}
