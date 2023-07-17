@@ -1,6 +1,6 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid } from '@material-ui/core';
+import { TextField, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +19,7 @@ export default function createThingModal() {
     return (
         <div>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
+                <Typography style={{ paddingBottom: '1rem', textAlign: 'center' }}>Create Thing</Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>

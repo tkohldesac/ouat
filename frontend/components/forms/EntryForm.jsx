@@ -1,6 +1,6 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid } from '@material-ui/core';
+import { TextField, Button, Grid, Typography } from '@material-ui/core';
 
 export default function EntryForm() {
 
@@ -19,15 +19,18 @@ export default function EntryForm() {
 
             }}>
 
+                <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Record Your Adventure:</Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} >
+
                             <TextField
                                 required
                                 fullWidth
                                 label="Adventure Title"
                                 name="adventureTitle"
                                 variant="filled"
+                                center
                             />
                         </Grid>
                         <Grid item xs={12}>
