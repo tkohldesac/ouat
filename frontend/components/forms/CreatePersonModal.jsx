@@ -2,7 +2,7 @@ import React from "react"
 import Container from '@material-ui/core/Container';
 import { TextField, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import axiosConfig from "../../helpers/axiosConfig"
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -12,11 +12,66 @@ const useStyles = makeStyles((theme) => ({
 
 export default function createPersonModal() {
 
+    const [personName, setPersonName] = React.useState('');
+    const [personAge, setPersonAge] = React.useState('');
+    const [personDescription, setPersonDescription] = React.useState('');
+    const [personAbilities, setPersonAbilities] = React.useState('');
+    const [personBio, setPersonBio] = React.useState('');
+    const [personImageUrl, setPersonImageUrl] = React.useState('');
+
+    const handlePersonNameChange = (event) => {
+        setPersonName(event.target.value);
+    };
+    const handlePersonAgeChange = (event) => {
+        setPersonAge(event.target.value);
+    };
+    const handlePersonDescriptionChange = (event) => {
+        setPersonDescription(event.target.value);
+    };
+    const handlePersonAbilitiesChange = (event) => {
+        setPersonAbilities(event.target.value);
+    };
+    const handlePersonBioChange = (event) => {
+        setPersonBio(event.target.value);
+    };
+    const handlePersonImageUrlChange = (event) => {
+        setPersonImageUrl(event.target.value);
+    };
+
     const classes = useStyles();
 
-    const handleSubmit = () => {
+    const handleSubmit = async (event) => {
+        // event.preventDefault();
+
         console.log('submit')
-    }
+        try {
+
+            const response = await axiosConfig.post(
+                '/create-people',
+                {
+                    personName,
+                    personAge,
+                    personDescription,
+                    personAbilities,
+                    personBio,
+                    personImageUrl,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            if (response.ok) {
+                console.log('New person created successfully!');
+            }
+        } catch (error) {
+            console.error('Error creating new product:', error);
+        }
+
+    };
+
     return (
         <div>
 
@@ -31,6 +86,8 @@ export default function createPersonModal() {
                                 label="Character Name"
                                 name="characterName"
                                 variant="filled"
+                                value={personName}
+                                onChange={handlePersonNameChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -41,6 +98,8 @@ export default function createPersonModal() {
                                 name="age"
                                 type="age"
                                 variant="filled"
+                                value={personAge}
+                                onChange={handlePersonAgeChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -52,6 +111,8 @@ export default function createPersonModal() {
                                 variant="filled"
                                 multiline
                                 minRows={4}
+                                value={personDescription}
+                                onChange={handlePersonDescriptionChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -63,6 +124,8 @@ export default function createPersonModal() {
                                 multiline
                                 minRows={4}
                                 variant="filled"
+                                value={personAbilities}
+                                onChange={handlePersonAbilitiesChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -74,6 +137,8 @@ export default function createPersonModal() {
                                 multiline
                                 minRows={4}
                                 variant="filled"
+                                value={personBio}
+                                onChange={handlePersonBioChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -83,6 +148,8 @@ export default function createPersonModal() {
                                 label="Image URL"
                                 name="characterImageUrl"
                                 variant="filled"
+                                value={personImageUrl}
+                                onChange={handlePersonImageUrlChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
