@@ -39,7 +39,7 @@ export default function createThingModal() {
                                 name="itemDescription"
                                 variant="filled"
                                 multiline
-                                rows={4}
+                                minRows={4}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -50,7 +50,7 @@ export default function createThingModal() {
                                 name="placeName"
                                 variant="filled"
                                 multiline
-                                rows={4}
+                                minRows={4}
                             />
                         </Grid>
 

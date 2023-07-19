@@ -41,7 +41,7 @@ export default function EntryForm() {
                                 name="adventureText"
                                 variant="filled"
                                 multiline
-                                rows={4}
+                                minRows={4}
                             />
                         </Grid>
 

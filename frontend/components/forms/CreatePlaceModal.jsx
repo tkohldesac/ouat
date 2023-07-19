@@ -39,7 +39,7 @@ export default function createPlacesModal() {
                                 name="placeDescription"
                                 variant="filled"
                                 multiline
-                                rows={4}
+                                minRows={4}
                             />
                         </Grid>
                         <Grid item xs={12}>

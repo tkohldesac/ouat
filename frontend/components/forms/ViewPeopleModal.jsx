@@ -42,12 +42,13 @@ export default function createPersonModal() {
         console.log('submit')
     }
     return (
-        <div>
+        <>
 
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>VIEW PEOPLE</Typography>
 
             </Container>
-        </div >
+        </>
     )
+
 }

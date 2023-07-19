@@ -51,7 +51,7 @@ export default function createPersonModal() {
                                 name="characterPhysicalDescription"
                                 variant="filled"
                                 multiline
-                                rows={4}
+                                minRows={4}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -61,7 +61,7 @@ export default function createPersonModal() {
                                 label="Spells & Abilities"
                                 name="spellsAbilities"
                                 multiline
-                                rows={4}
+                                minRows={4}
                                 variant="filled"
                             />
                         </Grid>
@@ -72,7 +72,7 @@ export default function createPersonModal() {
                                 label="Bio"
                                 name="bio"
                                 multiline
-                                rows={4}
+                                minRows={4}
                                 variant="filled"
                             />
                         </Grid>
