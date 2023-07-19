@@ -9,9 +9,9 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import CreatePersonModal from './forms/CreatePersonModal';
 import CreatePlaceModal from './forms/CreatePlaceModal';
 import CreateThingModal from './forms/CreateThingModal';
-import ViewPersonModal from './forms/ViewPersonModal';
-import ViewPlaceModal from './forms/ViewPlaceModal';
-import ViewThingModal from './forms/ViewThingModal';
+import ViewPersonModal from './forms/ViewPeopleModal';
+import ViewPlaceModal from './forms/ViewPlacesModal';
+import ViewThingModal from './forms/ViewThingsModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {

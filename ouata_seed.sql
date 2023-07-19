@@ -1,6 +1,6 @@
 
--- Create the characters table
-CREATE TABLE ouata_characters (
+-- Create the people table
+CREATE TABLE ouata_people (
     id SERIAL PRIMARY KEY,
     character_name VARCHAR(256),
     age INT,
@@ -36,9 +36,9 @@ CREATE TABLE ouata_adventures (
     created_at TIMESTAMP
 );
 
---Create adventure characters join table
+--Create adventure people join table
 
-CREATE TABLE ouata_adventure_characters (
+CREATE TABLE ouata_adventure_people (
     id SERIAL NOT NULL UNIQUE,
     adventure_id INT,
     character_id INT
@@ -61,7 +61,7 @@ CREATE TABLE ouata_adventure_things (
 );
 
 -- Insert an example character
-INSERT INTO ouata_characters (character_name, age, physical_description, spells_abilities, bio, image_url)
+INSERT INTO ouata_people (character_name, age, physical_description, spells_abilities, bio, image_url)
 VALUES ('Chicken Fry', 29, 'Purdy', 'Bruja magic spell 1, Bruja magic spell 2', 'Queen of all the land', 'img_url');
 
 -- Insert an example place
@@ -77,7 +77,7 @@ INSERT INTO ouata_adventures (entry_title, entry_text, created_at)
 VALUES ('Once Upon A Time Ago', 'Some stuff happened. It involved some people. And they all lived happily ever after.', CURRENT_TIMESTAMP);
 
 -- Insert an example adventure character
-INSERT INTO ouata_adventure_characters (adventure_id, character_id)
+INSERT INTO ouata_adventure_people (adventure_id, character_id)
 VALUES (1, 1);
 
 -- Insert an example adventure places
