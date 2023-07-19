@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Container from '@material-ui/core/Container';
 import { TextField, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import axiosConfig from '../../helpers/axiosConfig'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -10,7 +11,30 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 export default function createPersonModal() {
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+        const fetchPeople = async () => {
+            try {
+                const response = await axiosConfig.get('/get-people'); // Fetches all people
+
+                setPeople(response.data);
+                console.log(response.data.forEach(person => {
+                    console.log('Name:', person.person_name)
+                    console.log('Name:', person.age)
+                }));
+
+            } catch (error) {
+                console.error('Failed to fetch people:', error);
+            }
+        };
+
+        fetchPeople();
+    }, []);
+
 
     const classes = useStyles();
 

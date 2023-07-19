@@ -4,7 +4,7 @@ const knex = require("../knexConfig");
 
 // GET ROUTES
 // GET PEOPLE
-router.get('/get-people', async (_,res) => {
+router.get('/get-people', async (req,res) => {
     const reply = await knex('ouata_people')
     .select('ouata_people.*')
     .orderBy('id', 'desc')

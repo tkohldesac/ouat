@@ -3,22 +3,22 @@ const morgan = require('morgan');
 const dbRouter = require('./routes/dbEndpoints');
 
 const app = express();
-// const cookieParser = require('cookie-parser')
+
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const knex = require("./knexConfig");
 
-
-app.use(morgan());
-app.use(express.json());
 app.use(cors({
-  "origin": "http://localhost:9000",
+  "origin": ['http://localhost:9000', 'http://127.0.0.1:9000'],
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204,
   "credentials": true,
 }))
-// app.use(cookieParser());
+app.use(morgan());
+app.use(express.json());
+
+
 app.use(bodyParser.json());
 
 app.listen(4444, () => {
