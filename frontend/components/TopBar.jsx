@@ -131,8 +131,6 @@ export default function TopBar({ theme }) {
                 </ListItem>
               </List>
             </Popover>
-            {/* TEST? */}
-
 
             <Button
               aria-describedby={id}
@@ -166,7 +164,7 @@ export default function TopBar({ theme }) {
               </List>
             </Popover>
 
-            {/* TEST? */}
+
             <Button
               aria-describedby={id}
               variant="contained"
