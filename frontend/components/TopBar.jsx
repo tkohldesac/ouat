@@ -51,32 +51,32 @@ export default function TopBar({ theme }) {
   const closeViewThingModal = () => setViewThingModalOpen(false);
 
   const createPerson = () => {
-    console.log('Person Modal');
+    // console.log('Person Modal');
     openPersonModal();
   };
 
   const createPlace = () => {
-    console.log('Place Modal');
+    // console.log('Place Modal');
     openPlaceModal();
   };
 
   const createThing = () => {
-    console.log('Thing Modal');
+    // console.log('Thing Modal');
     openThingModal();
   };
 
   const viewPerson = () => {
-    console.log('View Person Modal');
+    // console.log('View Person Modal');
     openViewPersonModal();
   };
 
   const viewPlace = () => {
-    console.log('View Place Modal');
+    // console.log('View Place Modal');
     openViewPlaceModal();
   };
 
   const viewThing = () => {
-    console.log('View Thing Modal');
+    // console.log('View Thing Modal');
     openViewThingModal();
   };
 

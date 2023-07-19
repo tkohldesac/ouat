@@ -22,18 +22,20 @@ export default function createPersonModal() {
                 const response = await axiosConfig.get('/get-people'); // Fetches all people
 
                 setPeople(response.data);
-                console.log(response.data.forEach(person => {
-                    console.log('Name:', person.person_name)
-                    console.log('Name:', person.age)
-                }));
+
 
             } catch (error) {
                 console.error('Failed to fetch people:', error);
             }
+
         };
 
         fetchPeople();
+
     }, []);
+    useEffect(() => {
+        console.log('People:', people);
+    }, [people]);
 
 
     const classes = useStyles();

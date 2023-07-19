@@ -30,7 +30,7 @@ export default function EntryForm() {
                                 label="Adventure Title"
                                 name="adventureTitle"
                                 variant="filled"
-                                center
+                                center={true.toString}
                             />
                         </Grid>
                         <Grid item xs={12}>
