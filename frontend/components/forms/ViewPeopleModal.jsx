@@ -35,7 +35,7 @@ export default function createPersonModal() {
 
     }, []);
     useEffect(() => {
-        console.log('People:', people);
+
     }, [people]);
 
 
