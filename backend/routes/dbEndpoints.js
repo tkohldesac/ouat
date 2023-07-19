@@ -39,20 +39,13 @@ router.get('/get-adventures', async (_,res) => {
 
 router.post('/create-people', async (req, res) => {
     
-    
-    console.log(req.body.personName);
-    console.log(req.body.personAge);
-    console.log(req.body.personDescription);
-    console.log(req.body.personAbilities);
-    console.log(req.body.personBio);
-    console.log(req.body.personImageUrl);
-
     personName = req.body.personName
     personAge = req.body.personAge
     personDescription = req.body.personDescription
     personAbilities = req.body.personAbilities
     personBio = req.body.personBio
     personImageUrl = req.body.personImageUrl
+    
 try {
     const newPerson = await knex('ouata_people').insert({
         person_name: personName,

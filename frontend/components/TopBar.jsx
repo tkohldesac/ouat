@@ -212,8 +212,11 @@ export default function TopBar({ theme }) {
         onClose={closeViewPersonModal}
         className={classes.modal}
         disableEnforceFocus
+        sx={{ overflow: 'auto' }}
       >
+        {/* SEARCH HERE */}
         <ViewPersonModal />
+
       </Modal>
       <Modal
         open={placeModalOpen}
@@ -247,6 +250,6 @@ export default function TopBar({ theme }) {
       >
         <ViewThingModal />
       </Modal>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }

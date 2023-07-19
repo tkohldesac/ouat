@@ -24,9 +24,9 @@ const theme = createTheme({
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
       <BrowserRouter>
-        <Container style={{marginTop: '3rem'}}>
+        <Container style={{ marginTop: '3rem' }} >
           <TopBar theme={theme} />
           <Routes>
 
