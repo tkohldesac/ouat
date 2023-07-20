@@ -8,7 +8,6 @@ export default function EntryForm() {
     useEffect(() => {
         const fetchEntries = async () => {
             try {
-                console.log('fetching entries')
                 const response = await axiosConfig.get('/get-adventures');
                 setEntries(response.data)
             } catch (error) {
