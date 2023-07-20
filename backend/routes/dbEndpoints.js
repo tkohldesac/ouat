@@ -64,12 +64,41 @@ try {
 });
 
 router.post('/create-place', async (req, res) => {
+
+    placeName = req.body.placeName
+    placeDescription = req.body.placeDescription
+    placeSovereign = req.body.placeSovereign
+    placeImageUrl = req.body.placeImageUrl
+            
     try {
         const newPlace = await knex('ouata_places').insert({
-            place_name: place_name,
-            placeDescription: physical_description,
-            placeSovereign: sovereign,
-            placeImgUrl: img_url
+            place_name: placeName,
+            physical_description: placeDescription,
+            sovereign: placeSovereign,
+            img_url: placeImageUrl
+
+        });
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('Error creating new place:', error);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/create-thing', async (req, res) => {
+
+    thingName = req.body.thingName
+    thingDescription = req.body.thingDescription
+    thingProperties = req.body.thingProperties
+    thingImageUrl = req.body.thingImageUrl
+            
+    try {
+        const newThing = await knex('ouata_things').insert({
+            thing_name: thingName,
+            physical_description: thingDescription,
+            special_properties: thingProperties,
+            img_url: thingImageUrl
+
         });
         res.sendStatus(200);
     } catch (error) {

@@ -41,10 +41,7 @@ export default function createPersonModal() {
     const classes = useStyles();
 
     const handleSubmit = async (event) => {
-        // event.preventDefault();
-
         try {
-
             const response = await axiosConfig.post(
                 '/create-people',
                 {
