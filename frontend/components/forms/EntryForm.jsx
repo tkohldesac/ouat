@@ -1,11 +1,43 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
 import { TextField, Button, Grid, Typography } from '@material-ui/core';
+import axiosConfig from "../../helpers/axiosConfig"
 
 export default function EntryForm() {
 
-    const handleSubmit = () => {
-    }
+    const [entryTitle, setEntryTitle] = React.useState('');
+    const [entryText, setEntryText] = React.useState('');
+
+    const handleEntryTitleChange = (event) => {
+        setEntryTitle(event.target.value);
+    };
+    const handleEntryTextChange = (event) => {
+        setEntryText(event.target.value);
+    };
+
+    const handleSubmit = async (event) => {
+        try {
+            const response = await axiosConfig.post(
+                '/create-adventure',
+                {
+                    entryTitle,
+                    entryText,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            if (response.ok) {
+                console.log('New adventure logged!');
+            }
+        } catch (error) {
+            console.error('Error creating new adventure:', error);
+        }
+    };
+
 
     return (
         <div>
@@ -30,6 +62,8 @@ export default function EntryForm() {
                                 name="adventureTitle"
                                 variant="filled"
                                 center={true.toString}
+                                value={entryTitle}
+                                onChange={handleEntryTitleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -41,6 +75,8 @@ export default function EntryForm() {
                                 variant="filled"
                                 multiline
                                 minRows={4}
+                                value={entryText}
+                                onChange={handleEntryTextChange}
                             />
                         </Grid>
 

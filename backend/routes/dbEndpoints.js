@@ -106,6 +106,21 @@ router.post('/create-thing', async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+router.post('/create-adventure', async (req, res) => {
+    entryTitle = req.body.entryTitle
+    entryText = req.body.entryText
+
+    try {
+        const newEntry = await knex('ouata_adventures').insert( {
+            entry_title: entryTitle,
+            entry_text: entryText
+        });
+    } catch (error) {
+        console.error('Error creating new place:', error);
+        res.sendStatus(500);
+    }
+});
 // PUT ROUTES
 
 // DELETE ROUTES
