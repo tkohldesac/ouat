@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
 export default function createPersonModal() {
     const [people, setPeople] = useState([]);
 
@@ -23,35 +21,22 @@ export default function createPersonModal() {
 
                 setPeople(response.data);
 
-
-
             } catch (error) {
                 console.error('Failed to fetch people:', error);
             }
 
         };
-
         fetchPeople();
-
     }, []);
-    useEffect(() => {
-
-    }, [people]);
-
 
     const classes = useStyles();
 
-    const handleSubmit = () => {
-        console.log('submit')
-    }
     return (
         <>
-
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }} sx={{ overflow: 'auto' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PEOPLE</Typography>
                 {people.map((person) => (
                     <Grid key={person.id}>
-
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
                             <Typography variant="h5" component="h2" >{person.person_name} </Typography>
                             <Typography variant="body1" component="p" >Age: {person.age}</Typography>

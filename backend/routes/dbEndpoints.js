@@ -45,7 +45,7 @@ router.post('/create-people', async (req, res) => {
     personAbilities = req.body.personAbilities
     personBio = req.body.personBio
     personImageUrl = req.body.personImageUrl
-    
+
 try {
     const newPerson = await knex('ouata_people').insert({
         person_name: personName,
@@ -61,6 +61,21 @@ try {
     console.error('Error creating new person:', error);
     res.sendStatus(500);
 }
+});
+
+router.post('/create-place', async (req, res) => {
+    try {
+        const newPlace = await knex('ouata_places').insert({
+            place_name: place_name,
+            placeDescription: physical_description,
+            placeSovereign: sovereign,
+            placeImgUrl: img_url
+        });
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('Error creating new place:', error);
+        res.sendStatus(500);
+    }
 });
 // PUT ROUTES
 
