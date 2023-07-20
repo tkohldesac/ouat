@@ -16,11 +16,12 @@ export default function CenteredTabs() {
     return (
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <Tabs value={value} onChange={handleChange} centered>
+                <Tab label="Story" />
                 <Tab label="New Entry" />
-                <Tab label="Read Entries" />
+
             </Tabs>
-            {value === 0 && <AdventureEntry />}
-            {value === 1 && <AdventureStory />}
+            {value === 1 && <AdventureEntry />}
+            {value === 0 && <AdventureStory />}
         </Box>
     );
 }
