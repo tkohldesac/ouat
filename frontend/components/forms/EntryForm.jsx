@@ -7,6 +7,7 @@ export default function EntryForm() {
 
     const [entryTitle, setEntryTitle] = React.useState('');
     const [entryText, setEntryText] = React.useState('');
+    
 
     const handleEntryTitleChange = (event) => {
         setEntryTitle(event.target.value);

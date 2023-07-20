@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid, Typography } from '@material-ui/core';
+import { TextField, IconButton, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
-
+// Icons:
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const useStyles = makeStyles((theme) => ({
     input: {
         border: 'rgba(0,0,0,.2)'
+    },
+    iconButtonsContainer: {
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        marginTop: '1rem',
+    },
+    iconButton: {
+        bottom: '0',
+        right: '0',
     },
 }));
 
@@ -29,6 +41,8 @@ export default function createPlaceModal() {
         fetchPlaces();
     }, []);
 
+    const classes = useStyles();
+
     return (
         <>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
@@ -39,7 +53,14 @@ export default function createPlaceModal() {
                             <Typography variant="h5" component="h2">{place.place_name}</Typography>
                             <Typography variant="body1" component="p" >Description: {place.physical_description}</Typography>
                             <Typography variant="body1" component="p" >Sovereign: {place.sovereign}</Typography>
-                            <Typography variant="body1" component="p" >Image: {place.img_url}</Typography>
+                            <div className={classes.iconButtonsContainer}>
+                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                    <EditIcon sx={{ color: 'white' }} />
+                                </IconButton>
+                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                    <DeleteForeverIcon sx={{ color: 'white' }} />
+                                </IconButton>
+                            </div>
                         </Container>
                     </Grid>
                 ))}
