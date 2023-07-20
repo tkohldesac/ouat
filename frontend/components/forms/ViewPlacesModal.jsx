@@ -29,12 +29,6 @@ export default function createPlaceModal() {
         fetchPlaces();
     }, []);
 
-    // Delete the following lines when done testing:
-    useEffect(() => {
-        console.log('Places:', places);
-    }, [places]);
-    // End delete
-
     return (
         <>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
