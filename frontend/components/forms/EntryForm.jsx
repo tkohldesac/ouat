@@ -1,19 +1,51 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid, Typography, Box } from '@material-ui/core';
+import { TextField, Button, Grid, Typography, Box, Modal } from '@material-ui/core';
 import axiosConfig from "../../helpers/axiosConfig"
 import AddIcon from '@mui/icons-material/Add';
+import AddPersonModal from './AddPersonModal'
+import AddPlaceModal from './AddPlaceModal'
+import AddThingModal from './AddThingModal'
+
 
 export default function EntryForm() {
-
+    // Entry items:
     const [entryTitle, setEntryTitle] = React.useState('');
     const [entryText, setEntryText] = React.useState('');
-
     const [includedPeople, setIncludedPeople] = React.useState([]);
     const [includedPlaces, setIncludedPlaces] = React.useState([]);
     const [includedThings, setIncludedThings] = React.useState([]);
+    // End Entry items //
 
 
+
+
+
+    // Modal fun:
+
+    // Modal state:
+    const [addPersonModalOpen, setAddPersonModalOpen] = React.useState(false);
+    const [addPlaceModalOpen, setAddPlaceModalOpen] = React.useState(false);
+    const [addThingModalOpen, setAddThingModalOpen] = React.useState(false);
+
+    const openAddPerson = () => setAddPersonModalOpen(true);
+    const closeAddPerson = () => setAddPersonModalOpen(false);
+
+    const openAddPlace = () => setAddPlaceModalOpen(true);
+    const closeAddPlace = () => setAddPlaceModalOpen(false);
+
+    const openAddThing = () => setAddThingModalOpen(true);
+    const closeAddThing = () => setAddThingModalOpen(false);
+
+
+
+    // End Modal Fun
+
+
+
+
+
+    // Entry stuff changing:
     const handleEntryTitleChange = (event) => {
         setEntryTitle(event.target.value);
     };
@@ -30,8 +62,10 @@ export default function EntryForm() {
     const handleIncludedThingsEntry = (event) => {
         setIncludedThings(event.target.value);
     };
+    // End entry stuff changing
 
 
+    // Handle Submit:
     const handleSubmit = async (event) => {
         try {
             const response = await axiosConfig.post(
@@ -99,13 +133,36 @@ export default function EntryForm() {
                         <Box sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
                             <Grid container spacing={2}>
                                 <Grid xs={4} style={{ textAlign: 'center' }} >
-                                    <Button variant="contained" startIcon={<AddIcon />} >People</Button>
+                                    <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPerson} >People</Button>
+                                    <Modal
+                                        open={addPersonModalOpen}
+                                        onClose={closeAddPerson}
+                                        disableEnforceFocus>
+                                        <AddPersonModal />
+
+                                    </Modal>
                                 </Grid>
-                                <Grid xs={4} style={{ textAlign: 'center' }}>
-                                    <Button variant="contained" startIcon={<AddIcon />} >Places</Button>
+
+                                <Grid xs={4} style={{ textAlign: 'center' }} >
+                                    <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPlace} >Places</Button>
+                                    <Modal
+                                        open={addPlaceModalOpen}
+                                        onClose={closeAddPlace}
+                                        disableEnforceFocus>
+                                        <AddPlaceModal />
+
+                                    </Modal>
                                 </Grid>
+
                                 <Grid xs={4} style={{ textAlign: 'center' }}>
-                                    <Button variant="contained" startIcon={<AddIcon />} >Things</Button>
+                                    <Button variant="contained" startIcon={<AddIcon />} onClick={openAddThing}>Things</Button>
+                                    <Modal
+                                        open={addThingModalOpen}
+                                        onClose={closeAddThing}
+                                        disableEnforceFocus>
+                                        <AddThingModal />
+
+                                    </Modal>
                                 </Grid>
                             </Grid>
                         </Box>

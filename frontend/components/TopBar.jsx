@@ -39,40 +39,21 @@ export default function TopBar({ theme }) {
 
   const openPersonModal = () => setPersonModalOpen(true);
   const closePersonModal = () => setPersonModalOpen(false);
+
   const openPlaceModal = () => setPlaceModalOpen(true);
   const closePlaceModal = () => setPlaceModalOpen(false);
+
   const openThingModal = () => setThingModalOpen(true);
   const closeThingModal = () => setThingModalOpen(false);
+
   const openViewPersonModal = () => setViewPersonModalOpen(true);
   const closeViewPersonModal = () => setViewPersonModalOpen(false);
+
   const openViewPlaceModal = () => setViewPlaceModalOpen(true);
   const closeViewPlaceModal = () => setViewPlaceModalOpen(false);
+
   const openViewThingModal = () => setViewThingModalOpen(true);
   const closeViewThingModal = () => setViewThingModalOpen(false);
-
-  const createPerson = () => {
-    openPersonModal();
-  };
-
-  const createPlace = () => {
-    openPlaceModal();
-  };
-
-  const createThing = () => {
-     openThingModal();
-  };
-
-  const viewPerson = () => {
-    openViewPersonModal();
-  };
-
-  const viewPlace = () => {
-    openViewPlaceModal();
-  };
-
-  const viewThing = () => {
-     openViewThingModal();
-  };
 
   const handlePopoverClick = (event, popoverType) => {
     setAnchorEl(event.currentTarget);
@@ -117,10 +98,10 @@ export default function TopBar({ theme }) {
               }}
             >
               <List>
-                <ListItem button onClick={createPerson}>
+                <ListItem button onClick={openPersonModal}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={viewPerson}>
+                <ListItem button onClick={openViewPersonModal}>
                   <ListItemText primary="View" />
                 </ListItem>
               </List>
@@ -149,10 +130,10 @@ export default function TopBar({ theme }) {
               }}
             >
               <List>
-                <ListItem button onClick={createPlace}>
+                <ListItem button onClick={openPlaceModal}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={viewPlace}>
+                <ListItem button onClick={openViewPlaceModal}>
                   <ListItemText primary="View" />
                 </ListItem>
               </List>
@@ -182,10 +163,10 @@ export default function TopBar({ theme }) {
               }}
             >
               <List>
-                <ListItem button onClick={createThing}>
+                <ListItem button onClick={openThingModal}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={viewThing}>
+                <ListItem button onClick={openViewThingModal}>
                   <ListItemText primary="View" />
                 </ListItem>
               </List>
