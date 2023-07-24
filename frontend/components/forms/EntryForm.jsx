@@ -1,13 +1,18 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid, Typography } from '@material-ui/core';
+import { TextField, Button, Grid, Typography, Box } from '@material-ui/core';
 import axiosConfig from "../../helpers/axiosConfig"
+import AddIcon from '@mui/icons-material/Add';
 
 export default function EntryForm() {
 
     const [entryTitle, setEntryTitle] = React.useState('');
     const [entryText, setEntryText] = React.useState('');
-    
+
+    const [includedPeople, setIncludedPeople] = React.useState([]);
+    const [includedPlaces, setIncludedPlaces] = React.useState([]);
+    const [includedThings, setIncludedThings] = React.useState([]);
+
 
     const handleEntryTitleChange = (event) => {
         setEntryTitle(event.target.value);
@@ -15,6 +20,17 @@ export default function EntryForm() {
     const handleEntryTextChange = (event) => {
         setEntryText(event.target.value);
     };
+
+    const handleIncludedPeopleEntry = (event) => {
+        setIncludedPeople(event.target.value);
+    };
+    const handleIncludedPlacesEntry = (event) => {
+        setIncludedPlaces(event.target.value);
+    };
+    const handleIncludedThingsEntry = (event) => {
+        setIncludedThings(event.target.value);
+    };
+
 
     const handleSubmit = async (event) => {
         try {
@@ -80,16 +96,28 @@ export default function EntryForm() {
                                 onChange={handleEntryTextChange}
                             />
                         </Grid>
-
+                        <Box sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
+                            <Grid container spacing={2}>
+                                <Grid xs={4} style={{ textAlign: 'center' }} >
+                                    <Button variant="contained" startIcon={<AddIcon />} >People</Button>
+                                </Grid>
+                                <Grid xs={4} style={{ textAlign: 'center' }}>
+                                    <Button variant="contained" startIcon={<AddIcon />} >Places</Button>
+                                </Grid>
+                                <Grid xs={4} style={{ textAlign: 'center' }}>
+                                    <Button variant="contained" startIcon={<AddIcon />} >Things</Button>
+                                </Grid>
+                            </Grid>
+                        </Box>
                         <Grid item xs={12}>
                             <Button type="submit" variant="contained" color="primary">
-                                Submit
+                                Record
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
 
-            </Container>
-        </div>
+            </Container >
+        </div >
     )
 }
