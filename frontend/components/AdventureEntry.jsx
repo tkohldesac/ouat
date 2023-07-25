@@ -9,7 +9,7 @@ export default function AdventureEntry() {
             <Container style={{
                 paddingTop: '.1rem',
                 backgroundColor: '#381e99',
-                height: '100vh'
+                height: '80vh'
             }}>
                 <EntryForm />
 
