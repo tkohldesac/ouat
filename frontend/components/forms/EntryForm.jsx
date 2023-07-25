@@ -32,8 +32,9 @@ export default function EntryForm() {
     const [includedThings, setIncludedThings] = React.useState([]);
     // End Entry items //
 
-
-
+    const handleAddPerson = (person) => {
+        setIncludedPeople((prevPeople) => [...prevPeople, person]);
+    };
 
 
     // Modal fun:
@@ -68,9 +69,6 @@ export default function EntryForm() {
         setEntryText(event.target.value);
     };
 
-    const handleIncludedPeopleEntry = (event) => {
-        setIncludedPeople(event.target.value);
-    };
     const handleIncludedPlacesEntry = (event) => {
         setIncludedPlaces(event.target.value);
     };
@@ -146,7 +144,7 @@ export default function EntryForm() {
                                 onChange={handleEntryTextChange}
                             />
                         </Grid>
-                        {/* <Box */}
+
                         <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
                             <Grid xs={4} style={{ textAlign: 'center' }} >
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPerson} >People</Button>
@@ -155,7 +153,7 @@ export default function EntryForm() {
                                     onClose={closeAddPerson}
                                     disableEnforceFocus
                                     className={classes.modal}
-
+                                    onAddItem={handleAddPerson}
                                 >
                                     <AddPersonModal />
 
@@ -184,7 +182,17 @@ export default function EntryForm() {
                                 </Modal>
                             </Grid>
                         </Grid>
-                        {/* </Box> */}
+
+                        <Grid item xs={12}>
+
+                            {includedPeople.map((item) => (
+                                <div key={item.id}>{item.name}</div>
+                            ))}
+                            Test - Names should appear above me
+                        </Grid>
+
+
+
                         <Grid item xs={12}>
                             <Button type="submit" variant="contained" color="primary">
                                 Record
