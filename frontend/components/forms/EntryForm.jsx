@@ -165,6 +165,7 @@ export default function EntryForm() {
                                 <Modal
                                     open={addPlaceModalOpen}
                                     onClose={closeAddPlace}
+                                    className={classes.modal}
                                     disableEnforceFocus>
                                     <AddPlaceModal />
 
@@ -176,6 +177,7 @@ export default function EntryForm() {
                                 <Modal
                                     open={addThingModalOpen}
                                     onClose={closeAddThing}
+                                    className={classes.modal}
                                     disableEnforceFocus>
                                     <AddThingModal />
 

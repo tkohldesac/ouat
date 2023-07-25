@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     iconButton: {
         bottom: '0',
         right: '0',
+        color: 'white',
+        marginTop: '.4rem',
+        marginBottom: '1rem',
     },
 
 }));
@@ -59,18 +62,13 @@ export default function AddPeople(onAddItem) {
                     <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PEOPLE</Typography>
                     {people.map((person) => (
                         <Grid key={person.id} >
-
-
-                            <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
-
-                                <Typography variant="h5" component="h5" >{person.person_name} </Typography>
+                            <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                                <Typography variant="h5" component="h5" style={{ flex: 1, justifyContent: 'center' }}>{person.person_name} </Typography>
                                 <div className={classes.iconButtonsContainer}>
                                     <IconButton aria-label="delete" className={classes.iconButton}>
                                         <AddIcon />
                                     </IconButton>
                                 </div>
-
-
                             </Container>
                         </Grid>
                     ))}
