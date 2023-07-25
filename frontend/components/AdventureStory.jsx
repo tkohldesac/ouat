@@ -7,7 +7,7 @@ export default function AdventureEntry() {
     return (
         <div>
             <Container style={{
-                paddingTop: '3rem',
+                paddingTop: '.1rem',
                 backgroundColor: '#381e99',
                 minHeight: '100vh'
             }}>
