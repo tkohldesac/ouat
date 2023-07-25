@@ -190,6 +190,7 @@ export default function TopBar({ theme }) {
         sx={{ overflow: 'auto' }}
       >
         {/* SEARCH HERE */}
+
         <ViewPersonModal />
 
       </Modal>

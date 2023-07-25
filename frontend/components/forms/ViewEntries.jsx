@@ -44,13 +44,13 @@ export default function EntryForm() {
     const classes = useStyles();
 
     return (
-        <div>
+        <div >
             <Container style={{
                 marginTop: '3rem',
                 width: '75%',
                 backgroundColor: '#f4a2fd',
                 paddingTop: '2rem',
-                paddingBottom: '2rem'
+                paddingBottom: '2rem',
 
             }}>
 

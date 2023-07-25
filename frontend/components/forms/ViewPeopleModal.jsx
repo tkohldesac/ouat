@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
         bottom: '0',
         right: '0',
     },
+    modal: {
+        margin: 'auto',
+        marginTop: '5%',
+        width: 400,
+    },
 }));
 
 

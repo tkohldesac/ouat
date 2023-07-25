@@ -9,7 +9,7 @@ export default function AdventureEntry() {
             <Container style={{
                 paddingTop: '3rem',
                 backgroundColor: '#381e99',
-                height: '100vh'
+                minHeight: '100vh'
             }}>
                 <ViewEntries />
             </Container>

@@ -6,7 +6,22 @@ import AddIcon from '@mui/icons-material/Add';
 import AddPersonModal from './AddPersonModal'
 import AddPlaceModal from './AddPlaceModal'
 import AddThingModal from './AddThingModal'
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        backgroundColor: 'secondary',
+    },
+    button: {
+        color: '#f4a2fd',
+    },
+    modal: {
+        margin: 'auto',
+        marginTop: '5%',
+        width: 400,
+        overflow: 'auto'
+    },
+}));
 
 export default function EntryForm() {
     // Entry items:
@@ -89,15 +104,16 @@ export default function EntryForm() {
         }
     };
 
+    const classes = useStyles();
 
     return (
-        <div>
+        <>
             <Container style={{
                 marginTop: '3rem',
                 width: '75%',
                 backgroundColor: '#f4a2fd',
                 paddingTop: '2rem',
-                paddingBottom: '2rem'
+                paddingBottom: '2rem',
 
             }}>
 
@@ -130,42 +146,45 @@ export default function EntryForm() {
                                 onChange={handleEntryTextChange}
                             />
                         </Grid>
-                        <Box sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-                            <Grid container spacing={2}>
-                                <Grid xs={4} style={{ textAlign: 'center' }} >
-                                    <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPerson} >People</Button>
-                                    <Modal
-                                        open={addPersonModalOpen}
-                                        onClose={closeAddPerson}
-                                        disableEnforceFocus>
-                                        <AddPersonModal />
+                        {/* <Box */}
+                        <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
+                            <Grid xs={4} style={{ textAlign: 'center' }} >
+                                <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPerson} >People</Button>
+                                <Modal
+                                    open={addPersonModalOpen}
+                                    onClose={closeAddPerson}
+                                    disableEnforceFocus
+                                    className={classes.modal}
 
-                                    </Modal>
-                                </Grid>
+                                >
+                                    <AddPersonModal />
 
-                                <Grid xs={4} style={{ textAlign: 'center' }} >
-                                    <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPlace} >Places</Button>
-                                    <Modal
-                                        open={addPlaceModalOpen}
-                                        onClose={closeAddPlace}
-                                        disableEnforceFocus>
-                                        <AddPlaceModal />
-
-                                    </Modal>
-                                </Grid>
-
-                                <Grid xs={4} style={{ textAlign: 'center' }}>
-                                    <Button variant="contained" startIcon={<AddIcon />} onClick={openAddThing}>Things</Button>
-                                    <Modal
-                                        open={addThingModalOpen}
-                                        onClose={closeAddThing}
-                                        disableEnforceFocus>
-                                        <AddThingModal />
-
-                                    </Modal>
-                                </Grid>
+                                </Modal>
                             </Grid>
-                        </Box>
+
+                            <Grid xs={4} style={{ textAlign: 'center' }} >
+                                <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPlace} >Places</Button>
+                                <Modal
+                                    open={addPlaceModalOpen}
+                                    onClose={closeAddPlace}
+                                    disableEnforceFocus>
+                                    <AddPlaceModal />
+
+                                </Modal>
+                            </Grid>
+
+                            <Grid xs={4} style={{ textAlign: 'center' }}>
+                                <Button variant="contained" startIcon={<AddIcon />} onClick={openAddThing}>Things</Button>
+                                <Modal
+                                    open={addThingModalOpen}
+                                    onClose={closeAddThing}
+                                    disableEnforceFocus>
+                                    <AddThingModal />
+
+                                </Modal>
+                            </Grid>
+                        </Grid>
+                        {/* </Box> */}
                         <Grid item xs={12}>
                             <Button type="submit" variant="contained" color="primary">
                                 Record
@@ -175,6 +194,6 @@ export default function EntryForm() {
                 </form>
 
             </Container >
-        </div >
+        </ >
     )
 }

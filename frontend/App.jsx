@@ -41,7 +41,7 @@ export default function App() {
           </Routes>
         </Container>
       </BrowserRouter>
-    </ThemeProvider>
+    </ThemeProvider >
 
   );
 }
