@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, ThemeProvider, Modal, Popover, List, ListItem, ListItemText } from '@mui/material';
-import { Button, Typography, ButtonGroup } from '@material-ui/core';
+import { Button, ButtonGroup } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Person2Icon from '@mui/icons-material/Person2';
