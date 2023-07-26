@@ -102,7 +102,7 @@ export default function TopBar({ theme }) {
                   <ListItemText primary="Create" />
                 </ListItem>
                 <ListItem button onClick={openViewPersonModal}>
-                  <ListItemText primary="View" />
+                  <ListItemText primary="Edit" />
                 </ListItem>
               </List>
             </Popover>
@@ -134,7 +134,7 @@ export default function TopBar({ theme }) {
                   <ListItemText primary="Create" />
                 </ListItem>
                 <ListItem button onClick={openViewPlaceModal}>
-                  <ListItemText primary="View" />
+                  <ListItemText primary="Edit" />
                 </ListItem>
               </List>
             </Popover>
@@ -167,7 +167,7 @@ export default function TopBar({ theme }) {
                   <ListItemText primary="Create" />
                 </ListItem>
                 <ListItem button onClick={openViewThingModal}>
-                  <ListItemText primary="View" />
+                  <ListItemText primary="Edit" />
                 </ListItem>
               </List>
             </Popover>

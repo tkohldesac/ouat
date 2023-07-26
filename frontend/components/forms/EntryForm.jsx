@@ -24,11 +24,20 @@ const useStyles = makeStyles((theme) => ({
     cardContainer: {
         display: "flex",
         justifyContent: "space-between",
+
     },
     card: {
         flex: "1 1 30%",
         margin: theme.spacing(1),
     },
+    cardHead: {
+        textAlign: 'center'
+    },
+    chip: {
+        marginLeft: '1rem',
+        marginRight: '.5rem',
+        marginBottom: '1rem'
+    }
 }));
 
 export default function EntryForm() {
@@ -190,22 +199,22 @@ export default function EntryForm() {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container className={classes.root}>
-                                <Card className={classes.card}>
-                                    <CardContent>People</CardContent>
+                                <Card className={classes.card} >
+                                    <CardContent className={classes.cardHead}><Typography>PEOPLE</Typography></CardContent>
                                     {includedPeople.map((includedPeople) => (
-                                        <Chip key={includedPeople.id} label={includedPeople.person_name} color='primary' />
+                                        <Chip key={includedPeople.id} label={includedPeople.person_name} color='primary' className={classes.chip} />
                                     ))}
                                 </Card>
                                 <Card className={classes.card}>
-                                    <CardContent>Places</CardContent>
+                                    <CardContent className={classes.cardHead}><Typography>PLACES</Typography></CardContent>
                                     {includedPlaces.map((includedPlaces) => (
-                                        <Chip key={includedPlaces.id} label={includedPlaces.place_name} color='secondary' />
+                                        <Chip key={includedPlaces.id} label={includedPlaces.place_name} color='secondary' className={classes.chip} />
                                     ))}
                                 </Card>
                                 <Card className={classes.card}>
-                                    <CardContent>Things</CardContent>
+                                    <CardContent className={classes.cardHead}><Typography>THINGS</Typography></CardContent>
                                     {includedThings.map((includedThings) => (
-                                        <Chip key={includedThings.id} label={includedThings.thing_name} color='primary' />
+                                        <Chip key={includedThings.id} label={includedThings.thing_name} color='primary' className={classes.chip} />
                                     ))}
                                 </Card>
                             </Grid>
