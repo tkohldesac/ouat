@@ -25,15 +25,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddPlaces(onAddItem) {
-
+export default function AddPlaces({ onAddPlace }) {
     const [places, setPlaces] = useState([]);
-
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const response = await axiosConfig.get('/get-places'); // Fetches all places
+                const response = await axiosConfig.get('/get-places');
 
                 setPlaces(response.data);
 
@@ -45,35 +44,85 @@ export default function AddPlaces(onAddItem) {
         fetchPlaces();
     }, []);
 
+    const handleAddPlace = (place) => {
+        onAddPlace(place);
+        console.log(`Place added: ${place.place_name}`)
+        setIsVisible((prevVisibility) => ({
+            ...prevVisibility,
+            [place.id]: false,
+        }));
+    };
+
     const classes = useStyles();
 
+    useEffect(() => {
+
+        setIsVisible((prevVisibility) =>
+            places.reduce(
+                (prev, place) => ({ ...prev, [place.id]: true }),
+                prevVisibility
+            )
+        );
+    }, [places]);
 
     return (
         <>
-            <Container maxWidth="sm"
+            <Container
+                maxWidth="sm"
                 style={{
                     backgroundColor: '#f4a2fd',
                     paddingTop: '2rem',
                     paddingBottom: '2rem',
                     overflow: 'auto',
-
-                }} >
+                }}
+            >
                 <div>
-                    <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PLACES</Typography>
-                    {places.map((place) => (
-                        <Grid key={place.id} >
-                            <Container style={{ backgroundColor: 'orange', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-                                <Typography variant="h5" component="h5" style={{ flex: 1, justifyContent: 'center' }}>{place.place_name} </Typography>
-                                <div className={classes.iconButtonsContainer}>
-                                    <IconButton aria-label="delete" className={classes.iconButton}>
-                                        <AddIcon />
-                                    </IconButton>
-                                </div>
-                            </Container>
-                        </Grid>
-                    ))}
+                    <Typography
+                        variant='h5'
+                        style={{
+                            paddingBottom: '1rem',
+                            textAlign: 'center',
+                            color: 'white',
+                        }}
+                    >
+                        VIEW PLACES
+                    </Typography>
+                    {places.map((place) =>
+                        isVisible[place.id] ? ( // Check if the place entry is visible
+                            <Grid key={place.id}>
+                                <Container
+                                    style={{
+                                        backgroundColor: 'darkred',
+                                        color: 'white',
+                                        marginBottom: '1rem',
+                                        paddingTop: '1rem',
+                                        paddingBottom: '1rem',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Typography
+                                        variant="h5"
+                                        component="h5"
+                                        style={{ flex: 1, justifyContent: 'center' }}
+                                    >
+                                        {place.place_name}{' '}
+                                    </Typography>
+                                    <div className={classes.iconButtonsContainer}>
+                                        <IconButton
+                                            aria-label="delete"
+                                            className={classes.iconButton}
+                                            onClick={() => handleAddPlace(place)}
+                                        >
+                                            <AddIcon />
+                                        </IconButton>
+                                    </div>
+                                </Container>
+                            </Grid>
+                        ) : null
+                    )}
                 </div>
-            </Container >
+            </Container>
         </>
-    )
+    );
 }

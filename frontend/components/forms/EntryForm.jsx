@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid, Typography, Card, CardContent, Modal } from '@material-ui/core';
+import { TextField, Button, Grid, Typography, Card, CardContent, Modal, Chip } from '@material-ui/core';
 import axiosConfig from "../../helpers/axiosConfig"
 import AddIcon from '@mui/icons-material/Add';
 import AddPersonModal from './AddPersonModal'
@@ -43,6 +43,12 @@ export default function EntryForm() {
     const handleAddPerson = (person) => {
         setIncludedPeople((prevPeople) => [...prevPeople, person]);
     };
+    const handleAddPlace = (place) => {
+        setIncludedPlaces((prevPlaces) => [...prevPlaces, place]);
+    };
+    const handleAddThing = (thing) => {
+        setIncludedThings((prevThings) => [...prevThings, thing]);
+    };
 
 
     // Modal fun:
@@ -62,14 +68,6 @@ export default function EntryForm() {
     const closeAddThing = () => setAddThingModalOpen(false);
 
 
-
-    // End Modal Fun
-
-
-
-
-
-    // Entry stuff changing:
     const handleEntryTitleChange = (event) => {
         setEntryTitle(event.target.value);
     };
@@ -77,16 +75,22 @@ export default function EntryForm() {
         setEntryText(event.target.value);
     };
 
-    const handleIncludedPlacesEntry = (event) => {
-        setIncludedPlaces(event.target.value);
-    };
-    const handleIncludedThingsEntry = (event) => {
-        setIncludedThings(event.target.value);
-    };
-    // End entry stuff changing
+    useEffect(() => {
+        console.log(`includedPeople:`)
+        includedPeople.forEach(person => console.log(person.person_name));
+    }, [includedPeople]);
+
+    useEffect(() => {
+        console.log(`includedPlaces:`)
+        includedPlaces.forEach(place => console.log(place.place_name));
+    }, [includedPlaces]);
+
+    useEffect(() => {
+        console.log(`includedThings:`)
+        includedThings.forEach(thing => console.log(thing.thing_name));
+    }, [includedThings]);
 
 
-    // Handle Submit:
     const handleSubmit = async (event) => {
         try {
             const response = await axiosConfig.post(
@@ -109,9 +113,7 @@ export default function EntryForm() {
             console.error('Error creating new adventure:', error);
         }
     };
-
     const classes = useStyles();
-
     return (
         <>
             <Container style={{
@@ -120,14 +122,11 @@ export default function EntryForm() {
                 backgroundColor: '#f4a2fd',
                 paddingTop: '2rem',
                 paddingBottom: '2rem',
-
             }}>
-
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Record Your Adventure</Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} >
-
                             <TextField
                                 required
                                 fullWidth
@@ -152,7 +151,6 @@ export default function EntryForm() {
                                 onChange={handleEntryTextChange}
                             />
                         </Grid>
-
                         <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
                             <Grid xs={4} style={{ textAlign: 'center' }} >
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPerson} >People</Button>
@@ -161,13 +159,10 @@ export default function EntryForm() {
                                     onClose={closeAddPerson}
                                     disableEnforceFocus
                                     className={classes.modal}
-
                                 >
                                     <AddPersonModal onAddPerson={handleAddPerson} />
-
                                 </Modal>
                             </Grid>
-
                             <Grid xs={4} style={{ textAlign: 'center' }} >
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPlace} >Places</Button>
                                 <Modal
@@ -175,11 +170,10 @@ export default function EntryForm() {
                                     onClose={closeAddPlace}
                                     className={classes.modal}
                                     disableEnforceFocus>
-                                    <AddPlaceModal />
+                                    <AddPlaceModal onAddPlace={handleAddPlace} />
 
                                 </Modal>
                             </Grid>
-
                             <Grid xs={4} style={{ textAlign: 'center' }}>
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddThing}>Things</Button>
                                 <Modal
@@ -187,37 +181,32 @@ export default function EntryForm() {
                                     onClose={closeAddThing}
                                     className={classes.modal}
                                     disableEnforceFocus>
-                                    <AddThingModal />
-
+                                    <AddThingModal onAddThing={handleAddThing} />
                                 </Modal>
                             </Grid>
                         </Grid>
-
                         <Grid item xs={12}>
-
-                            {includedPeople.map((item) => (
-                                <div key={item.id}>{item.name}</div>
-                            ))}
-
-
                             <Grid container className={classes.root}>
                                 <Card className={classes.card}>
                                     <CardContent>People</CardContent>
+                                    {includedPeople.map((includedPeople) => (
+                                        <Chip key={includedPeople.id} label={includedPeople.person_name} color='primary' />
+                                    ))}
                                 </Card>
                                 <Card className={classes.card}>
                                     <CardContent>Places</CardContent>
+                                    {includedPlaces.map((includedPlaces) => (
+                                        <Chip key={includedPlaces.id} label={includedPlaces.place_name} color='secondary' />
+                                    ))}
                                 </Card>
                                 <Card className={classes.card}>
                                     <CardContent>Things</CardContent>
+                                    {includedThings.map((includedThings) => (
+                                        <Chip key={includedThings.id} label={includedThings.thing_name} color='primary' />
+                                    ))}
                                 </Card>
                             </Grid>
-
-
-
                         </Grid>
-
-
-
                         <Grid item xs={12}>
                             <Button type="submit" variant="contained" color="primary">
                                 Record

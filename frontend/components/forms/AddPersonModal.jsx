@@ -29,6 +29,8 @@ export default function AddPeople({ onAddPerson }) {
     const [people, setPeople] = useState([]);
     const [isVisible, setIsVisible] = useState(true);
 
+
+
     useEffect(() => {
         const fetchPeople = async () => {
             try {
@@ -46,7 +48,6 @@ export default function AddPeople({ onAddPerson }) {
 
     const handleAddPerson = (person) => {
         onAddPerson(person);
-        console.log(`Person added: ${person.person_name}`)
         setIsVisible((prevVisibility) => ({
             ...prevVisibility,
             [person.id]: false,

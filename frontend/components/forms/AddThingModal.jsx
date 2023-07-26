@@ -25,10 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddThings(onAddItem) {
-
+export default function AddThings({ onAddThing }) {
     const [things, setThings] = useState([]);
-
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         const fetchThings = async () => {
@@ -45,35 +44,85 @@ export default function AddThings(onAddItem) {
         fetchThings();
     }, []);
 
+    const handleAddThing = (thing) => {
+        onAddThing(thing);
+        console.log(`Thing added: ${thing.thing_name}`)
+        setIsVisible((prevVisibility) => ({
+            ...prevVisibility,
+            [thing.id]: false,
+        }));
+    };
+
     const classes = useStyles();
 
+    useEffect(() => {
+
+        setIsVisible((prevVisibility) =>
+            things.reduce(
+                (prev, thing) => ({ ...prev, [thing.id]: true }),
+                prevVisibility
+            )
+        );
+    }, [things]);
 
     return (
         <>
-            <Container maxWidth="sm"
+            <Container
+                maxWidth="sm"
                 style={{
                     backgroundColor: '#f4a2fd',
                     paddingTop: '2rem',
                     paddingBottom: '2rem',
                     overflow: 'auto',
-
-                }} >
+                }}
+            >
                 <div>
-                    <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW THINGS</Typography>
-                    {things.map((thing) => (
-                        <Grid key={thing.id} >
-                            <Container style={{ backgroundColor: 'blue', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-                                <Typography variant="h5" component="h5" style={{ flex: 1, justifyContent: 'center' }}>{thing.thing_name} </Typography>
-                                <div className={classes.iconButtonsContainer}>
-                                    <IconButton aria-label="delete" className={classes.iconButton}>
-                                        <AddIcon />
-                                    </IconButton>
-                                </div>
-                            </Container>
-                        </Grid>
-                    ))}
+                    <Typography
+                        variant='h5'
+                        style={{
+                            paddingBottom: '1rem',
+                            textAlign: 'center',
+                            color: 'white',
+                        }}
+                    >
+                        VIEW THINGS
+                    </Typography>
+                    {things.map((thing) =>
+                        isVisible[thing.id] ? ( // Check if the thing entry is visible
+                            <Grid key={thing.id}>
+                                <Container
+                                    style={{
+                                        backgroundColor: 'darkred',
+                                        color: 'white',
+                                        marginBottom: '1rem',
+                                        paddingTop: '1rem',
+                                        paddingBottom: '1rem',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Typography
+                                        variant="h5"
+                                        component="h5"
+                                        style={{ flex: 1, justifyContent: 'center' }}
+                                    >
+                                        {thing.thing_name}{' '}
+                                    </Typography>
+                                    <div className={classes.iconButtonsContainer}>
+                                        <IconButton
+                                            aria-label="delete"
+                                            className={classes.iconButton}
+                                            onClick={() => handleAddThing(thing)}
+                                        >
+                                            <AddIcon />
+                                        </IconButton>
+                                    </div>
+                                </Container>
+                            </Grid>
+                        ) : null
+                    )}
                 </div>
-            </Container >
+            </Container>
         </>
-    )
+    );
 }
