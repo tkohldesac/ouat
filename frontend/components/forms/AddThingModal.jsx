@@ -25,9 +25,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddThings({ onAddThing }) {
+export default function AddThings({ onAddThing, includedThings }) {
     const [things, setThings] = useState([]);
     const [isVisible, setIsVisible] = useState(true);
+
+
 
     useEffect(() => {
         const fetchThings = async () => {
@@ -46,7 +48,6 @@ export default function AddThings({ onAddThing }) {
 
     const handleAddThing = (thing) => {
         onAddThing(thing);
-        console.log(`Thing added: ${thing.thing_name}`)
         setIsVisible((prevVisibility) => ({
             ...prevVisibility,
             [thing.id]: false,
@@ -88,7 +89,7 @@ export default function AddThings({ onAddThing }) {
                         VIEW THINGS
                     </Typography>
                     {things.map((thing) =>
-                        isVisible[thing.id] ? ( // Check if the thing entry is visible
+                        includedThings.some((includedThing) => includedThing.id === thing.id) ? null : (
                             <Grid key={thing.id}>
                                 <Container
                                     style={{
@@ -119,7 +120,7 @@ export default function AddThings({ onAddThing }) {
                                     </div>
                                 </Container>
                             </Grid>
-                        ) : null
+                        )
                     )}
                 </div>
             </Container>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddPlaces({ onAddPlace }) {
+export default function AddPlaces({ onAddPlace, includedPlaces }) {
     const [places, setPlaces] = useState([]);
     const [isVisible, setIsVisible] = useState(true);
 
@@ -88,7 +88,7 @@ export default function AddPlaces({ onAddPlace }) {
                         VIEW PLACES
                     </Typography>
                     {places.map((place) =>
-                        isVisible[place.id] ? ( // Check if the place entry is visible
+                        includedPlaces.some((includedPlace) => includedPlace.id === place.id) ? null : (
                             <Grid key={place.id}>
                                 <Container
                                     style={{
@@ -119,7 +119,7 @@ export default function AddPlaces({ onAddPlace }) {
                                     </div>
                                 </Container>
                             </Grid>
-                        ) : null
+                        )
                     )}
                 </div>
             </Container>

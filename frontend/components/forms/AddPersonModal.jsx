@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddPeople({ onAddPerson }) {
+export default function AddPeople({ onAddPerson, includedPeople }) {
     const [people, setPeople] = useState([]);
     const [isVisible, setIsVisible] = useState(true);
 
@@ -89,7 +89,7 @@ export default function AddPeople({ onAddPerson }) {
                         VIEW PEOPLE
                     </Typography>
                     {people.map((person) =>
-                        isVisible[person.id] ? ( // Check if the person entry is visible
+                        includedPeople.some((includedPerson) => includedPerson.id === person.id) ? null : (
                             <Grid key={person.id}>
                                 <Container
                                     style={{
@@ -120,7 +120,7 @@ export default function AddPeople({ onAddPerson }) {
                                     </div>
                                 </Container>
                             </Grid>
-                        ) : null
+                        )
                     )}
                 </div>
             </Container>
