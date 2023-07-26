@@ -160,7 +160,8 @@ export default function EntryForm() {
                                     disableEnforceFocus
                                     className={classes.modal}
                                 >
-                                    <AddPersonModal onAddPerson={handleAddPerson} />
+                                    <AddPersonModal onAddPerson={handleAddPerson}
+                                        includedPeople={includedPeople} />
                                 </Modal>
                             </Grid>
                             <Grid xs={4} style={{ textAlign: 'center' }} >
@@ -170,7 +171,8 @@ export default function EntryForm() {
                                     onClose={closeAddPlace}
                                     className={classes.modal}
                                     disableEnforceFocus>
-                                    <AddPlaceModal onAddPlace={handleAddPlace} />
+                                    <AddPlaceModal onAddPlace={handleAddPlace}
+                                        includedPlaces={includedPlaces} />
 
                                 </Modal>
                             </Grid>
@@ -181,7 +183,8 @@ export default function EntryForm() {
                                     onClose={closeAddThing}
                                     className={classes.modal}
                                     disableEnforceFocus>
-                                    <AddThingModal onAddThing={handleAddThing} />
+                                    <AddThingModal onAddThing={handleAddThing}
+                                        includedThings={includedThings} />
                                 </Modal>
                             </Grid>
                         </Grid>
