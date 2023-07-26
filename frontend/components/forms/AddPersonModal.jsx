@@ -25,10 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddPeople(onAddItem) {
-
+export default function AddPeople({ onAddPerson }) {
     const [people, setPeople] = useState([]);
-
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         const fetchPeople = async () => {
@@ -45,35 +44,85 @@ export default function AddPeople(onAddItem) {
         fetchPeople();
     }, []);
 
+    const handleAddPerson = (person) => {
+        onAddPerson(person);
+        console.log(`Person added: ${person.person_name}`)
+        setIsVisible((prevVisibility) => ({
+            ...prevVisibility,
+            [person.id]: false,
+        }));
+    };
+
     const classes = useStyles();
 
+    useEffect(() => {
+
+        setIsVisible((prevVisibility) =>
+            people.reduce(
+                (prev, person) => ({ ...prev, [person.id]: true }),
+                prevVisibility
+            )
+        );
+    }, [people]);
 
     return (
         <>
-            <Container maxWidth="sm"
+            <Container
+                maxWidth="sm"
                 style={{
                     backgroundColor: '#f4a2fd',
                     paddingTop: '2rem',
                     paddingBottom: '2rem',
                     overflow: 'auto',
-
-                }} >
+                }}
+            >
                 <div>
-                    <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PEOPLE</Typography>
-                    {people.map((person) => (
-                        <Grid key={person.id} >
-                            <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-                                <Typography variant="h5" component="h5" style={{ flex: 1, justifyContent: 'center' }}>{person.person_name} </Typography>
-                                <div className={classes.iconButtonsContainer}>
-                                    <IconButton aria-label="delete" className={classes.iconButton}>
-                                        <AddIcon />
-                                    </IconButton>
-                                </div>
-                            </Container>
-                        </Grid>
-                    ))}
+                    <Typography
+                        variant='h5'
+                        style={{
+                            paddingBottom: '1rem',
+                            textAlign: 'center',
+                            color: 'white',
+                        }}
+                    >
+                        VIEW PEOPLE
+                    </Typography>
+                    {people.map((person) =>
+                        isVisible[person.id] ? ( // Check if the person entry is visible
+                            <Grid key={person.id}>
+                                <Container
+                                    style={{
+                                        backgroundColor: 'darkred',
+                                        color: 'white',
+                                        marginBottom: '1rem',
+                                        paddingTop: '1rem',
+                                        paddingBottom: '1rem',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Typography
+                                        variant="h5"
+                                        component="h5"
+                                        style={{ flex: 1, justifyContent: 'center' }}
+                                    >
+                                        {person.person_name}{' '}
+                                    </Typography>
+                                    <div className={classes.iconButtonsContainer}>
+                                        <IconButton
+                                            aria-label="delete"
+                                            className={classes.iconButton}
+                                            onClick={() => handleAddPerson(person)}
+                                        >
+                                            <AddIcon />
+                                        </IconButton>
+                                    </div>
+                                </Container>
+                            </Grid>
+                        ) : null
+                    )}
                 </div>
-            </Container >
+            </Container>
         </>
-    )
+    );
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import { TextField, Button, Grid, Typography, Box, Modal } from '@material-ui/core';
+import { TextField, Button, Grid, Typography, Card, CardContent, Modal } from '@material-ui/core';
 import axiosConfig from "../../helpers/axiosConfig"
 import AddIcon from '@mui/icons-material/Add';
 import AddPersonModal from './AddPersonModal'
@@ -20,6 +20,14 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '5%',
         width: 400,
         overflow: 'auto'
+    },
+    cardContainer: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
+    card: {
+        flex: "1 1 30%",
+        margin: theme.spacing(1),
     },
 }));
 
@@ -153,9 +161,9 @@ export default function EntryForm() {
                                     onClose={closeAddPerson}
                                     disableEnforceFocus
                                     className={classes.modal}
-                                    onAddItem={handleAddPerson}
+
                                 >
-                                    <AddPersonModal />
+                                    <AddPersonModal onAddPerson={handleAddPerson} />
 
                                 </Modal>
                             </Grid>
@@ -190,7 +198,22 @@ export default function EntryForm() {
                             {includedPeople.map((item) => (
                                 <div key={item.id}>{item.name}</div>
                             ))}
-                            Test - Names should appear above me
+
+
+                            <Grid container className={classes.root}>
+                                <Card className={classes.card}>
+                                    <CardContent>People</CardContent>
+                                </Card>
+                                <Card className={classes.card}>
+                                    <CardContent>Places</CardContent>
+                                </Card>
+                                <Card className={classes.card}>
+                                    <CardContent>Things</CardContent>
+                                </Card>
+                            </Grid>
+
+
+
                         </Grid>
 
 

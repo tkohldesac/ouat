@@ -62,7 +62,7 @@ export default function AddPlaces(onAddItem) {
                     <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PLACES</Typography>
                     {places.map((place) => (
                         <Grid key={place.id} >
-                            <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                            <Container style={{ backgroundColor: 'orange', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
                                 <Typography variant="h5" component="h5" style={{ flex: 1, justifyContent: 'center' }}>{place.place_name} </Typography>
                                 <div className={classes.iconButtonsContainer}>
                                     <IconButton aria-label="delete" className={classes.iconButton}>

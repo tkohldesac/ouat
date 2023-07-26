@@ -62,7 +62,7 @@ export default function AddThings(onAddItem) {
                     <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW THINGS</Typography>
                     {things.map((thing) => (
                         <Grid key={thing.id} >
-                            <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                            <Container style={{ backgroundColor: 'blue', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', alignItems: 'center' }}>
                                 <Typography variant="h5" component="h5" style={{ flex: 1, justifyContent: 'center' }}>{thing.thing_name} </Typography>
                                 <div className={classes.iconButtonsContainer}>
                                     <IconButton aria-label="delete" className={classes.iconButton}>
