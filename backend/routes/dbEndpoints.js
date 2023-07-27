@@ -108,19 +108,57 @@ router.post('/create-thing', async (req, res) => {
 });
 
 router.post('/create-adventure', async (req, res) => {
-    entryTitle = req.body.entryTitle
-    entryText = req.body.entryText
-
+    const entryTitle = req.body.entryTitle;
+    const entryText = req.body.entryText;
+  
+    console.log('includedPeopleIds:', req.body.includedPeople.map(person => person.id));
+    console.log('includedPlacesIds:', req.body.includedPlaces.map(place => place.id));
+    console.log('includedThingsIds:', req.body.includedThings.map(thing => thing.id));
+  
+    const includedPeopleIds = req.body.includedPeople.map(person => person.id);
+    const includedPlacesIds = req.body.includedPlaces.map(place => place.id);
+    const includedThingsIds = req.body.includedThings.map(thing => thing.id);
+  
     try {
-        const newEntry = await knex('ouata_adventures').insert( {
+      await knex.transaction(async (trx) => {
+        
+        const [newEntry] = await trx('ouata_adventures').insert({
             entry_title: entryTitle,
-            entry_text: entryText
-        });
+            entry_text: entryText,
+          }).returning('id');
+          const newEntryId = newEntry.id;          
+
+        await Promise.all(includedPeopleIds.map(personId =>
+          trx('ouata_adventure_people').insert({
+            adventure_id: newEntryId,
+            person_id: personId,
+          })
+        ));
+  
+        await Promise.all(includedPlacesIds.map(placeId =>
+          trx('ouata_adventure_places').insert({
+            adventure_id: newEntryId,
+            place_id: placeId,
+          })
+        ));
+  
+        await Promise.all(includedThingsIds.map(thingId =>
+            trx('ouata_adventure_things').insert({
+              adventure_id: newEntryId,
+              thing_id: thingId,
+            })
+          ));
+      });
+  
+      res.sendStatus(200);
     } catch (error) {
-        console.error('Error creating new place:', error);
-        res.sendStatus(500);
+      console.error('Error creating new adventure:', error);
+      res.sendStatus(500);
     }
-});
+  });
+  
+  
+
 // PUT ROUTES
 
 // DELETE ROUTES

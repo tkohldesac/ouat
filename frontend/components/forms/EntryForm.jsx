@@ -116,6 +116,9 @@ export default function EntryForm() {
                 {
                     entryTitle,
                     entryText,
+                    includedPeople,
+                    includedPlaces,
+                    includedThings
                 },
                 {
                     headers: {
