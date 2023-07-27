@@ -99,6 +99,15 @@ export default function EntryForm() {
         includedThings.forEach(thing => console.log(thing.thing_name));
     }, [includedThings]);
 
+    const handleDeletePeople = (id) => {
+        setIncludedPeople((prevPeople) => prevPeople.filter((person) => person.id !== id));
+    };
+    const handleDeletePlaces = (id) => {
+        setIncludedPlaces((prevPlaces) => prevPlaces.filter((place) => place.id !== id));
+    };
+    const handleDeleteThings = (id) => {
+        setIncludedThings((prevThings) => prevThings.filter((thing) => thing.id !== id));
+    };
 
     const handleSubmit = async (event) => {
         try {
@@ -199,28 +208,55 @@ export default function EntryForm() {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container className={classes.root}>
-                                <Card className={classes.card} >
-                                    <CardContent className={classes.cardHead}><Typography>PEOPLE</Typography></CardContent>
-                                    {includedPeople.map((includedPeople) => (
-                                        <Chip key={includedPeople.id} label={includedPeople.person_name} color='primary' className={classes.chip} />
+                                <Card className={classes.card}>
+                                    <CardContent className={classes.cardHead}>
+                                        <Typography>PEOPLE</Typography>
+                                    </CardContent>
+                                    {includedPeople.map((person) => (
+                                        <Chip
+                                            key={person.id}
+                                            label={person.person_name}
+                                            color='primary'
+                                            className={classes.chip}
+                                            onDelete={() => handleDeletePeople(person.id)}
+                                        />
                                     ))}
                                 </Card>
                                 <Card className={classes.card}>
-                                    <CardContent className={classes.cardHead}><Typography>PLACES</Typography></CardContent>
-                                    {includedPlaces.map((includedPlaces) => (
-                                        <Chip key={includedPlaces.id} label={includedPlaces.place_name} color='secondary' className={classes.chip} />
+                                    <CardContent className={classes.cardHead}>
+                                        <Typography>PLACES</Typography>
+                                    </CardContent>
+                                    {includedPlaces.map((place) => (
+                                        <Chip
+                                            key={place.id}
+                                            label={place.place_name}
+                                            color='primary'
+                                            className={classes.chip}
+                                            onDelete={() => handleDeletePlaces(place.id)}
+                                        />
                                     ))}
                                 </Card>
                                 <Card className={classes.card}>
-                                    <CardContent className={classes.cardHead}><Typography>THINGS</Typography></CardContent>
-                                    {includedThings.map((includedThings) => (
-                                        <Chip key={includedThings.id} label={includedThings.thing_name} color='primary' className={classes.chip} />
+                                    <CardContent className={classes.cardHead}>
+                                        <Typography>THINGS</Typography>
+                                    </CardContent>
+                                    {includedThings.map((thing) => (
+                                        <Chip
+                                            key={thing.id}
+                                            label={thing.thing_name}
+                                            color='primary'
+                                            className={classes.chip}
+                                            onDelete={() => handleDeleteThings(thing.id)}
+                                        />
                                     ))}
                                 </Card>
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button type="submit" variant="contained" color="primary">
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary">
                                 Record
                             </Button>
                         </Grid>
