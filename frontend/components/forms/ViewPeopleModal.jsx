@@ -49,6 +49,13 @@ export default function createPersonModal() {
 
     const classes = useStyles();
 
+    const handleDelete = (id) => {
+        console.log(`Deleting ${id}`)
+    }
+
+    const handleEdit = (id) => {
+        console.log(`Editing ${id}`)
+    }
     return (
         <>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }} sx={{ overflow: 'auto' }}>
@@ -62,10 +69,10 @@ export default function createPersonModal() {
                             <Typography variant="body1" component="p" >Spell/Abilities: {person.spells_abilities}</Typography>
                             <Typography variant="body1" component="p" >Bio: {person.bio}</Typography>
                             <div className={classes.iconButtonsContainer}>
-                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleEdit(person.id)}>
                                     <EditIcon sx={{ color: 'white' }} />
                                 </IconButton>
-                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleDelete(person.id)}>
                                     <DeleteForeverIcon sx={{ color: 'white' }} />
                                 </IconButton>
                             </div>

@@ -43,6 +43,14 @@ export default function createPlaceModal() {
 
     const classes = useStyles();
 
+    const handleDelete = (id) => {
+        console.log(`Deleting ${id}`)
+    }
+
+    const handleEdit = (id) => {
+        console.log(`Editing ${id}`)
+    }
+
     return (
         <>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
@@ -54,10 +62,10 @@ export default function createPlaceModal() {
                             <Typography variant="body1" component="p" >Description: {place.physical_description}</Typography>
                             <Typography variant="body1" component="p" >Sovereign: {place.sovereign}</Typography>
                             <div className={classes.iconButtonsContainer}>
-                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleEdit(place.id)}>
                                     <EditIcon sx={{ color: 'white' }} />
                                 </IconButton>
-                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleDelete(place.id)}>
                                     <DeleteForeverIcon sx={{ color: 'white' }} />
                                 </IconButton>
                             </div>

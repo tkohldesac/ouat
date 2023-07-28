@@ -41,6 +41,14 @@ export default function EntryForm() {
         fetchEntries();
     }, []);
 
+    const handleDelete = (id) => {
+        console.log(`Deleting ${id}`)
+    }
+
+    const handleEdit = (id) => {
+        console.log(`Editing ${id}`)
+    }
+
     const classes = useStyles();
 
     return (
@@ -62,10 +70,16 @@ export default function EntryForm() {
                             <Typography variant="h5" component="h2">{entry.entry_title}</Typography>
                             <Typography variant="body1" component="p">{entry.entry_text}</Typography>
                             <div className={classes.iconButtonsContainer}>
-                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                <IconButton
+                                    aria-label="delete"
+                                    className={classes.iconButton}
+                                    onClick={() => handleEdit(entry.id)}>
                                     <EditIcon sx={{ color: 'white' }} />
                                 </IconButton>
-                                <IconButton aria-label="delete" className={classes.iconButton}>
+                                <IconButton
+                                    aria-label="delete"
+                                    className={classes.iconButton}
+                                    onClick={() => handleDelete(entry.id)}>
                                     <DeleteForeverIcon sx={{ color: 'white' }} />
                                 </IconButton>
                             </div>
