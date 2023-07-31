@@ -44,9 +44,22 @@ export default function createPersonModal() {
 
     const classes = useStyles();
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         console.log(`Deleting ${id}`)
-    }
+        try {
+            console.log(`Sending stuff ${id}`);
+            const deleteThing = await axiosConfig.delete('/delete-thing', { data: { id } },
+
+            );
+            if (deleteThing.status >= 200 && deleteThing.status < 300) {
+                console.log('Thing Deleted!');
+                const response = await axiosConfig.get('/get-things');
+                setThings(response.data);
+            }
+        } catch (error) {
+            console.error('Error deleting person:', error);
+        }
+    };
 
     const handleEdit = (id) => {
         console.log(`Editing ${id}`)

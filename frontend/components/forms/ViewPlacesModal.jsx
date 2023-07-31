@@ -43,10 +43,22 @@ export default function createPlaceModal() {
 
     const classes = useStyles();
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         console.log(`Deleting ${id}`)
-    }
+        try {
+            console.log(`Sending stuff ${id}`);
+            const deletePlace = await axiosConfig.delete('/delete-place', { data: { id } },
 
+            );
+            if (deletePlace.status >= 200 && deletePlace.status < 300) {
+                console.log('Place Deleted!');
+                const response = await axiosConfig.get('/get-places');
+                setPlaces(response.data);
+            }
+        } catch (error) {
+            console.error('Error deleting place:', error);
+        }
+    };
     const handleEdit = (id) => {
         console.log(`Editing ${id}`)
     }

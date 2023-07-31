@@ -163,4 +163,111 @@ router.post('/create-adventure', async (req, res) => {
 
 // DELETE ROUTES
 
+router.delete('/delete-person', async (req, res) => {
+  const personId = req.body.id
+console.log(`receiving ${personId}`)
+  try {
+    console.log(`Incoming personId:` + personId)
+    await knex.transaction(async (trx) => {
+      
+      const deletePerson = await trx('ouata_people')
+        .where({
+          id: personId
+        })
+        .del();
+        
+    });
+
+    res.sendStatus(200);
+    
+  } catch (error) {
+    console.error('Error deleting person:', error);
+    res.sendStatus(500);
+  }
+});
+
+router.delete('/delete-place', async (req, res) => {
+  const placeId = req.body.id
+console.log(`receiving ${placeId}`)
+  try {
+    console.log(`Incoming placeId:` + placeId)
+    await knex.transaction(async (trx) => {
+      
+      const deletePlace = await trx('ouata_places')
+        .where({
+          id: placeId
+        })
+        .del();
+        
+    });
+
+    res.sendStatus(200);
+    
+  } catch (error) {
+    console.error('Error deleting place:', error);
+    res.sendStatus(500);
+  }
+});
+
+router.delete('/delete-thing', async (req, res) => {
+  const thingId = req.body.id
+console.log(`receiving ${thingId}`)
+  try {
+    console.log(`Incoming thingId:` + thingId)
+    await knex.transaction(async (trx) => {
+      
+      const deleteThing = await trx('ouata_things')
+        .where({
+          id: thingId
+        })
+        .del();
+        
+    });
+
+    res.sendStatus(200);
+    
+  } catch (error) {
+    console.error('Error deleting thing:', error);
+    res.sendStatus(500);
+  }
+});
+
+router.delete('/delete-adventure', async (req, res) => {
+  const entryId = req.body.id
+console.log(`receiving ${entryId}`)
+  try {
+    console.log(`Incoming entryId:` + entryId)
+    await knex.transaction(async (trx) => {
+      
+      const deleteAdventure = await trx('ouata_adventures')
+        .where({
+          id: entryId
+        })
+        .del();
+      const deleteAdventurePeople = await trx('ouata_adventure_people')
+      .where({
+        adventure_id: entryId
+      })
+      .del();
+      const deleteAdventurePlaces = await trx('ouata_adventure_places')
+      .where({
+        adventure_id: entryId
+      })
+      .del();
+      const deleteAdventureThings = await trx('ouata_adventure_things')
+      .where({
+        adventure_id: entryId
+      })
+      .del();
+    });
+
+    res.sendStatus(200);
+    
+  } catch (error) {
+    console.error('Error creating new adventure:', error);
+    res.sendStatus(500);
+  }
+});
+
+
 module.exports = router;

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import Container from '@material-ui/core/Container';
 import { IconButton, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import axiosConfig from '../../helpers/axiosConfig'
+import axiosConfig from '../../helpers/axiosConfig';
 
 // Icons:
 import EditIcon from '@mui/icons-material/Edit';
@@ -24,8 +24,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
+const fetchEntries = async () => {
+    try {
+        const response = await axiosConfig.get('/get-adventures');
+        setEntries(response.data);
+    } catch (error) {
+        console.error('Failed to fetch entries:', error);
+    }
+};
 export default function EntryForm() {
     const [entries, setEntries] = useState([]);
 
@@ -33,7 +39,7 @@ export default function EntryForm() {
         const fetchEntries = async () => {
             try {
                 const response = await axiosConfig.get('/get-adventures');
-                setEntries(response.data)
+                setEntries(response.data);
             } catch (error) {
                 console.error('Failed to fetch entries:', error);
             }
@@ -41,37 +47,66 @@ export default function EntryForm() {
         fetchEntries();
     }, []);
 
-    const handleDelete = (id) => {
-        console.log(`Deleting ${id}`)
-    }
+
+
+
+
+    const handleDelete = async (id) => {
+        console.log(`Deleting ${id}`);
+        try {
+            console.log(`Sending stuff ${id}`);
+            const deleteEntry = await axiosConfig.delete('/delete-adventure', { data: { id } },
+
+            );
+            if (deleteEntry.status >= 200 && deleteEntry.status < 300) {
+                console.log('Adventure Deleted!');
+                // If the deletion was successful, you may want to update the entries list by re-fetching them
+                const response = await axiosConfig.get('/get-adventures');
+                setEntries(response.data);
+            }
+        } catch (error) {
+            console.error('Error deleting entry:', error);
+        }
+
+    };
+
+
+
+
 
     const handleEdit = (id) => {
-        console.log(`Editing ${id}`)
-    }
+        const fetchEntries = async () => {
+            try {
+                const response = await axiosConfig.get('/get-adventures');
+                setEntries(response.data);
+            } catch (error) {
+                console.error('Failed to fetch entries:', error);
+            }
+        };
+        console.log(`Editing ${id}`);
+    };
 
     const classes = useStyles();
 
     return (
-        <div >
+        <div>
             <Container style={{
                 marginTop: '3rem',
                 width: '75%',
                 backgroundColor: '#f4a2fd',
                 paddingTop: '2rem',
                 paddingBottom: '2rem',
-
             }}>
-
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
                 {entries.map((entry) => (
-                    <Grid key={entry.id}>
-                        <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
 
+                    <Grid key={entry.id}>
+                        <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
                             <Typography variant="h5" component="h2">{entry.entry_title}</Typography>
                             <Typography variant="body1" component="p">{entry.entry_text}</Typography>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton
-                                    aria-label="delete"
+                                    aria-label="edit"
                                     className={classes.iconButton}
                                     onClick={() => handleEdit(entry.id)}>
                                     <EditIcon sx={{ color: 'white' }} />
@@ -85,9 +120,9 @@ export default function EntryForm() {
                             </div>
                         </Container>
                     </Grid>
-                ))}
 
+                ))}
             </Container>
         </div>
-    )
+    );
 }
