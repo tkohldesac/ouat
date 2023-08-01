@@ -5,6 +5,7 @@ import { Container } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import AdventureStory from "./components/AdventureStory";
 import ReadWriteLander from './components/ReadWriteLander';
+import AboutPage from "./components/About";
 
 const theme = createTheme({
   palette: {
@@ -14,9 +15,13 @@ const theme = createTheme({
     secondary: {
       main: '#f4a2fd'
     }
-  }
-
-})
+  },
+  typography: {
+    fontFamily: [
+      'Roboto',
+    ].join(','),
+  },
+});
 
 
 
@@ -35,6 +40,10 @@ export default function App() {
             <Route
               path="/story"
               element={<AdventureStory />}
+            />
+            <Route
+              path="/about"
+              element={<AboutPage />}
             />
           </Routes>
         </Container>
