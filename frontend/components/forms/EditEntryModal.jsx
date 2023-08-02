@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     card: {
-        flex: "1 1 30%",
+        flex: "1 1 100%",
         margin: theme.spacing(1),
     },
     cardHead: {
@@ -40,14 +40,64 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EntryForm() {
-    // Entry items:
+export default function EditEntryModal({ entryId }) {
     const [entryTitle, setEntryTitle] = React.useState('');
     const [entryText, setEntryText] = React.useState('');
     const [includedPeople, setIncludedPeople] = React.useState([]);
     const [includedPlaces, setIncludedPlaces] = React.useState([]);
     const [includedThings, setIncludedThings] = React.useState([]);
+    const [entries, setEntries] = React.useState([]);
+
+    // console.log(`Incoming: ${entryId}`)
+
+    const newInt = parseInt(entryId)
+
+
     // End Entry items //
+
+    // EDIT STUFF:
+
+    const fetchEntries = async (newInt) => {
+        try {
+            const response = await axiosConfig.get('/get-adventure', {
+                params: { id: newInt }
+
+            });
+            setEntries(response.data);
+
+        } catch (error) {
+            console.error('Failed to fetch entries:', error);
+        }
+
+    };
+
+    useEffect(() => {
+        if (entryId !== null) {
+            fetchEntries(entryId);
+        }
+    }, [entryId]);
+
+    useEffect(() => {
+        // Check if entries.adventure is available before setting other state variables
+        if (entries.adventure) {
+            setEntryText(entries.adventure.entry_text);
+            setEntryTitle(entries.adventure.entry_title);
+            setIncludedPeople(entries.peopleData);
+            setIncludedPlaces(entries.placesData);
+            setIncludedThings(entries.thingsData);
+        }
+    }, [entries]);
+
+
+
+
+
+
+
+    //END EDIT STUFF
+
+
+
 
     const handleAddPerson = (person) => {
         setIncludedPeople((prevPeople) => [...prevPeople, person]);
@@ -111,7 +161,7 @@ export default function EntryForm() {
 
     const handleSubmit = async (event) => {
         try {
-            const response = await axiosConfig.post(
+            const response = await axiosConfig.put(
                 '/create-adventure',
                 {
                     entryTitle,
@@ -136,6 +186,7 @@ export default function EntryForm() {
     };
     const classes = useStyles();
     return (
+
         <>
             <Container style={{
                 marginTop: '3rem',
@@ -144,7 +195,7 @@ export default function EntryForm() {
                 paddingTop: '2rem',
                 paddingBottom: '2rem',
             }}>
-                <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Record Your Adventure</Typography>
+                <Typography variant="h5" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit Your Adventure</Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} >
@@ -173,7 +224,7 @@ export default function EntryForm() {
                             />
                         </Grid>
                         <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-                            <Grid xs={4} style={{ textAlign: 'center' }} >
+                            <Grid xs={12} style={{ textAlign: 'center' }}  >
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPerson} >People</Button>
                                 <Modal
                                     open={addPersonModalOpen}
@@ -185,7 +236,7 @@ export default function EntryForm() {
                                         includedPeople={includedPeople} />
                                 </Modal>
                             </Grid>
-                            <Grid xs={4} style={{ textAlign: 'center' }} >
+                            <Grid xs={12} style={{ textAlign: 'center' }} >
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddPlace} >Places</Button>
                                 <Modal
                                     open={addPlaceModalOpen}
@@ -197,7 +248,7 @@ export default function EntryForm() {
 
                                 </Modal>
                             </Grid>
-                            <Grid xs={4} style={{ textAlign: 'center' }}>
+                            <Grid xs={12} style={{ textAlign: 'center' }}>
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={openAddThing}>Things</Button>
                                 <Modal
                                     open={addThingModalOpen}
@@ -225,7 +276,7 @@ export default function EntryForm() {
                                         />
                                     ))}
                                 </Card>
-                                <Card className={classes.card}>
+                                <Card className={classes.card} >
                                     <CardContent className={classes.cardHead}>
                                         <Typography>PLACES</Typography>
                                     </CardContent>

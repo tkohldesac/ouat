@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Container from '@material-ui/core/Container';
-import { IconButton, Grid, Typography } from '@material-ui/core';
+import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig';
+import EditEntryModal from "./EditEntryModal";
 
 // Icons:
 import EditIcon from '@mui/icons-material/Edit';
@@ -22,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
         bottom: '0',
         right: '0',
     },
+    modal: {
+        margin: 'auto',
+        marginTop: '5%',
+        width: 400,
+    },
 }));
 
 const fetchEntries = async () => {
@@ -32,8 +38,12 @@ const fetchEntries = async () => {
         console.error('Failed to fetch entries:', error);
     }
 };
+
 export default function EntryForm() {
     const [entries, setEntries] = useState([]);
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [selectedEntryId, setSelectedEntryId] = useState(null);
+
 
     useEffect(() => {
         const fetchEntries = async () => {
@@ -46,10 +56,6 @@ export default function EntryForm() {
         };
         fetchEntries();
     }, []);
-
-
-
-
 
     const handleDelete = async (id) => {
         console.log(`Deleting ${id}`);
@@ -70,22 +76,15 @@ export default function EntryForm() {
 
     };
 
-
-
-
-
     const handleEdit = (id) => {
-        const fetchEntries = async () => {
-            try {
-                const response = await axiosConfig.get('/get-adventures');
-                setEntries(response.data);
-            } catch (error) {
-                console.error('Failed to fetch entries:', error);
-            }
-        };
-        console.log(`Editing ${id}`);
+        setSelectedEntryId(id);
+        setEditModalOpen(true);
     };
 
+    const closeEditModal = () => {
+        setSelectedEntryId(null);
+        setEditModalOpen(false);
+    };
     const classes = useStyles();
 
     return (
@@ -99,7 +98,6 @@ export default function EntryForm() {
             }}>
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
                 {entries.map((entry) => (
-
                     <Grid key={entry.id}>
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
                             <Typography variant="h5" component="h2">{entry.entry_title}</Typography>
@@ -120,9 +118,18 @@ export default function EntryForm() {
                             </div>
                         </Container>
                     </Grid>
-
                 ))}
+                <Modal
+                    open={editModalOpen && selectedEntryId !== null}
+                    onClose={closeEditModal}
+                    className={classes.modal}
+                    disableEnforceFocus
+                >
+                    {/* Pass the selectedEntryId as a prop to EditEntryModal */}
+                    {selectedEntryId !== null && <EditEntryModal entryId={selectedEntryId} />}
+                </Modal>
             </Container>
         </div>
     );
+
 }

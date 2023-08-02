@@ -27,6 +27,56 @@ router.get('/get-things', async (_,res) => {
     res.status(200)
     res.json(response)
 })
+
+
+// GET ALL OF ONE ADVENTURE
+router.get('/get-adventure', async (req,res) => {
+  const entryId = req.query.id
+
+  console.log(`receiving ${entryId}`);
+  
+  try {
+    const adventure = await knex('ouata_adventures')
+      .select('ouata_adventures.*')
+      .where({
+        id: entryId
+      })
+      .first();
+      console.log('adventure:', adventure);
+
+    if (!adventure) {
+      return res.status(404).json({error: `Adventure not found`});
+    }
+    
+    const people = await knex('ouata_adventure_people')
+    .where({adventure_id: entryId})
+    const places = await knex('ouata_adventure_places')
+    .where({adventure_id: entryId});
+    const things = await knex('ouata_adventure_things')
+    .where({adventure_id: entryId});
+
+    const peopleData = await knex('ouata_people').whereIn('id', people.map(p => p.person_id));
+    
+    const placesData = await knex('ouata_places').whereIn('id', places.map(p => p.place_id));
+    
+    const thingsData = await knex('ouata_things').whereIn('id', things.map(t => t.thing_id));
+    
+    
+    const response = {
+      adventure,
+      peopleData: peopleData,
+      placesData: placesData,
+      thingsData: thingsData,
+    };
+
+    res.json(response);
+
+  } catch (error) {
+    console.error('Error getting adventure:', error);
+    res.sendStatus(500);
+  }
+});
+
 //GET ADVENTURES
 router.get('/get-adventures', async (_,res) => {
     const response = await knex('ouata_adventures')
