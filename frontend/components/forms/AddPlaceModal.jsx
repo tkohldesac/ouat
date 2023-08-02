@@ -46,7 +46,6 @@ export default function AddPlaces({ onAddPlace, includedPlaces }) {
 
     const handleAddPlace = (place) => {
         onAddPlace(place);
-        console.log(`Place added: ${place.place_name}`)
         setIsVisible((prevVisibility) => ({
             ...prevVisibility,
             [place.id]: false,

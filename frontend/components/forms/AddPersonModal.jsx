@@ -34,7 +34,7 @@ export default function AddPeople({ onAddPerson, includedPeople }) {
     useEffect(() => {
         const fetchPeople = async () => {
             try {
-                const response = await axiosConfig.get('/get-people'); // Fetches all people
+                const response = await axiosConfig.get('/get-people');
 
                 setPeople(response.data);
 

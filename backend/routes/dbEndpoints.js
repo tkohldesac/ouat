@@ -3,7 +3,7 @@ const router = express.Router();
 const knex = require("../knexConfig");
 
 // GET ROUTES
-// GET PEOPLE
+
 router.get('/get-people', async (_,res) => {
     const response = await knex('ouata_people')
     .select('ouata_people.*')
@@ -11,7 +11,7 @@ router.get('/get-people', async (_,res) => {
     res.status(200)
     res.json(response)
 })
-// GET PLACES
+
 router.get('/get-places', async (_,res) => {
     const response = await knex('ouata_places')
     .select('ouata_places.*')
@@ -19,7 +19,7 @@ router.get('/get-places', async (_,res) => {
     res.status(200)
     res.json(response)
 })
-// GET THINGS:
+
 router.get('/get-things', async (_,res) => {
     const response = await knex('ouata_things')
     .select('ouata_things.*')
@@ -29,12 +29,10 @@ router.get('/get-things', async (_,res) => {
 })
 
 
-// GET ALL OF ONE ADVENTURE
+
 router.get('/get-adventure', async (req,res) => {
   const entryId = req.query.id
 
-  console.log(`receiving ${entryId}`);
-  
   try {
     const adventure = await knex('ouata_adventures')
       .select('ouata_adventures.*')
@@ -42,7 +40,6 @@ router.get('/get-adventure', async (req,res) => {
         id: entryId
       })
       .first();
-      console.log('adventure:', adventure);
 
     if (!adventure) {
       return res.status(404).json({error: `Adventure not found`});
@@ -77,7 +74,7 @@ router.get('/get-adventure', async (req,res) => {
   }
 });
 
-//GET ADVENTURES
+
 router.get('/get-adventures', async (_,res) => {
     const response = await knex('ouata_adventures')
     .select('ouata_adventures.*')
@@ -161,10 +158,6 @@ router.post('/create-adventure', async (req, res) => {
     const entryTitle = req.body.entryTitle;
     const entryText = req.body.entryText;
   
-    console.log('includedPeopleIds:', req.body.includedPeople.map(person => person.id));
-    console.log('includedPlacesIds:', req.body.includedPlaces.map(place => place.id));
-    console.log('includedThingsIds:', req.body.includedThings.map(thing => thing.id));
-  
     const includedPeopleIds = req.body.includedPeople.map(person => person.id);
     const includedPlacesIds = req.body.includedPlaces.map(place => place.id);
     const includedThingsIds = req.body.includedThings.map(thing => thing.id);
@@ -215,9 +208,7 @@ router.post('/create-adventure', async (req, res) => {
 
 router.delete('/delete-person', async (req, res) => {
   const personId = req.body.id
-console.log(`receiving ${personId}`)
   try {
-    console.log(`Incoming personId:` + personId)
     await knex.transaction(async (trx) => {
       
       const deletePerson = await trx('ouata_people')
@@ -238,9 +229,7 @@ console.log(`receiving ${personId}`)
 
 router.delete('/delete-place', async (req, res) => {
   const placeId = req.body.id
-console.log(`receiving ${placeId}`)
   try {
-    console.log(`Incoming placeId:` + placeId)
     await knex.transaction(async (trx) => {
       
       const deletePlace = await trx('ouata_places')
@@ -261,9 +250,7 @@ console.log(`receiving ${placeId}`)
 
 router.delete('/delete-thing', async (req, res) => {
   const thingId = req.body.id
-console.log(`receiving ${thingId}`)
   try {
-    console.log(`Incoming thingId:` + thingId)
     await knex.transaction(async (trx) => {
       
       const deleteThing = await trx('ouata_things')
@@ -284,9 +271,7 @@ console.log(`receiving ${thingId}`)
 
 router.delete('/delete-adventure', async (req, res) => {
   const entryId = req.body.id
-console.log(`receiving ${entryId}`)
   try {
-    console.log(`Incoming entryId:` + entryId)
     await knex.transaction(async (trx) => {
       
       const deleteAdventure = await trx('ouata_adventures')

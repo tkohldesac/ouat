@@ -3,7 +3,6 @@ import Container from '@material-ui/core/Container';
 import { IconButton, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
-// Icons:
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -35,7 +34,7 @@ export default function createPersonModal() {
     useEffect(() => {
         const fetchPeople = async () => {
             try {
-                const response = await axiosConfig.get('/get-people'); // Fetches all people
+                const response = await axiosConfig.get('/get-people'); 
 
                 setPeople(response.data);
 
@@ -50,9 +49,7 @@ export default function createPersonModal() {
     const classes = useStyles();
 
     const handleDelete = async (id) => {
-        console.log(`Deleting ${id}`)
         try {
-            console.log(`Sending stuff ${id}`);
             const deletePerson = await axiosConfig.delete('/delete-person', { data: { id } },
 
             );
@@ -67,7 +64,6 @@ export default function createPersonModal() {
     };
 
     const handleEdit = (id) => {
-        console.log(`Editing ${id}`)
     }
     return (
         <>

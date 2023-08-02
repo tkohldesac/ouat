@@ -3,7 +3,6 @@ import Container from '@material-ui/core/Container';
 import { IconButton, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
-// Icons:
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -29,7 +28,7 @@ export default function createPlaceModal() {
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const response = await axiosConfig.get('/get-places'); // Fetches all places
+                const response = await axiosConfig.get('/get-places'); 
 
                 setPlaces(response.data);
 
@@ -44,9 +43,7 @@ export default function createPlaceModal() {
     const classes = useStyles();
 
     const handleDelete = async (id) => {
-        console.log(`Deleting ${id}`)
         try {
-            console.log(`Sending stuff ${id}`);
             const deletePlace = await axiosConfig.delete('/delete-place', { data: { id } },
 
             );

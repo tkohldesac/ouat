@@ -48,14 +48,7 @@ export default function EditEntryModal({ entryId }) {
     const [includedThings, setIncludedThings] = React.useState([]);
     const [entries, setEntries] = React.useState([]);
 
-    // console.log(`Incoming: ${entryId}`)
-
     const newInt = parseInt(entryId)
-
-
-    // End Entry items //
-
-    // EDIT STUFF:
 
     const fetchEntries = async (newInt) => {
         try {
@@ -78,7 +71,6 @@ export default function EditEntryModal({ entryId }) {
     }, [entryId]);
 
     useEffect(() => {
-        // Check if entries.adventure is available before setting other state variables
         if (entries.adventure) {
             setEntryText(entries.adventure.entry_text);
             setEntryTitle(entries.adventure.entry_title);
@@ -87,17 +79,6 @@ export default function EditEntryModal({ entryId }) {
             setIncludedThings(entries.thingsData);
         }
     }, [entries]);
-
-
-
-
-
-
-
-    //END EDIT STUFF
-
-
-
 
     const handleAddPerson = (person) => {
         setIncludedPeople((prevPeople) => [...prevPeople, person]);
@@ -110,9 +91,6 @@ export default function EditEntryModal({ entryId }) {
     };
 
 
-    // Modal fun:
-
-    // Modal state:
     const [addPersonModalOpen, setAddPersonModalOpen] = React.useState(false);
     const [addPlaceModalOpen, setAddPlaceModalOpen] = React.useState(false);
     const [addThingModalOpen, setAddThingModalOpen] = React.useState(false);
@@ -133,21 +111,6 @@ export default function EditEntryModal({ entryId }) {
     const handleEntryTextChange = (event) => {
         setEntryText(event.target.value);
     };
-
-    useEffect(() => {
-        // console.log(`includedPeople:`)
-        includedPeople.forEach(person => console.log(person.person_name));
-    }, [includedPeople]);
-
-    useEffect(() => {
-        // console.log(`includedPlaces:`)
-        includedPlaces.forEach(place => console.log(place.place_name));
-    }, [includedPlaces]);
-
-    useEffect(() => {
-        // console.log(`includedThings:`)
-        includedThings.forEach(thing => console.log(thing.thing_name));
-    }, [includedThings]);
 
     const handleDeletePeople = (id) => {
         setIncludedPeople((prevPeople) => prevPeople.filter((person) => person.id !== id));

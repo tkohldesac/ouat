@@ -34,7 +34,7 @@ export default function AddThings({ onAddThing, includedThings }) {
     useEffect(() => {
         const fetchThings = async () => {
             try {
-                const response = await axiosConfig.get('/get-things'); // Fetches all things
+                const response = await axiosConfig.get('/get-things'); 
 
                 setThings(response.data);
 

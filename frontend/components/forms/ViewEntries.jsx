@@ -4,8 +4,6 @@ import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig';
 import EditEntryModal from "./EditEntryModal";
-
-// Icons:
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -58,15 +56,12 @@ export default function EntryForm() {
     }, []);
 
     const handleDelete = async (id) => {
-        console.log(`Deleting ${id}`);
         try {
-            console.log(`Sending stuff ${id}`);
             const deleteEntry = await axiosConfig.delete('/delete-adventure', { data: { id } },
 
             );
             if (deleteEntry.status >= 200 && deleteEntry.status < 300) {
                 console.log('Adventure Deleted!');
-                // If the deletion was successful, you may want to update the entries list by re-fetching them
                 const response = await axiosConfig.get('/get-adventures');
                 setEntries(response.data);
             }

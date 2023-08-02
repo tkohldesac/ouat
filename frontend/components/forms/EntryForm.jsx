@@ -41,13 +41,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EntryForm() {
-    // Entry items:
+
     const [entryTitle, setEntryTitle] = React.useState('');
     const [entryText, setEntryText] = React.useState('');
     const [includedPeople, setIncludedPeople] = React.useState([]);
     const [includedPlaces, setIncludedPlaces] = React.useState([]);
     const [includedThings, setIncludedThings] = React.useState([]);
-    // End Entry items //
+
 
     const handleAddPerson = (person) => {
         setIncludedPeople((prevPeople) => [...prevPeople, person]);
@@ -60,9 +60,7 @@ export default function EntryForm() {
     };
 
 
-    // Modal fun:
 
-    // Modal state:
     const [addPersonModalOpen, setAddPersonModalOpen] = React.useState(false);
     const [addPlaceModalOpen, setAddPlaceModalOpen] = React.useState(false);
     const [addThingModalOpen, setAddThingModalOpen] = React.useState(false);
@@ -83,21 +81,6 @@ export default function EntryForm() {
     const handleEntryTextChange = (event) => {
         setEntryText(event.target.value);
     };
-
-    useEffect(() => {
-        // console.log(`includedPeople:`)
-        includedPeople.forEach(person => console.log(person.person_name));
-    }, [includedPeople]);
-
-    useEffect(() => {
-        // console.log(`includedPlaces:`)
-        includedPlaces.forEach(place => console.log(place.place_name));
-    }, [includedPlaces]);
-
-    useEffect(() => {
-        // console.log(`includedThings:`)
-        includedThings.forEach(thing => console.log(thing.thing_name));
-    }, [includedThings]);
 
     const handleDeletePeople = (id) => {
         setIncludedPeople((prevPeople) => prevPeople.filter((person) => person.id !== id));
