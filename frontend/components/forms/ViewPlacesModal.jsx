@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import Container from '@material-ui/core/Container';
-import { IconButton, Grid, Typography } from '@material-ui/core';
+import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditPlaceModal from "./EditPlaceModal";
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -24,11 +25,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function createPlaceModal() {
     const [places, setPlaces] = useState([]);
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [selectedPlaceId, setSelectedPlaceId] = useState(null);
 
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const response = await axiosConfig.get('/get-places'); 
+                const response = await axiosConfig.get('/get-places');
 
                 setPlaces(response.data);
 
@@ -56,9 +59,15 @@ export default function createPlaceModal() {
             console.error('Error deleting place:', error);
         }
     };
+    
     const handleEdit = (id) => {
-        console.log(`Editing ${id}`)
-    }
+        setSelectedPlaceId(id);
+        setEditModalOpen(true);
+    };
+    const closeEditModal = () => {
+        setSelectedPlaceId(null);
+        setEditModalOpen(false);
+    };
 
     return (
         <>
@@ -81,6 +90,14 @@ export default function createPlaceModal() {
                         </Container>
                     </Grid>
                 ))}
+                <Modal
+                    open={editModalOpen && selectedPlaceId !== null}
+                    onClose={closeEditModal}
+                    className={classes.modal}
+                    disableEnforceFocus
+                >
+                    {selectedPlaceId !== null && <EditPlaceModal placeId={selectedPlaceId} />}
+                </Modal>
             </Container>
         </ >
     )

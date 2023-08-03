@@ -12,6 +12,20 @@ router.get('/get-people', async (_,res) => {
     res.json(response)
 })
 
+router.get('/get-person/:personId', async (req,res) => {
+  personId = req.params.personId
+
+  console.log('route personId', personId)
+
+  const response = await knex('ouata_people')
+  .select('ouata_people.*')
+  .where({ id: personId })
+  .first();
+  
+  res.status(200)
+  res.json(response)
+})
+
 router.get('/get-places', async (_,res) => {
     const response = await knex('ouata_places')
     .select('ouata_places.*')
@@ -20,12 +34,38 @@ router.get('/get-places', async (_,res) => {
     res.json(response)
 })
 
+router.get('/get-place/:placeId', async (req,res) => {
+  placeId = req.params.placeId
+
+  const response = await knex('ouata_places')
+  .select('ouata_places.*')
+  .where({ id: placeId })
+  .first();
+  
+  console.log(response)
+  res.status(200)
+  res.json(response)
+})
+
 router.get('/get-things', async (_,res) => {
     const response = await knex('ouata_things')
     .select('ouata_things.*')
     .orderBy('id', 'desc')
     res.status(200)
     res.json(response)
+})
+
+router.get('/get-thing/:thingId', async (req,res) => {
+  thingId = req.params.thingId
+
+  const response = await knex('ouata_things')
+  .select('ouata_things.*')
+  .where({ id: thingId })
+  .first();
+  
+  console.log(response)
+  res.status(200)
+  res.json(response)
 })
 
 router.get('/get-adventure', async (req,res) => {
@@ -255,6 +295,92 @@ router.put('/update-adventure', async (req, res) => {
   }
 
 });
+
+router.put('/update-person', async (req, res) => {
+  personId = req.body.personId
+  personName = req.body.personName
+  personAge = req.body.personAge
+  personDescription = req.body.personDescription
+  personAbilities = req.body.personAbilities
+  personBio = req.body.personBio
+  personImageUrl = req.body.personImageUrl
+
+try {
+  await knex.transaction(async (trx) => {
+    
+    await trx('ouata_people')
+    .where({ id: personId })
+    .update({
+      person_name: personName,
+      age: personAge,
+      physical_description: personDescription,
+      spells_abilities: personAbilities,
+      bio: personBio,
+      image_url: personImageUrl
+    });
+  });
+  res.sendStatus(200);
+
+} catch (error) {
+  console.error('Error updating person:', error);
+  res.sendStatus(500);
+}
+});
+
+router.put('/update-place', async (req, res) => {
+  placeId = req.body.placeId
+  placeName = req.body.placeName
+  placeDescription = req.body.placeDescription
+  placeSovereign = req.body.placeSovereign
+  placeImageUrl = req.body.placeImageUrl
+
+try {
+  await knex.transaction(async (trx) => {
+    
+    await trx('ouata_places')
+    .where({ id: placeId })
+    .update({
+      place_name: placeName,
+      physical_description: placeDescription,
+      sovereign: placeSovereign,
+      img_url: placeImageUrl
+    });
+  });
+  res.sendStatus(200);
+
+} catch (error) {
+  console.error('Error updating place:', error);
+  res.sendStatus(500);
+}
+});
+
+router.put('/update-thing', async (req, res) => {
+  thingId = req.body.thingId
+  thingName = req.body.thingName
+  thingDescription = req.body.thingDescription
+  thingProperties = req.body.thingProperties
+  thingImageUrl = req.body.thingImageUrl
+
+try {
+  await knex.transaction(async (trx) => {
+    
+    await trx('ouata_things')
+    .where({ id: thingId })
+    .update({
+      thing_name: thingName,
+      physical_description: thingDescription,
+      special_properties: thingProperties,
+      img_url: thingImageUrl
+    });
+  });
+  res.sendStatus(200);
+  
+} catch (error) {
+  console.error('Error updating thing:', error);
+  res.sendStatus(500);
+}
+});
+
 // DELETE ROUTES
 
 router.delete('/delete-person', async (req, res) => {

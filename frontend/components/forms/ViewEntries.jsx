@@ -23,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
     },
     modal: {
         margin: 'auto',
-        marginTop: '5%',
-        width: 400,
+        width: '50%',
+        overflow: 'auto'
+
     },
 }));
 
@@ -120,7 +121,7 @@ export default function EntryForm() {
                     className={classes.modal}
                     disableEnforceFocus
                 >
-                    {/* Pass the selectedEntryId as a prop to EditEntryModal */}
+
                     {selectedEntryId !== null && <EditEntryModal entryId={selectedEntryId} />}
                 </Modal>
             </Container>

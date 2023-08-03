@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import Container from '@material-ui/core/Container';
-import { IconButton, Grid, Typography } from '@material-ui/core';
+import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditThingModal from "./EditThingModal";
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -24,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function createPersonModal() {
+export default function createThingModal() {
     const [things, setThings] = useState([]);
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [selectedThingId, setSelectedThingId] = useState(null);
 
     useEffect(() => {
         const fetchThings = async () => {
@@ -58,6 +61,15 @@ export default function createPersonModal() {
         }
     };
 
+    const handleEdit = (id) => {
+        setSelectedThingId(id);
+        setEditModalOpen(true);
+    };
+    const closeEditModal = () => {
+        setSelectedThingId(null);
+        setEditModalOpen(false);
+    };
+
     return (
         <>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
@@ -79,6 +91,14 @@ export default function createPersonModal() {
                         </Container>
                     </Grid>
                 ))}
+                <Modal
+                    open={editModalOpen && selectedThingId !== null}
+                    onClose={closeEditModal}
+                    className={classes.modal}
+                    disableEnforceFocus
+                >
+                    {selectedThingId !== null && <EditThingModal thingId={selectedThingId} />}
+                </Modal>
             </Container>
         </ >
     )
