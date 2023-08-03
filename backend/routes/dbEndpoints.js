@@ -28,8 +28,6 @@ router.get('/get-things', async (_,res) => {
     res.json(response)
 })
 
-
-
 router.get('/get-adventure', async (req,res) => {
   const entryId = req.query.id
 
@@ -73,7 +71,6 @@ router.get('/get-adventure', async (req,res) => {
     res.sendStatus(500);
   }
 });
-
 
 router.get('/get-adventures', async (_,res) => {
     const response = await knex('ouata_adventures')
@@ -198,12 +195,66 @@ router.post('/create-adventure', async (req, res) => {
       console.error('Error creating new adventure:', error);
       res.sendStatus(500);
     }
-  });
+});
   
   
 
 // PUT ROUTES
+router.put('/update-adventure', async (req, res) => {
+  const entryId = req.body.entryId;
+  const entryTitle = req.body.entryTitle;
+  const entryText = req.body.entryText;
 
+  const includedPeopleIds = req.body.includedPeople.map(person => person.id);
+  const includedPlacesIds = req.body.includedPlaces.map(place => place.id);
+  const includedThingsIds = req.body.includedThings.map(thing => thing.id);
+
+  try {
+    await knex.transaction(async (trx) => {
+
+      await trx('ouata_adventures')
+        .where({ id: entryId }) 
+        .update({
+          entry_title: entryTitle,
+          entry_text: entryText,
+        });
+  
+      await trx('ouata_adventure_people').where({ adventure_id: entryId }).del();
+      await trx('ouata_adventure_places').where({ adventure_id: entryId }).del();
+      await trx('ouata_adventure_things').where({ adventure_id: entryId }).del();
+  
+      await Promise.all(
+        includedPeopleIds.map((personId) =>
+          trx('ouata_adventure_people').insert({
+            adventure_id: entryId,
+            person_id: personId,
+          })
+        )
+      );
+  
+      await Promise.all(
+        includedPlacesIds.map((placeId) =>
+          trx('ouata_adventure_places').insert({
+            adventure_id: entryId,
+            place_id: placeId,
+          })
+        )
+      );
+  
+      await Promise.all(
+        includedThingsIds.map((thingId) =>
+          trx('ouata_adventure_things').insert({
+            adventure_id: entryId,
+            thing_id: thingId,
+          })
+        )
+      );
+    });
+  } catch (error) {
+    console.error('Error updating adventure:', error);
+  }
+
+});
 // DELETE ROUTES
 
 router.delete('/delete-person', async (req, res) => {

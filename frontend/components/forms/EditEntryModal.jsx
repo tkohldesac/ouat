@@ -125,19 +125,23 @@ export default function EditEntryModal({ entryId }) {
     const handleSubmit = async (event) => {
         try {
             const response = await axiosConfig.put(
-                '/create-adventure',
+                '/update-adventure',
                 {
+                    entryId,
                     entryTitle,
                     entryText,
                     includedPeople,
                     includedPlaces,
                     includedThings
                 },
+
                 {
                     headers: {
                         'Content-Type': 'application/json',
+
                     },
                 }
+
             );
 
             if (response.ok) {
@@ -273,8 +277,9 @@ export default function EditEntryModal({ entryId }) {
                             <Button
                                 type="submit"
                                 variant="contained"
-                                color="primary">
-                                Record
+                                color="primary"
+                            >
+                                Re-Record
                             </Button>
                         </Grid>
                     </Grid>
