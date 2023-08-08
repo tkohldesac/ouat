@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     cardContainer: {
         display: "flex",
         justifyContent: "space-between",
-
     },
     card: {
         flex: "1 1 100%",
@@ -47,9 +46,6 @@ export default function EditPersonModal({ personId }) {
     const [personImageUrl, setPersonImageUrl] = React.useState('');
     
     const [personData, setPersonData] = React.useState([]);
-
-
-
 
     const fetchPerson = async () => {
         try {
@@ -143,7 +139,6 @@ export default function EditPersonModal({ personId }) {
 
     return (
         <div>
-
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Person</Typography>
                 <form onSubmit={handleSubmit}>

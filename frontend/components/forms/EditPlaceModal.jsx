@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     cardContainer: {
         display: "flex",
         justifyContent: "space-between",
-
     },
     card: {
         flex: "1 1 100%",
@@ -45,7 +44,6 @@ export default function EditPlaceModal({ placeId }) {
     const [placeImageUrl, setPlaceImageUrl] = React.useState('');
 
     const [placeData, setPlaceData] = React.useState([]);
-
 
     const fetchPlace = async () => {
         try {

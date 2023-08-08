@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     marginTop: '5%',
     width: 400,
+    overflow: 'auto'
   },
 }));
 
@@ -187,9 +188,8 @@ export default function TopBar({ theme }) {
         onClose={closeViewPersonModal}
         className={classes.modal}
         disableEnforceFocus
-        sx={{ overflow: 'auto' }}
+
       >
-        {/* SEARCH HERE */}
 
         <ViewPersonModal />
 
