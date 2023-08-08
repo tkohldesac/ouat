@@ -1,6 +1,6 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import EntryForm from "./forms/EntryForm";
+import AdventureForm from "./forms/AdventureForm";
 
 export default function AdventureEntry() {
 
@@ -11,7 +11,7 @@ export default function AdventureEntry() {
                 backgroundColor: '#381e99',
                 height: '80vh'
             }}>
-                <EntryForm />
+                <AdventureForm />
 
             </Container>
         </div>

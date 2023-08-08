@@ -69,13 +69,13 @@ router.get('/get-thing/:thingId', async (req,res) => {
 })
 
 router.get('/get-adventure', async (req,res) => {
-  const entryId = req.query.id
+  const adventureId = req.query.id
 
   try {
     const adventure = await knex('ouata_adventures')
       .select('ouata_adventures.*')
       .where({
-        id: entryId
+        id: adventureId
       })
       .first();
 
@@ -84,11 +84,11 @@ router.get('/get-adventure', async (req,res) => {
     }
     
     const people = await knex('ouata_adventure_people')
-    .where({adventure_id: entryId})
+    .where({adventure_id: adventureId})
     const places = await knex('ouata_adventure_places')
-    .where({adventure_id: entryId});
+    .where({adventure_id: adventureId});
     const things = await knex('ouata_adventure_things')
-    .where({adventure_id: entryId});
+    .where({adventure_id: adventureId});
 
     const peopleData = await knex('ouata_people').whereIn('id', people.map(p => p.person_id));
     
@@ -192,8 +192,8 @@ router.post('/create-thing', async (req, res) => {
 });
 
 router.post('/create-adventure', async (req, res) => {
-    const entryTitle = req.body.entryTitle;
-    const entryText = req.body.entryText;
+    const adventureTitle = req.body.adventureTitle;
+    const adventureText = req.body.adventureText;
   
     const includedPeopleIds = req.body.includedPeople.map(person => person.id);
     const includedPlacesIds = req.body.includedPlaces.map(place => place.id);
@@ -202,29 +202,29 @@ router.post('/create-adventure', async (req, res) => {
     try {
       await knex.transaction(async (trx) => {
         
-        const [newEntry] = await trx('ouata_adventures').insert({
-            entry_title: entryTitle,
-            entry_text: entryText,
+        const [newAdventure] = await trx('ouata_adventures').insert({
+            adventure_title: adventureTitle,
+            adventure_text: adventureText,
           }).returning('id');
-          const newEntryId = newEntry.id;          
+          const newAdventureId = newAdventure.id;          
 
         await Promise.all(includedPeopleIds.map(personId =>
           trx('ouata_adventure_people').insert({
-            adventure_id: newEntryId,
+            adventure_id: newAdventureId,
             person_id: personId,
           })
         ));
   
         await Promise.all(includedPlacesIds.map(placeId =>
           trx('ouata_adventure_places').insert({
-            adventure_id: newEntryId,
+            adventure_id: newAdventureId,
             place_id: placeId,
           })
         ));
   
         await Promise.all(includedThingsIds.map(thingId =>
             trx('ouata_adventure_things').insert({
-              adventure_id: newEntryId,
+              adventure_id: newAdventureId,
               thing_id: thingId,
             })
           ));
@@ -241,9 +241,9 @@ router.post('/create-adventure', async (req, res) => {
 
 // PUT ROUTES
 router.put('/update-adventure', async (req, res) => {
-  const entryId = req.body.entryId;
-  const entryTitle = req.body.entryTitle;
-  const entryText = req.body.entryText;
+  const adventureId = req.body.adventureId;
+  const adventureTitle = req.body.adventureTitle;
+  const adventureText = req.body.adventureText;
 
   const includedPeopleIds = req.body.includedPeople.map(person => person.id);
   const includedPlacesIds = req.body.includedPlaces.map(place => place.id);
@@ -253,20 +253,20 @@ router.put('/update-adventure', async (req, res) => {
     await knex.transaction(async (trx) => {
 
       await trx('ouata_adventures')
-        .where({ id: entryId }) 
+        .where({ id: adventureId }) 
         .update({
-          entry_title: entryTitle,
-          entry_text: entryText,
+          adventure_title: adventureTitle,
+          adventure_text: adventureText,
         });
   
-      await trx('ouata_adventure_people').where({ adventure_id: entryId }).del();
-      await trx('ouata_adventure_places').where({ adventure_id: entryId }).del();
-      await trx('ouata_adventure_things').where({ adventure_id: entryId }).del();
+      await trx('ouata_adventure_people').where({ adventure_id: adventureId }).del();
+      await trx('ouata_adventure_places').where({ adventure_id: adventureId }).del();
+      await trx('ouata_adventure_things').where({ adventure_id: adventureId }).del();
   
       await Promise.all(
         includedPeopleIds.map((personId) =>
           trx('ouata_adventure_people').insert({
-            adventure_id: entryId,
+            adventure_id: adventureId,
             person_id: personId,
           })
         )
@@ -275,7 +275,7 @@ router.put('/update-adventure', async (req, res) => {
       await Promise.all(
         includedPlacesIds.map((placeId) =>
           trx('ouata_adventure_places').insert({
-            adventure_id: entryId,
+            adventure_id: adventureId,
             place_id: placeId,
           })
         )
@@ -284,7 +284,7 @@ router.put('/update-adventure', async (req, res) => {
       await Promise.all(
         includedThingsIds.map((thingId) =>
           trx('ouata_adventure_things').insert({
-            adventure_id: entryId,
+            adventure_id: adventureId,
             thing_id: thingId,
           })
         )
@@ -447,28 +447,28 @@ router.delete('/delete-thing', async (req, res) => {
 });
 
 router.delete('/delete-adventure', async (req, res) => {
-  const entryId = req.body.id
+  const adventureId = req.body.id
   try {
     await knex.transaction(async (trx) => {
       
       const deleteAdventure = await trx('ouata_adventures')
         .where({
-          id: entryId
+          id: adventureId
         })
         .del();
       const deleteAdventurePeople = await trx('ouata_adventure_people')
       .where({
-        adventure_id: entryId
+        adventure_id: adventureId
       })
       .del();
       const deleteAdventurePlaces = await trx('ouata_adventure_places')
       .where({
-        adventure_id: entryId
+        adventure_id: adventureId
       })
       .del();
       const deleteAdventureThings = await trx('ouata_adventure_things')
       .where({
-        adventure_id: entryId
+        adventure_id: adventureId
       })
       .del();
     });

@@ -40,45 +40,45 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EditEntryModal({ entryId }) {
-    const [entryTitle, setEntryTitle] = React.useState('');
-    const [entryText, setEntryText] = React.useState('');
+export default function EditAdventureModal({ adventureId }) {
+    const [adventureTitle, setAdventureTitle] = React.useState('');
+    const [adventureText, setAdventureText] = React.useState('');
     const [includedPeople, setIncludedPeople] = React.useState([]);
     const [includedPlaces, setIncludedPlaces] = React.useState([]);
     const [includedThings, setIncludedThings] = React.useState([]);
-    const [entries, setEntries] = React.useState([]);
+    const [adventures, setAdventures] = React.useState([]);
 
-    const newInt = parseInt(entryId)
+    const newInt = parseInt(adventureId)
 
-    const fetchEntries = async (newInt) => {
+    const fetchAdventures = async (newInt) => {
         try {
             const response = await axiosConfig.get('/get-adventure', {
                 params: { id: newInt }
 
             });
-            setEntries(response.data);
+            setAdventures(response.data);
 
         } catch (error) {
-            console.error('Failed to fetch entries:', error);
+            console.error('Failed to fetch adventures:', error);
         }
 
     };
 
     useEffect(() => {
-        if (entryId !== null) {
-            fetchEntries(entryId);
+        if (adventureId !== null) {
+            fetchAdventures(adventureId);
         }
-    }, [entryId]);
+    }, [adventureId]);
 
     useEffect(() => {
-        if (entries.adventure) {
-            setEntryText(entries.adventure.entry_text);
-            setEntryTitle(entries.adventure.entry_title);
-            setIncludedPeople(entries.peopleData);
-            setIncludedPlaces(entries.placesData);
-            setIncludedThings(entries.thingsData);
+        if (adventures.adventure) {
+            setAdventureText(adventures.adventure.adventure_text);
+            setAdventureTitle(adventures.adventure.adventure_title);
+            setIncludedPeople(adventures.peopleData);
+            setIncludedPlaces(adventures.placesData);
+            setIncludedThings(adventures.thingsData);
         }
-    }, [entries]);
+    }, [adventures]);
 
     const handleAddPerson = (person) => {
         setIncludedPeople((prevPeople) => [...prevPeople, person]);
@@ -105,11 +105,11 @@ export default function EditEntryModal({ entryId }) {
     const closeAddThing = () => setAddThingModalOpen(false);
 
 
-    const handleEntryTitleChange = (event) => {
-        setEntryTitle(event.target.value);
+    const handleAdventureTitleChange = (event) => {
+        setAdventureTitle(event.target.value);
     };
-    const handleEntryTextChange = (event) => {
-        setEntryText(event.target.value);
+    const handleAdventureTextChange = (event) => {
+        setAdventureText(event.target.value);
     };
 
     const handleDeletePeople = (id) => {
@@ -127,9 +127,9 @@ export default function EditEntryModal({ entryId }) {
             const response = await axiosConfig.put(
                 '/update-adventure',
                 {
-                    entryId,
-                    entryTitle,
-                    entryText,
+                    adventureId,
+                    adventureTitle,
+                    adventureText,
                     includedPeople,
                     includedPlaces,
                     includedThings
@@ -173,8 +173,8 @@ export default function EditEntryModal({ entryId }) {
                                 name="adventureTitle"
                                 variant="filled"
                                 center={true.toString}
-                                value={entryTitle}
-                                onChange={handleEntryTitleChange}
+                                value={adventureTitle}
+                                onChange={handleAdventureTitleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -186,8 +186,8 @@ export default function EditEntryModal({ entryId }) {
                                 variant="filled"
                                 multiline
                                 minRows={4}
-                                value={entryText}
-                                onChange={handleEntryTextChange}
+                                value={adventureText}
+                                onChange={handleAdventureTextChange}
                             />
                         </Grid>
                         <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>

@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig';
-import EditEntryModal from "./EditEntryModal";
+import EditAdventureModal from "./EditAdventureModal";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -29,59 +29,57 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const fetchEntries = async () => {
+const fetchAdventures = async () => {
     try {
         const response = await axiosConfig.get('/get-adventures');
-        setEntries(response.data);
+        setAdventures(response.data);
     } catch (error) {
-        console.error('Failed to fetch entries:', error);
+        console.error('Failed to fetch adventures:', error);
     }
 };
 
-export default function EntryForm() {
-    const [entries, setEntries] = useState([]);
+export default function AdventureForm() {
+    const [adventures, setAdventures] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
-    const [selectedEntryId, setSelectedEntryId] = useState(null);
+    const [selectedAdventureId, setSelectedAdventureId] = useState(null);
 
-    const [includedPeople, setIncludedPeople] = React.useState([]);
-    const [includedPlaces, setIncludedPlaces] = React.useState([]);
-    const [includedThings, setIncludedThings] = React.useState([]);
+
 
     useEffect(() => {
-        const fetchEntries = async () => {
+        const fetchAdventures = async () => {
             try {
                 const response = await axiosConfig.get('/get-adventures');
-                setEntries(response.data);
+                setAdventures(response.data);
             } catch (error) {
-                console.error('Failed to fetch entries:', error);
+                console.error('Failed to fetch adventures:', error);
             }
         };
-        fetchEntries();
+        fetchAdventures();
     }, []);
 
     const handleDelete = async (id) => {
         try {
-            const deleteEntry = await axiosConfig.delete('/delete-adventure', { data: { id } },
+            const deleteAdventure = await axiosConfig.delete('/delete-adventure', { data: { id } },
 
             );
-            if (deleteEntry.status >= 200 && deleteEntry.status < 300) {
+            if (deleteAdventure.status >= 200 && deleteAdventure.status < 300) {
                 console.log('Adventure Deleted!');
                 const response = await axiosConfig.get('/get-adventures');
-                setEntries(response.data);
+                setAdventures(response.data);
             }
         } catch (error) {
-            console.error('Error deleting entry:', error);
+            console.error('Error deleting adventure:', error);
         }
 
     };
 
     const handleEdit = (id) => {
-        setSelectedEntryId(id);
+        setSelectedAdventureId(id);
         setEditModalOpen(true);
     };
 
     const closeEditModal = () => {
-        setSelectedEntryId(null);
+        setSelectedAdventureId(null);
         setEditModalOpen(false);
     };
     const classes = useStyles();
@@ -96,22 +94,22 @@ export default function EntryForm() {
                 paddingBottom: '2rem',
             }}>
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
-                {entries.map((entry) => (
-                    <Grid key={entry.id}>
+                {adventures.map((adventure) => (
+                    <Grid key={adventure.id}>
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
-                            <Typography variant="h5" component="h2">{entry.entry_title}</Typography>
-                            <Typography variant="body1" component="p">{entry.entry_text}</Typography>
+                            <Typography variant="h5" component="h2">{adventure.adventure_title}</Typography>
+                            <Typography variant="body1" component="p">{adventure.adventure_text}</Typography>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton
                                     aria-label="edit"
                                     className={classes.iconButton}
-                                    onClick={() => handleEdit(entry.id)}>
+                                    onClick={() => handleEdit(adventure.id)}>
                                     <EditIcon sx={{ color: 'white' }} />
                                 </IconButton>
                                 <IconButton
                                     aria-label="delete"
                                     className={classes.iconButton}
-                                    onClick={() => handleDelete(entry.id)}>
+                                    onClick={() => handleDelete(adventure.id)}>
                                     <DeleteForeverIcon sx={{ color: 'white' }} />
                                 </IconButton>
                             </div>
@@ -119,13 +117,13 @@ export default function EntryForm() {
                     </Grid>
                 ))}
                 <Modal
-                    open={editModalOpen && selectedEntryId !== null}
+                    open={editModalOpen && selectedAdventureId !== null}
                     onClose={closeEditModal}
                     className={classes.modal}
                     disableEnforceFocus
                 >
 
-                    {selectedEntryId !== null && <EditEntryModal entryId={selectedEntryId} />}
+                    {selectedAdventureId !== null && <EditAdventureModal adventureId={selectedAdventureId} />}
                 </Modal>
             </Container>
         </div>

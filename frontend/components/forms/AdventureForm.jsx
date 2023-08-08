@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EntryForm() {
+export default function AdventureForm() {
 
-    const [entryTitle, setEntryTitle] = React.useState('');
-    const [entryText, setEntryText] = React.useState('');
+    const [adventureTitle, setAdventureTitle] = React.useState('');
+    const [adventureText, setAdventureText] = React.useState('');
     const [includedPeople, setIncludedPeople] = React.useState([]);
     const [includedPlaces, setIncludedPlaces] = React.useState([]);
     const [includedThings, setIncludedThings] = React.useState([]);
@@ -75,11 +75,11 @@ export default function EntryForm() {
     const closeAddThing = () => setAddThingModalOpen(false);
 
 
-    const handleEntryTitleChange = (event) => {
-        setEntryTitle(event.target.value);
+    const handleAdventureTitleChange = (event) => {
+        setAdventureTitle(event.target.value);
     };
-    const handleEntryTextChange = (event) => {
-        setEntryText(event.target.value);
+    const handleAdventureTextChange = (event) => {
+        setAdventureText(event.target.value);
     };
 
     const handleDeletePeople = (id) => {
@@ -97,8 +97,8 @@ export default function EntryForm() {
             const response = await axiosConfig.post(
                 '/create-adventure',
                 {
-                    entryTitle,
-                    entryText,
+                    adventureTitle,
+                    adventureText,
                     includedPeople,
                     includedPlaces,
                     includedThings
@@ -138,8 +138,8 @@ export default function EntryForm() {
                                 name="adventureTitle"
                                 variant="filled"
                                 center={true.toString}
-                                value={entryTitle}
-                                onChange={handleEntryTitleChange}
+                                value={adventureTitle}
+                                onChange={handleAdventureTitleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -151,8 +151,8 @@ export default function EntryForm() {
                                 variant="filled"
                                 multiline
                                 minRows={4}
-                                value={entryText}
-                                onChange={handleEntryTextChange}
+                                value={adventureText}
+                                onChange={handleAdventureTextChange}
                             />
                         </Grid>
                         <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>

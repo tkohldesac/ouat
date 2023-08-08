@@ -1,6 +1,6 @@
 import React from "react"
 import Container from '@material-ui/core/Container';
-import ViewEntries from '../components/forms/ViewEntries'
+import ViewAdventures from '../components/forms/ViewAdventures'
 
 export default function AdventureEntry() {
 
@@ -12,7 +12,7 @@ export default function AdventureEntry() {
                 minHeight: '120%',
                 paddingBottom: '3rem'
             }}>
-                <ViewEntries />
+                <ViewAdventures />
             </Container>
 
         </div>
