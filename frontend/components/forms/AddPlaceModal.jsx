@@ -91,7 +91,7 @@ export default function AddPlaces({ onAddPlace, includedPlaces }) {
                             <Grid key={place.id}>
                                 <Container
                                     style={{
-                                        backgroundColor: 'darkred',
+                                        backgroundColor: 'blue',
                                         color: 'white',
                                         marginBottom: '1rem',
                                         paddingTop: '1rem',

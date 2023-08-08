@@ -34,7 +34,7 @@ export default function AddThings({ onAddThing, includedThings }) {
     useEffect(() => {
         const fetchThings = async () => {
             try {
-                const response = await axiosConfig.get('/get-things'); 
+                const response = await axiosConfig.get('/get-things');
 
                 setThings(response.data);
 
@@ -93,8 +93,8 @@ export default function AddThings({ onAddThing, includedThings }) {
                             <Grid key={thing.id}>
                                 <Container
                                     style={{
-                                        backgroundColor: 'darkred',
-                                        color: 'white',
+                                        backgroundColor: 'yellow',
+                                        color: 'black',
                                         marginBottom: '1rem',
                                         paddingTop: '1rem',
                                         paddingBottom: '1rem',
@@ -115,7 +115,7 @@ export default function AddThings({ onAddThing, includedThings }) {
                                             className={classes.iconButton}
                                             onClick={() => handleAddThing(thing)}
                                         >
-                                            <AddIcon />
+                                            <AddIcon style={{ color: 'black' }} />
                                         </IconButton>
                                     </div>
                                 </Container>

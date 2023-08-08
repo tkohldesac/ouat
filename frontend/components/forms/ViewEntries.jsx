@@ -43,6 +43,9 @@ export default function EntryForm() {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedEntryId, setSelectedEntryId] = useState(null);
 
+    const [includedPeople, setIncludedPeople] = React.useState([]);
+    const [includedPlaces, setIncludedPlaces] = React.useState([]);
+    const [includedThings, setIncludedThings] = React.useState([]);
 
     useEffect(() => {
         const fetchEntries = async () => {

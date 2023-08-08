@@ -94,7 +94,7 @@ export default function AddPeople({ onAddPerson, includedPeople }) {
                                 <Container
                                     style={{
                                         backgroundColor: 'darkred',
-                                        color: 'white',
+                                        color: 'black',
                                         marginBottom: '1rem',
                                         paddingTop: '1rem',
                                         paddingBottom: '1rem',
@@ -115,7 +115,7 @@ export default function AddPeople({ onAddPerson, includedPeople }) {
                                             className={classes.iconButton}
                                             onClick={() => handleAddPerson(person)}
                                         >
-                                            <AddIcon />
+                                            <AddIcon style={{ color: 'black' }} />
                                         </IconButton>
                                     </div>
                                 </Container>
