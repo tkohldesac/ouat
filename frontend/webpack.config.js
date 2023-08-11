@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  adventure: './frontend/index.js',
+  entry: './frontend/index.js',
   output: {
     filename: 'main.js', 
     path: path.resolve(__dirname, '..', 'dist'), 

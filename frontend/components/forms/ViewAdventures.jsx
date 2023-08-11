@@ -49,6 +49,7 @@ export default function AdventureForm() {
         const fetchAdventures = async () => {
             try {
                 const response = await axiosConfig.get('/get-adventures');
+                console.log(response.data);
                 setAdventures(response.data);
             } catch (error) {
                 console.error('Failed to fetch adventures:', error);
