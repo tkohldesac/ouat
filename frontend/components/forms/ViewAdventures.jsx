@@ -58,26 +58,8 @@ export default function AdventureForm() {
         fetchAdventures();
     }, []);
 
-    const handleDelete = async (id) => {
-        try {
-            const deleteAdventure = await axiosConfig.delete('/delete-adventure', { data: { id } },
 
-            );
-            if (deleteAdventure.status >= 200 && deleteAdventure.status < 300) {
-                console.log('Adventure Deleted!');
-                const response = await axiosConfig.get('/get-adventures');
-                setAdventures(response.data);
-            }
-        } catch (error) {
-            console.error('Error deleting adventure:', error);
-        }
 
-    };
-
-    const handleEdit = (id) => {
-        setSelectedAdventureId(id);
-        setEditModalOpen(true);
-    };
 
     const closeEditModal = () => {
         setSelectedAdventureId(null);
