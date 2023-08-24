@@ -6,6 +6,8 @@ import axiosConfig from '../../helpers/axiosConfig';
 import EditAdventureModal from "./EditAdventureModal";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AdventuresModule from "./AdventuresModule";
+
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -96,27 +98,10 @@ export default function AdventureForm() {
             }}>
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
                 {adventures.map((adventure) => (
-                    <Grid key={adventure.id}>
-                        <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
-                            <Typography variant="h5" component="h2">{adventure.adventure_title}</Typography>
-                            <Typography variant="body1" component="p">{adventure.adventure_text}</Typography>
-                            {/* Typography - {adventure[1].person_id} */}
-                            <div className={classes.iconButtonsContainer}>
-                                <IconButton
-                                    aria-label="edit"
-                                    className={classes.iconButton}
-                                    onClick={() => handleEdit(adventure.id)}>
-                                    <EditIcon sx={{ color: 'white' }} />
-                                </IconButton>
-                                <IconButton
-                                    aria-label="delete"
-                                    className={classes.iconButton}
-                                    onClick={() => handleDelete(adventure.id)}>
-                                    <DeleteForeverIcon sx={{ color: 'white' }} />
-                                </IconButton>
-                            </div>
-                        </Container>
-                    </Grid>
+                    <AdventuresModule
+                        adventure={adventure}
+                        classes={classes}
+                        id={adventure.id} />
                 ))}
                 <Modal
                     open={editModalOpen && selectedAdventureId !== null}
