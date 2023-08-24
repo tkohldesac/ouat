@@ -46,39 +46,39 @@ export default function EditAdventureModal({ adventureId }) {
     const [includedPeople, setIncludedPeople] = React.useState([]);
     const [includedPlaces, setIncludedPlaces] = React.useState([]);
     const [includedThings, setIncludedThings] = React.useState([]);
-    const [adventures, setAdventures] = React.useState([]);
+    const [adventure, setAdventure] = React.useState([]);
 
     const newInt = parseInt(adventureId)
 
-    const fetchAdventures = async (newInt) => {
+    const fetchAdventure = async (newInt) => {
         try {
             const response = await axiosConfig.get('/get-adventure', {
                 params: { id: newInt }
 
             });
-            setAdventures(response.data);
+            setAdventure(response.data);
 
         } catch (error) {
-            console.error('Failed to fetch adventures:', error);
+            console.error('Failed to fetch adventure:', error);
         }
 
     };
 
     useEffect(() => {
         if (adventureId !== null) {
-            fetchAdventures(adventureId);
+            fetchAdventure(adventureId);
         }
     }, [adventureId]);
 
     useEffect(() => {
-        if (adventures.adventure) {
-            setAdventureText(adventures.adventure.adventure_text);
-            setAdventureTitle(adventures.adventure.adventure_title);
-            setIncludedPeople(adventures.peopleData);
-            setIncludedPlaces(adventures.placesData);
-            setIncludedThings(adventures.thingsData);
+        if (adventure.adventure) {
+            setAdventureText(adventure.adventure.adventure_text);
+            setAdventureTitle(adventure.adventure.adventure_title);
+            setIncludedPeople(adventure.peopleData);
+            setIncludedPlaces(adventure.placesData);
+            setIncludedThings(adventure.thingsData);
         }
-    }, [adventures]);
+    }, [adventure]);
 
     const handleAddPerson = (person) => {
         setIncludedPeople((prevPeople) => [...prevPeople, person]);

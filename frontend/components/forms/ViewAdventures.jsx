@@ -100,6 +100,7 @@ export default function AdventureForm() {
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
                             <Typography variant="h5" component="h2">{adventure.adventure_title}</Typography>
                             <Typography variant="body1" component="p">{adventure.adventure_text}</Typography>
+                            {/* Typography - {adventure[1].person_id} */}
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton
                                     aria-label="edit"
