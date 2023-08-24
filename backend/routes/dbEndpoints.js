@@ -103,7 +103,7 @@ router.get('/get-adventure', async (req,res) => {
       placesData: placesData,
       thingsData: thingsData,
     };
-
+    console.log(response);
     res.json(response);
 
   } catch (error) {

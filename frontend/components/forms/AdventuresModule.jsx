@@ -44,7 +44,7 @@ export default function AdventuresModule({ adventure,
     const fetchAdventure = async (id) => {
         try {
             const response = await axiosConfig.get('/get-adventure', {
-                params: { id: newInt }
+                params: { id: id }
 
             });
             setAdventure(response.data);

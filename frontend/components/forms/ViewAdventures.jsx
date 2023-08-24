@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Container from '@material-ui/core/Container';
-import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
+import { Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig';
 import EditAdventureModal from "./EditAdventureModal";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AdventuresModule from "./AdventuresModule";
 
 
