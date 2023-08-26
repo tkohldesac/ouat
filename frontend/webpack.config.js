@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './frontend/index.js',
+  entry: './index.js',
   output: {
     filename: 'main.js', 
-    path: path.resolve(__dirname, '..', 'dist'), 
+    path: path.resolve(__dirname, 'dist'), 
     publicPath: '/',
   },
   module: {
@@ -35,7 +35,7 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, '..', 'dist'),
+      directory: path.resolve(__dirname, 'dist'),
     },
     historyApiFallback: {
       rewrites: [
