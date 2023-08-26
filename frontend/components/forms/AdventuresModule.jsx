@@ -8,29 +8,12 @@ import EditAdventureModal from "./EditAdventureModal";
 
 export default function AdventuresModule({ adventure,
     classes,
-    id
-
+    id,
+    handleDelete
 }) {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedAdventureId, setSelectedAdventureId] = useState(null);
-    const [adventureData, setAdventureData] = useState(null);
-
-    const handleDelete = async (id) => {
-        try {
-            const deleteAdventure = await axiosConfig.delete('/delete-adventure', { data: { id } },
-
-            );
-            if (deleteAdventure.status >= 200 && deleteAdventure.status < 300) {
-                console.log('Adventure Deleted!');
-                const response = await axiosConfig.get('/get-adventures');
-                setAdventures(response.data);
-            }
-        } catch (error) {
-            console.error('Error deleting adventure:', error);
-        }
-
-    };
-
+    
     const handleEdit = (id) => {
         setSelectedAdventureId(id);
         setEditModalOpen(true);

@@ -6,7 +6,6 @@ import axiosConfig from '../../helpers/axiosConfig';
 import EditAdventureModal from "./EditAdventureModal";
 import AdventuresModule from "./AdventuresModule";
 
-
 const useStyles = makeStyles((theme) => ({
     input: {
         border: 'rgba(0,0,0,.2)'
@@ -43,7 +42,21 @@ export default function AdventureForm() {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedAdventureId, setSelectedAdventureId] = useState(null);
 
+    const handleDelete = async (id) => {
+        try {
+            const deleteAdventure = await axiosConfig.delete('/delete-adventure', { data: { id } },
 
+            );
+            if (deleteAdventure.status >= 200 && deleteAdventure.status < 300) {
+                console.log('Adventure Deleted!');
+                const response = await axiosConfig.get('/get-adventures');
+                setAdventures(response.data);
+            }
+        } catch (error) {
+            console.error('Error deleting adventure:', error);
+        }
+
+    };
 
     useEffect(() => {
         const fetchAdventures = async () => {
@@ -57,9 +70,6 @@ export default function AdventureForm() {
         };
         fetchAdventures();
     }, []);
-
-
-
 
     const closeEditModal = () => {
         setSelectedAdventureId(null);
@@ -78,22 +88,16 @@ export default function AdventureForm() {
             }}>
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
                 {adventures.map((adventure) => (
+
                     <AdventuresModule
                         adventure={adventure}
                         classes={classes}
-                        id={adventure.id} />
-                ))}
-                <Modal
-                    open={editModalOpen && selectedAdventureId !== null}
-                    onClose={closeEditModal}
-                    className={classes.modal}
-                    disableEnforceFocus
-                >
+                        id={adventure.id}
+                        handleDelete={handleDelete} />
 
-                    {selectedAdventureId !== null && <EditAdventureModal adventureId={selectedAdventureId} />}
-                </Modal>
+                ))}
             </Container>
-        </div>
+        </div >
     );
 
 }

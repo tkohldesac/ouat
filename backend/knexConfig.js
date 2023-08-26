@@ -1,16 +1,10 @@
 // Uncomment below when connecting to vercel:
 
-// const client = require('knex')({
-//   client: 'pg',
-//   connection: process.env.POSTGRES_URL + "?sslmode=require",
-// });
-
-// module.exports = client;
-
-
-//Comment below out when switching to vercel:
-
-const client = require("knex")({
+console.log(process.env.NODE_ENV)
+const client = require('knex')(process.env.NODE_ENV==="production"?{
+  client: 'pg',
+  connection: process.env.POSTGRES_URL + "?sslmode=require",
+} : {
   client: "pg",
   connection: {
   // user: 'postgres',
@@ -23,6 +17,5 @@ const client = require("knex")({
 });
 
 module.exports = client;
-
 
 // CHECK HERE FOR 'USER TOPH DOESN'T EXIST'
