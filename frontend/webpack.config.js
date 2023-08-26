@@ -1,3 +1,4 @@
+const { DefinePlugin } = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -47,4 +48,7 @@ module.exports = {
     port: 9000,
 
   },
+  plugins: [ new DefinePlugin({
+    "process.env.NODE_ENV" : JSON.stringify(process.env.NODE_ENV)
+  })]
 };
