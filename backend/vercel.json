@@ -22,7 +22,7 @@
                 },
                 {
                     "key": "Access-Control-Allow-Origin",
-                    "value": "https://ouata-frontend.vercel.app, https://ouata.kohldesac.com"
+                    "value": "https://ouata-frontend.vercel.app"
                 },
                 {
                     "key": "Access-Control-Allow-Methods",

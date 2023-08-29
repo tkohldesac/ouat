@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Container from '@material-ui/core/Container';
-import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
+import { IconButton, Grid, Typography, Modal, Image } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
 import EditIcon from '@mui/icons-material/Edit';
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     modal: {
         margin: 'auto',
         marginTop: '5%',
-        width: 400,
+        width: 800,
     },
 }));
 

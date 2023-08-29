@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   modal: {
     margin: 'auto',
     marginTop: '5%',
-    width: 400,
+    width: 800,
     overflow: 'auto'
   },
 }));
