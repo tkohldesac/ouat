@@ -59,7 +59,7 @@ export default function createPlaceModal() {
             console.error('Error deleting place:', error);
         }
     };
-    
+
     const handleEdit = (id) => {
         setSelectedPlaceId(id);
         setEditModalOpen(true);
@@ -79,6 +79,7 @@ export default function createPlaceModal() {
                             <Typography variant="h5" component="h2">{place.place_name}</Typography>
                             <Typography variant="body1" component="p" >Description: {place.physical_description}</Typography>
                             <Typography variant="body1" component="p" >Sovereign: {place.sovereign}</Typography>
+                            <img alt="Image" src={place.img_url}></img>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleEdit(place.id)}>
                                     <EditIcon sx={{ color: 'white' }} />

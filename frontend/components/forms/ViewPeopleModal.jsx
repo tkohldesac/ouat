@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     modal: {
         margin: 'auto',
         marginTop: '5%',
-        width: 800,
+
     },
 }));
 
@@ -82,12 +82,15 @@ export default function createPersonModal() {
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PEOPLE</Typography>
                 {people.map((person) => (
                     <Grid key={person.id}>
+                        {console.log(person)}
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
                             <Typography variant="h5" component="h2" >{person.person_name} </Typography>
                             <Typography variant="body1" component="p" >Age: {person.age}</Typography>
                             <Typography variant="body1" component="p" >Physical Description: {person.physical_description}</Typography>
                             <Typography variant="body1" component="p" >Spell/Abilities: {person.spells_abilities}</Typography>
                             <Typography variant="body1" component="p" >Bio: {person.bio}</Typography>
+                            {console.log(person.img_url)}
+                            <img alt="Image" src={person.image_url}></img>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton
                                     aria-label="delete"

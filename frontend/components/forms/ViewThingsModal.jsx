@@ -80,6 +80,7 @@ export default function createThingModal() {
                             <Typography variant="h5" component="h2">{thing.thing_name}</Typography>
                             <Typography variant="body1" component="p">{thing.physical_description}</Typography>
                             <Typography variant="body1" component="p">{thing.special_properties}</Typography>
+                            <img alt="Image" src={thing.img_url}></img>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleEdit(thing.id)}>
                                     <EditIcon sx={{ color: 'white' }} />
