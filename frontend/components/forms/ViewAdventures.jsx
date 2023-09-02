@@ -3,7 +3,6 @@ import Container from '@material-ui/core/Container';
 import { Typography, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig';
-import EditAdventureModal from "./EditAdventureModal";
 import AdventuresModule from "./AdventuresModule";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,15 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
     },
 }));
-
-const fetchAdventures = async () => {
-    try {
-        const response = await axiosConfig.get('/get-adventures');
-        setAdventures(response.data);
-    } catch (error) {
-        console.error('Failed to fetch adventures:', error);
-    }
-};
 
 export default function AdventureForm() {
     const [adventures, setAdventures] = useState([]);
@@ -71,10 +61,6 @@ export default function AdventureForm() {
         fetchAdventures();
     }, []);
 
-    const closeEditModal = () => {
-        setSelectedAdventureId(null);
-        setEditModalOpen(false);
-    };
     const classes = useStyles();
 
     return (
@@ -92,7 +78,6 @@ export default function AdventureForm() {
                     <AdventuresModule
                         adventure={adventure}
                         classes={classes}
-                        id={adventure.id}
                         handleDelete={handleDelete} />
 
                 ))}

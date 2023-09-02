@@ -3,12 +3,10 @@ import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import axiosConfig from '../../helpers/axiosConfig';
 import EditAdventureModal from "./EditAdventureModal";
 
 export default function AdventuresModule({ adventure,
     classes,
-    id,
     handleDelete
 }) {
     const [editModalOpen, setEditModalOpen] = useState(false);
@@ -24,28 +22,6 @@ export default function AdventuresModule({ adventure,
         setEditModalOpen(false);
     };
 
-    const fetchAdventure = async (id) => {
-        try {
-            const response = await axiosConfig.get('/get-adventure', {
-                params: { id: id }
-
-            });
-            setAdventure(response.data);
-
-        } catch (error) {
-            console.error('Failed to fetch adventure:', error);
-        }
-
-    };
-
-
-    useEffect(() => {
-        if (id !== null) {
-            fetchAdventure(id);
-        }
-    }, [id]);
-
-    console.log(`${adventure.id}`)
     return (
         <div>
             <Grid key={adventure.id}>
@@ -73,7 +49,7 @@ export default function AdventuresModule({ adventure,
                         disableEnforceFocus
                     >
 
-                        {selectedAdventureId !== null && <EditAdventureModal adventureId={selectedAdventureId} />}
+                        {selectedAdventureId !== null ? <EditAdventureModal adventureId={selectedAdventureId} closeEditModal={closeEditModal}/> : null}
                     </Modal>
                 </Container>
             </Grid>

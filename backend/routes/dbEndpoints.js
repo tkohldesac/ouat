@@ -297,8 +297,10 @@ router.put('/update-adventure', async (req, res) => {
     });
   } catch (error) {
     console.error('Error updating adventure:', error);
+    res.sendStatus(500);
   }
 
+  res.sendStatus(200);
 });
 
 router.put('/update-person', async (req, res) => {

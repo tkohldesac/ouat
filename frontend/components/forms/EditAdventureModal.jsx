@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EditAdventureModal({ adventureId }) {
+export default function EditAdventureModal({ adventureId, closeEditModal }) {
     const [adventureTitle, setAdventureTitle] = React.useState('');
     const [adventureText, setAdventureText] = React.useState('');
     const [includedPeople, setIncludedPeople] = React.useState([]);
@@ -144,6 +144,7 @@ export default function EditAdventureModal({ adventureId }) {
 
             );
 
+            closeEditModal();
             if (response.ok) {
                 console.log('New adventure logged!');
             }
@@ -163,7 +164,6 @@ export default function EditAdventureModal({ adventureId }) {
                 paddingBottom: '2rem',
             }}>
                 <Typography variant="h5" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit Your Adventure</Typography>
-                <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} >
                             <TextField
@@ -275,7 +275,7 @@ export default function EditAdventureModal({ adventureId }) {
                         </Grid>
                         <Grid item xs={12}>
                             <Button
-                                type="submit"
+                                onClick={handleSubmit}
                                 variant="contained"
                                 color="primary"
                             >
@@ -283,7 +283,6 @@ export default function EditAdventureModal({ adventureId }) {
                             </Button>
                         </Grid>
                     </Grid>
-                </form>
 
             </Container >
         </ >
