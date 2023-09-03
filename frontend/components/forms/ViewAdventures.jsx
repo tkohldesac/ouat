@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     },
     modal: {
         margin: 'auto',
-        width: '50%',
+        marginTop: '5%',
+        maxWidth: 600,
         overflow: 'auto'
-
     },
 }));
 
@@ -67,7 +67,7 @@ export default function AdventureForm() {
         <div>
             <Container style={{
                 marginTop: '3rem',
-                width: '75%',
+                maxWidth: '600px',
                 backgroundColor: '#f4a2fd',
                 paddingTop: '2rem',
                 paddingBottom: '2rem',

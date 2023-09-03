@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     modal: {
         margin: 'auto',
         marginTop: '5%',
-
     },
 }));
 
@@ -78,7 +77,9 @@ export default function createPersonModal() {
 
     return (
         <>
-            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }} sx={{ overflow: 'auto' }}>
+            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}
+                sx={{ overflow: 'auto' }}
+            >
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PEOPLE</Typography>
                 {people.map((person) => (
                     <Grid key={person.id}>
@@ -110,7 +111,6 @@ export default function createPersonModal() {
                     onClose={closeEditModal}
                     className={classes.modal}
                     disableEnforceFocus
-
                 >
                     {selectedPersonId !== null && <EditPersonModal personId={selectedPersonId} />}
                 </Modal>
