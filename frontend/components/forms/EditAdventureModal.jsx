@@ -121,7 +121,7 @@ export default function EditAdventureModal({ adventureId, closeEditModal }) {
         setIncludedThings((prevThings) => prevThings.filter((thing) => thing.id !== id));
     };
 
-    const handleSubmit = async (event) => {
+    const handleClick = async (event) => {
         try {
             const response = await axiosConfig.put(
                 '/update-adventure',
@@ -142,7 +142,7 @@ export default function EditAdventureModal({ adventureId, closeEditModal }) {
                 }
 
             );
-
+            console.log(`running closeEditModal:`)
             closeEditModal();
             if (response.ok) {
                 console.log('New adventure logged!');
@@ -272,7 +272,7 @@ export default function EditAdventureModal({ adventureId, closeEditModal }) {
                     </Grid>
                     <Grid item xs={12}>
                         <Button
-                            onClick={handleSubmit}
+                            onClick={handleClick}
                             variant="contained"
                             color="primary"
                         >

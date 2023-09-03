@@ -49,7 +49,10 @@ export default function AdventuresModule({ adventure,
                         disableEnforceFocus
                     >
 
-                        {selectedAdventureId !== null ? <EditAdventureModal adventureId={selectedAdventureId} closeEditModal={closeEditModal}/> : null}
+                        {selectedAdventureId !== null ? 
+                        <EditAdventureModal 
+                        adventureId={selectedAdventureId} 
+                        closeEditModal={closeEditModal}/> : null}
                     </Modal>
                 </Container>
             </Grid>
