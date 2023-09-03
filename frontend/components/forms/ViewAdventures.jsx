@@ -48,6 +48,9 @@ export default function AdventureForm() {
 
     };
 
+    const openEditModal = () => setEditModalOpen(true);
+    const closeEditModal = () => setEditModalOpen(false);
+
     useEffect(() => {
         const fetchAdventures = async () => {
             try {
@@ -78,8 +81,9 @@ export default function AdventureForm() {
                     <AdventuresModule
                         adventure={adventure}
                         classes={classes}
-                        handleDelete={handleDelete} />
-
+                        handleDelete={handleDelete}
+                        closeEditModal={closeEditModal}
+                    />
                 ))}
             </Container>
         </div >
