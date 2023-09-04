@@ -10,7 +10,7 @@ const knex = require("./knexConfig");
 
 app.use(cors({
   "origin": [
-  process.env.NODE_ENV==="production"?["https://ouata-app.vercel.app", "https://ouata.kohldesac.com/"]: ['http://localhost:9000', 'http://127.0.0.1:9000']
+  process.env.NODE_ENV==="production"?["https://ouata-app.vercel.app", "https://ouata.kohldesac.com"]: ['http://localhost:9000', 'http://127.0.0.1:9000']
 ],
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
