@@ -99,7 +99,7 @@ export default function EditPlaceModal({ placeId }) {
 
     const classes = useStyles();
 
-    const handleSubmit = async (event) => {
+    const editPlace = async (event) => {
         try {
             const response = await axiosConfig.put(
                 '/update-place',
@@ -130,7 +130,7 @@ export default function EditPlaceModal({ placeId }) {
         <div>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Place</Typography>
-                <form onSubmit={handleSubmit}>
+                <form onClick={editPlace}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField

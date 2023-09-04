@@ -108,7 +108,7 @@ export default function EditPersonModal({ personId }) {
 
     const classes = useStyles();
 
-    const handleSubmit = async (event) => {
+    const editPlace = async (event) => {
         try {
             const response = await axiosConfig.put(
                 '/update-person',
@@ -141,7 +141,7 @@ export default function EditPersonModal({ personId }) {
         <div>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Person</Typography>
-                <form onSubmit={handleSubmit}>
+                <form onClick={editPlace}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField

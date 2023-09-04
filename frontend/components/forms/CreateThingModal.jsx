@@ -32,7 +32,7 @@ export default function createThingModal() {
 
     const classes = useStyles();
 
-    const handleSubmit = async (event) => {
+    const editPerson = async (event) => {
         try {
             const response = await axiosConfig.post(
                 '/create-thing',
@@ -60,7 +60,7 @@ export default function createThingModal() {
         <div>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Thing</Typography>
-                <form onSubmit={handleSubmit}>
+                <form onClick={editPerson}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField

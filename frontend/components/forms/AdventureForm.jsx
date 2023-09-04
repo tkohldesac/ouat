@@ -92,7 +92,7 @@ export default function AdventureForm() {
         setIncludedThings((prevThings) => prevThings.filter((thing) => thing.id !== id));
     };
 
-    const handleSubmit = async (event) => {
+    const createAdventure = async (event) => {
         try {
             const response = await axiosConfig.post(
                 '/create-adventure',
@@ -128,7 +128,7 @@ export default function AdventureForm() {
                 paddingBottom: '2rem',
             }}>
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Record Your Adventure</Typography>
-                <form onSubmit={handleSubmit}>
+                <form onClick={createAdventure}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} >
                             <TextField

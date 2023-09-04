@@ -40,7 +40,7 @@ export default function createPersonModal() {
 
     const classes = useStyles();
 
-    const handleSubmit = async (event) => {
+    const createPlace = async (event) => {
         try {
             const response = await axiosConfig.post(
                 '/create-people',
@@ -63,7 +63,7 @@ export default function createPersonModal() {
                 console.log('New person created successfully!');
             }
         } catch (error) {
-            console.error('Error creating new product:', error);
+            console.error('Error creating new person:', error);
         }
 
     };
@@ -73,7 +73,7 @@ export default function createPersonModal() {
 
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Person</Typography>
-                <form onSubmit={handleSubmit}>
+                <form onClick={createPlace}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
