@@ -50,7 +50,10 @@ export default function ViewPeopleModal() {
 
         };
         fetchPeople();
-    }, []);
+        if (!editModalOpen && selectedPersonId === null) {
+            fetchPeople();
+        }
+    }, [editModalOpen, selectedPersonId]);
 
 
 
@@ -77,7 +80,7 @@ export default function ViewPeopleModal() {
     const closeEditModal = () => {
         setSelectedPersonId(null);
         setEditModalOpen(false);
-
+        fetchPeople();
     };
 
 
