@@ -142,6 +142,7 @@ export default function EditAdventureModal({ adventureId, closeEditModal }) {
                 }
 
             );
+            
             closeEditModal();
             if (response.ok) {
                 console.log('New adventure logged!');

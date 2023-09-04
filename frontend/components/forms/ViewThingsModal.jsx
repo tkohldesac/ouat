@@ -42,7 +42,10 @@ export default function ViewThingModal(closeViewThingsModal) {
             }
         };
         fetchThings();
-    }, []);
+        if (!editModalOpen && selectedThingId === null) {
+            fetchThings();
+        }
+    }, [editModalOpen, selectedThingId]);
 
     const classes = useStyles();
 

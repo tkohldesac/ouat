@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function AdventureForm() {
+export default function ViewAdventures() {
+
     const [adventures, setAdventures] = useState([]);
-    const [editModalOpen, setEditModalOpen] = useState(false);
-    const [selectedAdventureId, setSelectedAdventureId] = useState(null);
+
 
     const handleDelete = async (id) => {
         try {
@@ -48,8 +48,6 @@ export default function AdventureForm() {
 
     };
 
-    const openEditModal = () => setEditModalOpen(true);
-    const closeEditModal = () => setEditModalOpen(false);
 
     useEffect(() => {
         const fetchAdventures = async () => {
@@ -67,26 +65,26 @@ export default function AdventureForm() {
     const classes = useStyles();
 
     return (
-        <div>
-            <Container style={{
-                marginTop: '3rem',
-                maxWidth: '600px',
-                backgroundColor: '#f4a2fd',
-                paddingTop: '2rem',
-                paddingBottom: '2rem',
-            }}>
-                <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
-                {adventures.map((adventure) => (
 
-                    <AdventuresModule
-                        adventure={adventure}
-                        classes={classes}
-                        handleDelete={handleDelete}
-                        closeEditModal={closeEditModal}
-                    />
-                ))}
-            </Container>
-        </div >
+        <Container style={{
+            marginTop: '3rem',
+            maxWidth: '600px',
+            backgroundColor: '#f4a2fd',
+            paddingTop: '2rem',
+            paddingBottom: '2rem',
+        }}>
+            <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>The Story So Far</Typography>
+            {adventures.map((adventure) => (
+
+                <AdventuresModule
+                    adventure={adventure}
+                    classes={classes}
+                    handleDelete={handleDelete}
+                    
+                />
+            ))}
+        </Container>
+
     );
 
 }

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ViewPlacesModal() {
 
-    
+
 
     const [places, setPlaces] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
@@ -47,7 +47,11 @@ export default function ViewPlacesModal() {
         };
 
         fetchPlaces();
-    }, []);
+        if (!editModalOpen && selectedPlaceId === null) {
+            fetchPlaces();
+        }
+    }, [editModalOpen, selectedPlaceId]);
+
 
 
 
