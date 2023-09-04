@@ -141,7 +141,7 @@ export default function EditPersonModal({ personId }) {
         <div>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Person</Typography>
-                <form onClick={editPlace}>
+                <form >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -218,6 +218,7 @@ export default function EditPersonModal({ personId }) {
                         </Grid>
                         <Grid item xs={12}>
                             <Button 
+                            onClick={editPlace}
                             variant="contained" 
                             color="primary">
                                 Submit
