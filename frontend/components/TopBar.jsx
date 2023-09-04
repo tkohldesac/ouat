@@ -186,10 +186,9 @@ export default function TopBar({ theme }) {
       </Modal>
       <Modal
         open={viewPersonModalOpen}
-        closeModal={closeViewPersonModal}
         className={classes.modal}
         disableEnforceFocus
-
+              
       >
 
         <ViewPersonModal closeViewPersonModal={closeViewPersonModal} />

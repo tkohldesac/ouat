@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function createPersonModal(closeViewPlaceModal) {
+export default function createPersonModal(closeViewPersonModal) {
     const [people, setPeople] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedPersonId, setSelectedPersonId] = useState(null);
@@ -72,7 +72,7 @@ export default function createPersonModal(closeViewPlaceModal) {
     const closeEditModal = () => {
         setSelectedPersonId(null);
         setEditModalOpen(false);
-        fetchPeople();
+        closeViewPersonModal();
     };
 
 

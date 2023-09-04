@@ -108,7 +108,7 @@ export default function EditPersonModal({ personId, closeEditModal }) {
 
     const classes = useStyles();
 
-    const editPlace = async (event) => {
+    const editPerson = async (event) => {
         try {
             const response = await axiosConfig.put(
                 '/update-person',
@@ -218,7 +218,7 @@ export default function EditPersonModal({ personId, closeEditModal }) {
                         </Grid>
                         <Grid item xs={12}>
                             <Button
-                                onClick={editPlace}
+                                onClick={editPerson}
                                 variant="contained"
                                 color="primary">
                                 Submit
