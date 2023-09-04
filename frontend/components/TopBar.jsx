@@ -182,7 +182,7 @@ export default function TopBar({ theme }) {
         disableEnforceFocus
 
       >
-        <CreatePersonModal />
+        <CreatePersonModal closePersonModal={closePersonModal} />
       </Modal>
       <Modal
         open={viewPersonModalOpen}
@@ -200,8 +200,9 @@ export default function TopBar({ theme }) {
         onClose={closePlaceModal}
         className={classes.modal}
         disableEnforceFocus
+
       >
-        <CreatePlaceModal />
+        <CreatePlaceModal closePlaceModal={closePlaceModal} />
       </Modal>
       <Modal
         open={viewPlaceModalOpen}
@@ -217,7 +218,7 @@ export default function TopBar({ theme }) {
         className={classes.modal}
         disableEnforceFocus
       >
-        <CreateThingModal />
+        <CreateThingModal closeThingModal={closeThingModal}/>
       </Modal>
       <Modal
         open={viewThingModalOpen}

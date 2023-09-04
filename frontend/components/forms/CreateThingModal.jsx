@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function createThingModal(closeModal) {
+export default function createThingModal(closeThingModal) {
 
     const [thingName, setThingName] = React.useState('');
     const [thingDescription, setThingDescription] = React.useState('');
@@ -32,7 +32,7 @@ export default function createThingModal(closeModal) {
 
     const classes = useStyles();
 
-    const editPerson = async (event) => {
+    const createThing = async (event) => {
         try {
             const response = await axiosConfig.post(
                 '/create-thing',
@@ -48,7 +48,7 @@ export default function createThingModal(closeModal) {
                     },
                 }
             );
-            closeModal();
+            closeThingModal();
             if (response.ok) {
                 console.log('New place created successfully!');
             }
@@ -113,7 +113,7 @@ export default function createThingModal(closeModal) {
                         </Grid>
                         <Grid item xs={12}>
                             <Button
-                                onClick={editPerson}
+                                onClick={createThing}
                                 variant="contained"
                                 color="primary">
                                 Submit

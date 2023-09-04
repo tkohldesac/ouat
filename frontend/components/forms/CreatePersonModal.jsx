@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function createPersonModal(closeModal) {
+export default function createPersonModal(closePersonModal) {
 
     const [personName, setPersonName] = React.useState('');
     const [personAge, setPersonAge] = React.useState('');
@@ -40,7 +40,7 @@ export default function createPersonModal(closeModal) {
 
     const classes = useStyles();
 
-    const createPlace = async (event) => {
+    const createPerson = async (event) => {
         try {
             const response = await axiosConfig.post(
                 '/create-people',
@@ -58,7 +58,7 @@ export default function createPersonModal(closeModal) {
                     },
                 }
             );
-            closeModal();
+            closePersonModal();
             if (response.ok) {
                 console.log('New person created successfully!');
             }
@@ -150,7 +150,7 @@ export default function createPersonModal(closeModal) {
                         </Grid>
                         <Grid item xs={12}>
                             <Button
-                                onClick={createPlace}
+                                onClick={createPerson}
                                 variant="contained"
                                 color="primary">
                                 Submit
