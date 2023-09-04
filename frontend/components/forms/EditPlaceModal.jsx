@@ -180,7 +180,9 @@ export default function EditPlaceModal({ placeId }) {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button type="submit" variant="contained" color="primary">
+                            <Button 
+                            variant="contained" 
+                            color="primary">
                                 Submit
                             </Button>
                         </Grid>
