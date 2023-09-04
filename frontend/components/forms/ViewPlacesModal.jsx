@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Container from '@material-ui/core/Container';
-import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
+import { IconButton, Grid, Typography, Modal, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axiosConfig from '../../helpers/axiosConfig'
 import EditIcon from '@mui/icons-material/Edit';
@@ -21,12 +21,18 @@ const useStyles = makeStyles((theme) => ({
         bottom: '0',
         right: '0',
     },
+
 }));
 
-export default function createPlaceModal() {
+export default function ViewPlacesModal(props) {
+
+    const { closeViewPlacesModal } = props;
+
     const [places, setPlaces] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedPlaceId, setSelectedPlaceId] = useState(null);
+
+    const classes = useStyles();
 
     useEffect(() => {
         const fetchPlaces = async () => {
@@ -43,7 +49,7 @@ export default function createPlaceModal() {
         fetchPlaces();
     }, []);
 
-    const classes = useStyles();
+
 
     const handleDelete = async (id) => {
         try {
@@ -72,6 +78,7 @@ export default function createPlaceModal() {
     return (
         <>
             <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
+
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>VIEW PLACES</Typography>
                 {places.map((place) => (
                     <Grid key={place.id}>
@@ -97,7 +104,10 @@ export default function createPlaceModal() {
                     className={classes.modal}
                     disableEnforceFocus
                 >
-                    {selectedPlaceId !== null && <EditPlaceModal closeEditModal={closeEditModal} placeId={selectedPlaceId} />}
+                    {selectedPlaceId !== null &&
+                        <EditPlaceModal
+                            closeEditModal={closeEditModal}
+                            placeId={selectedPlaceId} />}
                 </Modal>
             </Container>
         </ >

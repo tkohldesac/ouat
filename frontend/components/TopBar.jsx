@@ -9,9 +9,9 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import CreatePersonModal from './forms/CreatePersonModal';
 import CreatePlaceModal from './forms/CreatePlaceModal';
 import CreateThingModal from './forms/CreateThingModal';
-import ViewPersonModal from './forms/ViewPeopleModal';
-import ViewPlaceModal from './forms/ViewPlacesModal';
-import ViewThingModal from './forms/ViewThingsModal';
+import ViewPeopleModal from './forms/ViewPeopleModal';
+import ViewPlacesModal from './forms/ViewPlacesModal';
+import ViewThingsModal from './forms/ViewThingsModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,32 +29,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TopBar({ theme }) {
-  const [personModalOpen, setPersonModalOpen] = React.useState(false);
-  const [placeModalOpen, setPlaceModalOpen] = React.useState(false);
-  const [thingModalOpen, setThingModalOpen] = React.useState(false);
-  const [viewPersonModalOpen, setViewPersonModalOpen] = React.useState(false);
-  const [viewPlaceModalOpen, setViewPlaceModalOpen] = React.useState(false);
-  const [viewThingModalOpen, setViewThingModalOpen] = React.useState(false);
+  const [createPersonModalOpen, setCreatePersonModalOpen] = React.useState(false);
+  const [createPlaceModalOpen, setCreatePlaceModalOpen] = React.useState(false);
+  const [createThingModalOpen, setCreateThingModalOpen] = React.useState(false);
+  const [viewPeopleModalOpen, setViewPeopleModalOpen] = React.useState(false);
+  const [viewPlacesModalOpen, setViewPlacesModalOpen] = React.useState(false);
+  const [viewThingsModalOpen, setViewThingsModalOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [popoverType, setPopoverType] = React.useState('');
 
-  const openPersonModal = () => setPersonModalOpen(true);
-  const closePersonModal = () => setPersonModalOpen(false);
+  // Create Modals
 
-  const openPlaceModal = () => setPlaceModalOpen(true);
-  const closePlaceModal = () => setPlaceModalOpen(false);
+  const openCreatePersonModal = () => setCreatePersonModalOpen(true);
+  const closeCreatePersonModal = () => setCreatePersonModalOpen(false);
 
-  const openThingModal = () => setThingModalOpen(true);
-  const closeThingModal = () => setThingModalOpen(false);
+  const openCreatePlaceModal = () => setCreatePlaceModalOpen(true);
+  const closeCreatePlaceModal = () => setCreatePlaceModalOpen(false);
 
-  const openViewPersonModal = () => setViewPersonModalOpen(true);
-  const closeViewPersonModal = () => setViewPersonModalOpen(false);
+  const openCreateThingModal = () => setCreateThingModalOpen(true);
+  const closeCreateThingModal = () => setCreateThingModalOpen(false);
 
-  const openViewPlaceModal = () => setViewPlaceModalOpen(true);
-  const closeViewPlaceModal = () => setViewPlaceModalOpen(false);
+  // View Modals
 
-  const openViewThingModal = () => setViewThingModalOpen(true);
-  const closeViewThingModal = () => setViewThingModalOpen(false);
+  const openViewPeopleModal = () => setViewPeopleModalOpen(true);
+  const closeViewPeopleModal = () => setViewPeopleModalOpen(false);
+
+  const openViewPlacesModal = () => setViewPlacesModalOpen(true);
+  const closeViewPlacesModal = () => setViewPlacesModalOpen(false);
+
+  const openViewThingsModal = () => setViewThingsModalOpen(true);
+  const closeViewThingsModal = () => setViewThingsModalOpen(false);
 
   const handlePopoverClick = (event, popoverType) => {
     setAnchorEl(event.currentTarget);
@@ -99,11 +103,11 @@ export default function TopBar({ theme }) {
               }}
             >
               <List>
-                <ListItem button onClick={openPersonModal}>
+                <ListItem button onClick={openCreatePersonModal}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={openViewPersonModal}>
-                  <ListItemText primary="Edit" />
+                <ListItem button onClick={openViewPeopleModal}>
+                  <ListItemText primary="View" />
                 </ListItem>
               </List>
             </Popover>
@@ -131,11 +135,11 @@ export default function TopBar({ theme }) {
               }}
             >
               <List>
-                <ListItem button onClick={openPlaceModal}>
+                <ListItem onClick={openCreatePlaceModal}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={openViewPlaceModal}>
-                  <ListItemText primary="Edit" />
+                <ListItem onClick={openViewPlacesModal}>
+                  <ListItemText primary="View" />
                 </ListItem>
               </List>
             </Popover>
@@ -164,71 +168,78 @@ export default function TopBar({ theme }) {
               }}
             >
               <List>
-                <ListItem button onClick={openThingModal}>
+                <ListItem button onClick={openCreateThingModal}>
                   <ListItemText primary="Create" />
                 </ListItem>
-                <ListItem button onClick={openViewThingModal}>
-                  <ListItemText primary="Edit" />
+                <ListItem button onClick={openViewThingsModal}>
+                  <ListItemText primary="View" />
                 </ListItem>
               </List>
             </Popover>
           </ButtonGroup>
         </Box>
       </AppBar>
-      <Modal
-        open={personModalOpen}
-        onClose={closePersonModal}
-        className={classes.modal}
-        disableEnforceFocus
 
-      >
-        <CreatePersonModal closePersonModal={closePersonModal} />
-      </Modal>
+      {/* Create Person Modal */}
       <Modal
-        open={viewPersonModalOpen}
-        className={classes.modal}
-        disableEnforceFocus
-              
-      >
-
-        <ViewPersonModal closeViewPersonModal={closeViewPersonModal} />
-
-      </Modal>
-      <Modal
-        open={placeModalOpen}
-        onClose={closePlaceModal}
-        className={classes.modal}
-        disableEnforceFocus
-
-      >
-        <CreatePlaceModal closePlaceModal={closePlaceModal} />
-      </Modal>
-      <Modal
-        open={viewPlaceModalOpen}
-        closeModal={closeViewPlaceModal}
+        open={createPersonModalOpen}
+        onClose={closeCreatePersonModal}
         className={classes.modal}
         disableEnforceFocus
       >
-        <ViewPlaceModal closeViewPlaceModal={closeViewPlaceModal} />
-
+        <CreatePersonModal closeCreatePersonModal={closeCreatePersonModal} />
       </Modal>
 
+      {/* View People Modal */}
       <Modal
-        open={thingModalOpen}
-        onClose={closeThingModal}
+        open={viewPeopleModalOpen}
+        onClose={closeViewPeopleModal}
+        className={classes.modal}
+        disableEnforceFocus
+
+      >
+        <ViewPeopleModal closeViewPeopleModal={closeViewPeopleModal} />
+      </Modal>
+
+      {/* Create Place Modal */}
+      <Modal
+        open={createPlaceModalOpen}
+        onClose={closeCreatePlaceModal}
+        className={classes.modal}
+        disableEnforceFocus
+
+      >
+        <CreatePlaceModal closePlaceModal={closeCreatePlaceModal} />
+      </Modal>
+
+      {/* View Places Modal */}
+      <Modal
+        open={viewPlacesModalOpen}
+        onClose={closeViewPlacesModal}
         className={classes.modal}
         disableEnforceFocus
       >
-        <CreateThingModal closeThingModal={closeThingModal} />
+        <ViewPlacesModal closeViewPlacesModal={closeViewPlacesModal} />
 
       </Modal>
+      {/* Create Thing Modal */}
       <Modal
-        open={viewThingModalOpen}
-        closeModal={closeViewThingModal}
+        open={createThingModalOpen}
+        onClose={closeCreateThingModal}
         className={classes.modal}
         disableEnforceFocus
       >
-        <ViewThingModal closeViewThingModal={closeViewThingModal} />
+        <CreateThingModal closeThingModal={closeCreateThingModal} />
+
+      </Modal>
+      {/* View Things Modal */}
+      <Modal
+        open={viewThingsModalOpen}
+        onClose={closeViewThingsModal}
+        className={classes.modal}
+        disableEnforceFocus
+      >
+        <ViewThingsModal closeViewThingsModal={closeViewThingsModal} />
       </Modal>
     </ThemeProvider >
   );

@@ -138,95 +138,95 @@ export default function EditPersonModal({ personId, closeEditModal }) {
     };
 
     return (
-        <div>
-            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
-                <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Person</Typography>
-                <form >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Character Name"
-                                name="characterName"
-                                variant="filled"
-                                value={personName}
-                                onChange={handlePersonNameChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Age"
-                                name="age"
-                                type="age"
-                                variant="filled"
-                                value={personAge}
-                                onChange={handlePersonAgeChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Physical Description"
-                                name="characterPhysicalDescription"
-                                variant="filled"
-                                multiline
-                                minRows={4}
-                                value={personDescription}
-                                onChange={handlePersonDescriptionChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Spells & Abilities"
-                                name="spellsAbilities"
-                                multiline
-                                minRows={4}
-                                variant="filled"
-                                value={personAbilities}
-                                onChange={handlePersonAbilitiesChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Bio"
-                                name="bio"
-                                multiline
-                                minRows={4}
-                                variant="filled"
-                                value={personBio}
-                                onChange={handlePersonBioChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Image URL"
-                                name="characterImageUrl"
-                                variant="filled"
-                                value={personImageUrl}
-                                onChange={handlePersonImageUrlChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                onClick={editPerson}
-                                variant="contained"
-                                color="primary">
-                                Submit
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </Container>
-        </div >
+
+        <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
+            <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit a Person</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Character Name"
+                        name="characterName"
+                        variant="filled"
+                        value={personName}
+                        onChange={handlePersonNameChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Age"
+                        name="age"
+                        type="age"
+                        variant="filled"
+                        value={personAge}
+                        onChange={handlePersonAgeChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Physical Description"
+                        name="characterPhysicalDescription"
+                        variant="filled"
+                        multiline
+                        minRows={4}
+                        value={personDescription}
+                        onChange={handlePersonDescriptionChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Spells & Abilities"
+                        name="spellsAbilities"
+                        multiline
+                        minRows={4}
+                        variant="filled"
+                        value={personAbilities}
+                        onChange={handlePersonAbilitiesChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Bio"
+                        name="bio"
+                        multiline
+                        minRows={4}
+                        variant="filled"
+                        value={personBio}
+                        onChange={handlePersonBioChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Image URL"
+                        name="characterImageUrl"
+                        variant="filled"
+                        value={personImageUrl}
+                        onChange={handlePersonImageUrlChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        onClick={editPerson}
+                        variant="contained"
+                        color="primary">
+                        Submit
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </Container>
+
     )
 }

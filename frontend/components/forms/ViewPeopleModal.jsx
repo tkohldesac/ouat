@@ -28,10 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function createPersonModal(closeViewPersonModal) {
+export default function ViewPeopleModal(props) {
+
+    const closeViewPeopleModal = { props }
+
     const [people, setPeople] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedPersonId, setSelectedPersonId] = useState(null);
+
+    const classes = useStyles();
 
     useEffect(() => {
         const fetchPeople = async () => {
@@ -48,7 +53,7 @@ export default function createPersonModal(closeViewPersonModal) {
         fetchPeople();
     }, []);
 
-    const classes = useStyles();
+
 
     const handleDelete = async (id) => {
         try {
@@ -69,10 +74,11 @@ export default function createPersonModal(closeViewPersonModal) {
         setSelectedPersonId(id);
         setEditModalOpen(true);
     };
+
     const closeEditModal = () => {
         setSelectedPersonId(null);
         setEditModalOpen(false);
-        closeViewPersonModal();
+
     };
 
 
@@ -113,8 +119,11 @@ export default function createPersonModal(closeViewPersonModal) {
                     className={classes.modal}
                     disableEnforceFocus
                 >
-                    {selectedPersonId !== null && <EditPersonModal closeEditModal={closeEditModal} personId={selectedPersonId} />}
+                    {selectedPersonId !== null &&
+                        <EditPersonModal closeEditModal={closeEditModal} personId={selectedPersonId} />}
+
                 </Modal>
+
             </Container>
         </>
     )

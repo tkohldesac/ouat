@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function createThingModal() {
+export default function ViewThingModal(closeViewThingsModal) {
     const [things, setThings] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedThingId, setSelectedThingId] = useState(null);
