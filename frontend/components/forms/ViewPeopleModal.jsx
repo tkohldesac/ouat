@@ -28,9 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ViewPeopleModal(props) {
+export default function ViewPeopleModal() {
 
-    const closeViewPeopleModal = { props }
 
     const [people, setPeople] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);

@@ -53,7 +53,6 @@ export default function EditPlaceModal({ placeId, closeEditModal }) {
                     'Content-Type': 'application/json',
                 },
             });
-            closeEditModal();
             if (response.status === 200) {
                 console.log('Got place successfully!');
                 setPlaceData(response.data);
@@ -116,7 +115,7 @@ export default function EditPlaceModal({ placeId, closeEditModal }) {
                     },
                 }
             );
-
+            closeEditModal();
             if (response.ok) {
                 console.log('Updated place successfully!');
             }
@@ -127,69 +126,69 @@ export default function EditPlaceModal({ placeId, closeEditModal }) {
     };
 
     return (
-        <div>
-            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
-                <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit a Place</Typography>
-                <form >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Place Name"
-                                name="placeName"
-                                variant="filled"
-                                value={placeName}
-                                onChange={handlePlaceNameChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Description"
-                                name="placeDescription"
-                                variant="filled"
-                                multiline
-                                minRows={4}
-                                value={placeDescription}
-                                onChange={handlePlaceDescriptionChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Sovereign"
-                                name="placeSovereign"
-                                variant="filled"
-                                value={placeSovereign}
-                                onChange={handlePlaceSovereignChange}
-                            />
-                        </Grid>
 
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Image URL"
-                                name="placeImageUrl"
-                                variant="filled"
-                                value={placeImageUrl}
-                                onChange={handlePlaceImageUrlChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                onClick={editPlace}
-                                variant="contained"
-                                color="primary">
-                                Submit
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </Container>
-        </div >
+        <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
+            <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit a Place</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Place Name"
+                        name="placeName"
+                        variant="filled"
+                        value={placeName}
+                        onChange={handlePlaceNameChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Description"
+                        name="placeDescription"
+                        variant="filled"
+                        multiline
+                        minRows={4}
+                        value={placeDescription}
+                        onChange={handlePlaceDescriptionChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Sovereign"
+                        name="placeSovereign"
+                        variant="filled"
+                        value={placeSovereign}
+                        onChange={handlePlaceSovereignChange}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Image URL"
+                        name="placeImageUrl"
+                        variant="filled"
+                        value={placeImageUrl}
+                        onChange={handlePlaceImageUrlChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        onClick={editPlace}
+                        variant="contained"
+                        color="primary">
+                        Submit
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </Container>
+
     )
 }

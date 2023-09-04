@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ViewPlacesModal(props) {
+export default function ViewPlacesModal() {
 
-    const { closeViewPlacesModal } = props;
+    
 
     const [places, setPlaces] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);

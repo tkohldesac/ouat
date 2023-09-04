@@ -55,7 +55,7 @@ export default function EditThingModal({ thingId, closeEditModal }) {
                     'Content-Type': 'application/json',
                 },
             });
-            closeEditModal();
+
             if (response.status === 200) {
                 console.log('Got thing successfully!');
                 setThingData(response.data);
@@ -118,7 +118,7 @@ export default function EditThingModal({ thingId, closeEditModal }) {
                     },
                 }
             );
-
+            closeEditModal();
             if (response.ok) {
                 console.log('Updated thing successfully!');
             }
@@ -129,69 +129,69 @@ export default function EditThingModal({ thingId, closeEditModal }) {
     };
 
     return (
-        <div>
-            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
-                <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit a Thing</Typography>
-                <form >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Thing Name"
-                                name="thingName"
-                                variant="filled"
-                                value={thingName}
-                                onChange={handleThingNameChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Description"
-                                name="thingDescription"
-                                variant="filled"
-                                multiline
-                                minRows={4}
-                                value={thingDescription}
-                                onChange={handleThingDescriptionChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Properties"
-                                name="thingProperties"
-                                variant="filled"
-                                value={thingProperties}
-                                onChange={handleThingPropertiesChange}
-                            />
-                        </Grid>
 
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Image URL"
-                                name="thingImageUrl"
-                                variant="filled"
-                                value={thingImageUrl}
-                                onChange={handleThingImageUrlChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                onClick={editThing}
-                                variant="contained"
-                                color="primary">
-                                Submit
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </Container>
-        </div >
+        <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
+            <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Edit a Thing</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Thing Name"
+                        name="thingName"
+                        variant="filled"
+                        value={thingName}
+                        onChange={handleThingNameChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Description"
+                        name="thingDescription"
+                        variant="filled"
+                        multiline
+                        minRows={4}
+                        value={thingDescription}
+                        onChange={handleThingDescriptionChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Properties"
+                        name="thingProperties"
+                        variant="filled"
+                        value={thingProperties}
+                        onChange={handleThingPropertiesChange}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Image URL"
+                        name="thingImageUrl"
+                        variant="filled"
+                        value={thingImageUrl}
+                        onChange={handleThingImageUrlChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        onClick={editThing}
+                        variant="contained"
+                        color="primary">
+                        Submit
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </Container>
+
     )
 }
