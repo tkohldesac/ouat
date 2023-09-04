@@ -255,19 +255,20 @@ router.put('/update-adventure', async (req, res) => {
   const includedThingsIds = req.body.includedThings.map(thing => thing.id);
 
   try {
+    console.log('1')
     await knex.transaction(async (trx) => {
-
+      console.log('2')
       await trx('ouata_adventures')
         .where({ id: adventureId }) 
         .update({
           adventure_title: adventureTitle,
           adventure_text: adventureText,
         });
-  
+        console.log('3')
       await trx('ouata_adventure_people').where({ adventure_id: adventureId }).del();
       await trx('ouata_adventure_places').where({ adventure_id: adventureId }).del();
       await trx('ouata_adventure_things').where({ adventure_id: adventureId }).del();
-  
+      console.log('4')
       await Promise.all(
         includedPeopleIds.map((personId) =>
           trx('ouata_adventure_people').insert({
@@ -276,7 +277,7 @@ router.put('/update-adventure', async (req, res) => {
           })
         )
       );
-  
+      console.log('5')
       await Promise.all(
         includedPlacesIds.map((placeId) =>
           trx('ouata_adventure_places').insert({
@@ -285,7 +286,7 @@ router.put('/update-adventure', async (req, res) => {
           })
         )
       );
-  
+      console.log('6')
       await Promise.all(
         includedThingsIds.map((thingId) =>
           trx('ouata_adventure_things').insert({
