@@ -97,7 +97,7 @@ export default function createPlaceModal() {
                     className={classes.modal}
                     disableEnforceFocus
                 >
-                    {selectedPlaceId !== null && <EditPlaceModal placeId={selectedPlaceId} />}
+                    {selectedPlaceId !== null && <EditPlaceModal closeEditModal={closeEditModal} placeId={selectedPlaceId} />}
                 </Modal>
             </Container>
         </ >

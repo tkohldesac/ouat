@@ -112,7 +112,7 @@ export default function createPersonModal() {
                     className={classes.modal}
                     disableEnforceFocus
                 >
-                    {selectedPersonId !== null && <EditPersonModal personId={selectedPersonId} />}
+                    {selectedPersonId !== null && <EditPersonModal closeEditModal={closeEditModal} personId={selectedPersonId} />}
                 </Modal>
             </Container>
         </>

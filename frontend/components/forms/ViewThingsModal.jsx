@@ -98,7 +98,7 @@ export default function createThingModal() {
                     className={classes.modal}
                     disableEnforceFocus
                 >
-                    {selectedThingId !== null && <EditThingModal thingId={selectedThingId} />}
+                    {selectedThingId !== null && <EditThingModal closeEditModal={closeEditModal} thingId={selectedThingId} />}
                 </Modal>
             </Container>
         </ >

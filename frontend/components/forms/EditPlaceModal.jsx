@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EditPlaceModal({ placeId }) {
+export default function EditPlaceModal({ placeId, closeEditModal }) {
     const [placeName, setPlaceName] = React.useState('');
     const [placeDescription, setPlaceDescription] = React.useState('');
     const [placeSovereign, setPlaceSovereign] = React.useState('');
@@ -53,7 +53,7 @@ export default function EditPlaceModal({ placeId }) {
                     'Content-Type': 'application/json',
                 },
             });
-
+            closeEditModal();
             if (response.status === 200) {
                 console.log('Got place successfully!');
                 setPlaceData(response.data);
@@ -180,10 +180,10 @@ export default function EditPlaceModal({ placeId }) {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button 
-                            onClick={editPlace}
-                            variant="contained" 
-                            color="primary">
+                            <Button
+                                onClick={editPlace}
+                                variant="contained"
+                                color="primary">
                                 Submit
                             </Button>
                         </Grid>

@@ -37,14 +37,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EditPersonModal({ personId }) {
+export default function EditPersonModal({ personId, closeEditModal }) {
     const [personName, setPersonName] = React.useState('');
     const [personAge, setPersonAge] = React.useState('');
     const [personDescription, setPersonDescription] = React.useState('');
     const [personAbilities, setPersonAbilities] = React.useState('');
     const [personBio, setPersonBio] = React.useState('');
     const [personImageUrl, setPersonImageUrl] = React.useState('');
-    
+
     const [personData, setPersonData] = React.useState([]);
 
     const fetchPerson = async () => {
@@ -127,7 +127,7 @@ export default function EditPersonModal({ personId }) {
                     },
                 }
             );
-
+            closeEditModal();
             if (response.ok) {
                 console.log('Person person successfully!');
             }
@@ -217,10 +217,10 @@ export default function EditPersonModal({ personId }) {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button 
-                            onClick={editPlace}
-                            variant="contained" 
-                            color="primary">
+                            <Button
+                                onClick={editPlace}
+                                variant="contained"
+                                color="primary">
                                 Submit
                             </Button>
                         </Grid>

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function EditThingModal({ thingId }) {
+export default function EditThingModal({ thingId, closeEditModal }) {
     const [thingName, setThingName] = React.useState('');
     const [thingDescription, setThingDescription] = React.useState('');
     const [thingProperties, setThingProperties] = React.useState('');
@@ -55,7 +55,7 @@ export default function EditThingModal({ thingId }) {
                     'Content-Type': 'application/json',
                 },
             });
-
+            closeEditModal();
             if (response.status === 200) {
                 console.log('Got thing successfully!');
                 setThingData(response.data);
