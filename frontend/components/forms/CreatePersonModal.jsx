@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function createPersonModal() {
+export default function createPersonModal(closeModal) {
 
     const [personName, setPersonName] = React.useState('');
     const [personAge, setPersonAge] = React.useState('');
@@ -58,7 +58,7 @@ export default function createPersonModal() {
                     },
                 }
             );
-
+            closeModal();
             if (response.ok) {
                 console.log('New person created successfully!');
             }
@@ -149,10 +149,10 @@ export default function createPersonModal() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button 
-                            onClick={createPlace}
-                            variant="contained" 
-                            color="primary">
+                            <Button
+                                onClick={createPlace}
+                                variant="contained"
+                                color="primary">
                                 Submit
                             </Button>
                         </Grid>

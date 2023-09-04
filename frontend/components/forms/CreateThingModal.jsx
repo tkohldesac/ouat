@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function createThingModal() {
+export default function createThingModal(closeModal) {
 
     const [thingName, setThingName] = React.useState('');
     const [thingDescription, setThingDescription] = React.useState('');
@@ -48,7 +48,7 @@ export default function createThingModal() {
                     },
                 }
             );
-
+            closeModal();
             if (response.ok) {
                 console.log('New place created successfully!');
             }
@@ -112,10 +112,10 @@ export default function createThingModal() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button 
-                            onClick={editPerson}
-                            variant="contained" 
-                            color="primary">
+                            <Button
+                                onClick={editPerson}
+                                variant="contained"
+                                color="primary">
                                 Submit
                             </Button>
                         </Grid>

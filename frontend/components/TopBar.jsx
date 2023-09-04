@@ -180,12 +180,13 @@ export default function TopBar({ theme }) {
         onClose={closePersonModal}
         className={classes.modal}
         disableEnforceFocus
+
       >
         <CreatePersonModal />
       </Modal>
       <Modal
         open={viewPersonModalOpen}
-        onClose={closeViewPersonModal}
+        closeModal={closeViewPersonModal}
         className={classes.modal}
         disableEnforceFocus
 
@@ -204,7 +205,7 @@ export default function TopBar({ theme }) {
       </Modal>
       <Modal
         open={viewPlaceModalOpen}
-        onClose={closeViewPlaceModal}
+        closeModal={closeViewPlaceModal}
         className={classes.modal}
         disableEnforceFocus
       >
@@ -220,7 +221,7 @@ export default function TopBar({ theme }) {
       </Modal>
       <Modal
         open={viewThingModalOpen}
-        onClose={closeViewThingModal}
+        closeModal={closeViewThingModal}
         className={classes.modal}
         disableEnforceFocus
       >
