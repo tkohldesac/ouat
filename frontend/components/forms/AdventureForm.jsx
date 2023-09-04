@@ -128,7 +128,7 @@ export default function AdventureForm() {
                 paddingBottom: '2rem',
             }}>
                 <Typography variant="h3" style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Record Your Adventure</Typography>
-                <form onClick={createAdventure}>
+                <form >
                     <Grid container spacing={2}>
                         <Grid item xs={12} >
                             <TextField
@@ -240,6 +240,7 @@ export default function AdventureForm() {
                         </Grid>
                         <Grid item xs={12}>
                             <Button
+                                onClick={createAdventure}
                                 variant="contained"
                                 color="primary">
                                 Record
