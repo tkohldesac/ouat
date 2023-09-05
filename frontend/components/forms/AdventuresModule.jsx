@@ -8,11 +8,11 @@ import EditAdventureModal from "./EditAdventureModal";
 export default function AdventuresModule({ adventure,
     classes,
     handleDelete,
-    
+
 }) {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedAdventureId, setSelectedAdventureId] = useState(null);
-    
+
     const handleEdit = (id) => {
         setSelectedAdventureId(id);
         setEditModalOpen(true);
@@ -21,7 +21,7 @@ export default function AdventuresModule({ adventure,
     const closeEditModal = () => {
         setSelectedAdventureId(null);
         setEditModalOpen(false);
-        
+
     };
 
     return (
@@ -51,12 +51,12 @@ export default function AdventuresModule({ adventure,
                         disableEnforceFocus
                     >
 
-                        {selectedAdventureId !== null ? 
-                        <EditAdventureModal 
-                        adventureId={selectedAdventureId} 
-                        closeEditModal={closeEditModal}
-                        /> : null}
-                        
+                        {selectedAdventureId !== null ?
+                            <EditAdventureModal
+                                adventureId={selectedAdventureId}
+                                closeEditModal={closeEditModal}
+                            /> : null}
+
                     </Modal>
                 </Container>
             </Grid>
