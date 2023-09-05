@@ -21,7 +21,12 @@ const useStyles = makeStyles((theme) => ({
         bottom: '0',
         right: '0',
     },
-
+    image: {
+        border: 'solid',
+        borderColor: 'pink',
+        width: '206px',
+        height: '156px'
+    }
 }));
 
 export default function ViewPlacesModal() {
@@ -87,10 +92,16 @@ export default function ViewPlacesModal() {
                 {places.map((place) => (
                     <Grid key={place.id}>
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
-                            <Typography variant="h5" component="h2">{place.place_name}</Typography>
-                            <Typography variant="body1" component="p" >Description: {place.physical_description}</Typography>
-                            <Typography variant="body1" component="p" >Sovereign: {place.sovereign}</Typography>
-                            <img alt="Image" src={place.img_url}></img>
+                            <Container style={{ display: 'flex' }}>
+                                <div style={{ paddingRight: "1rem" }}>
+                                    <Typography variant="h5" component="h2">{place.place_name}</Typography>
+                                    <Typography variant="body1" component="p" >Description: {place.physical_description}</Typography>
+                                    <Typography variant="body1" component="p" >Sovereign: {place.sovereign}</Typography>
+                                </div>
+                                <div>
+                                    <img className={classes.image} alt="Image" src={place.img_url}></img>
+                                </div>
+                            </Container>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton aria-label="delete" className={classes.iconButton} onClick={() => handleEdit(place.id)}>
                                     <EditIcon sx={{ color: 'white' }} />

@@ -25,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         marginTop: '5%',
     },
+    image: {
+        border: 'solid',
+        borderColor: 'pink',
+        width: '206px',
+        height: '156px'
+    }
 }));
 
 
@@ -80,27 +86,30 @@ export default function ViewPeopleModal() {
     const closeEditModal = () => {
         setSelectedPersonId(null);
         setEditModalOpen(false);
-        fetchPeople();
+
     };
 
 
     return (
         <>
-            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}
-                sx={{ overflow: 'auto' }}
-            >
+            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }} sx={{ overflow: 'auto' }}>
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }} >VIEW PEOPLE</Typography>
                 {people.map((person) => (
                     <Grid key={person.id}>
                         {console.log(person)}
-                        <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
-                            <Typography variant="h5" component="h2" >{person.person_name} </Typography>
-                            <Typography variant="body1" component="p" >Age: {person.age}</Typography>
-                            <Typography variant="body1" component="p" >Physical Description: {person.physical_description}</Typography>
-                            <Typography variant="body1" component="p" >Spell/Abilities: {person.spells_abilities}</Typography>
-                            <Typography variant="body1" component="p" >Bio: {person.bio}</Typography>
-                            {console.log(person.img_url)}
-                            <img alt="Image" src={person.image_url}></img>
+                        <Typography variant="h5" component="h2" style={{ color: 'white' }} >{person.person_name} </Typography>
+                        <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem', }} >
+                            <Container style={{ display: 'flex' }}>
+                                <div style={{ paddingRight: "1rem" }}>
+                                    <Typography variant="body1" component="p" >Age: {person.age}</Typography>
+                                    <Typography variant="body1" component="p" >Physical Description: {person.physical_description}</Typography>
+                                    <Typography variant="body1" component="p" >Spell/Abilities: {person.spells_abilities}</Typography>
+                                    <Typography variant="body1" component="p" >Bio: {person.bio}</Typography>
+                                </div>
+                                <div>
+                                    <img className={classes.image} alt="Image" src={person.image_url}></img>
+                                </div>
+                            </Container>
                             <div className={classes.iconButtonsContainer}>
                                 <IconButton
                                     aria-label="delete"
