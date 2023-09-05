@@ -91,10 +91,11 @@ export default function ViewPlacesModal() {
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>VIEW PLACES</Typography>
                 {places.map((place) => (
                     <Grid key={place.id}>
+                        <Typography variant="h5" component="h2" style={{ color: 'white' }} >{place.place_name}</Typography>
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
                             <Container style={{ display: 'flex' }}>
                                 <div style={{ paddingRight: "1rem" }}>
-                                    <Typography variant="h5" component="h2">{place.place_name}</Typography>
+
                                     <Typography variant="body1" component="p" >Description: {place.physical_description}</Typography>
                                     <Typography variant="body1" component="p" >Sovereign: {place.sovereign}</Typography>
                                 </div>

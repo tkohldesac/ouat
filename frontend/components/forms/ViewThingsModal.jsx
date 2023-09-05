@@ -85,10 +85,11 @@ export default function ViewThingModal(closeViewThingsModal) {
                 <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>VIEW THINGS</Typography>
                 {things.map((thing) => (
                     <Grid key={thing.id}>
+                        <Typography variant="h5" component="h2" style={{ color: 'white' }} >{thing.thing_name}</Typography>
                         <Container style={{ backgroundColor: '#381e99', color: 'white', marginBottom: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }} >
                             <Container style={{ display: 'flex' }}>
                                 <div style={{ paddingRight: "1rem" }}>
-                                    <Typography variant="h5" component="h2">{thing.thing_name}</Typography>
+
                                     <Typography variant="body1" component="p">{thing.physical_description}</Typography>
                                     <Typography variant="body1" component="p">{thing.special_properties}</Typography>
                                 </div>
