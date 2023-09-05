@@ -90,8 +90,8 @@ export default function ViewThingModal(closeViewThingsModal) {
                             <Container style={{ display: 'flex' }}>
                                 <div style={{ paddingRight: "1rem" }}>
 
-                                    <Typography variant="body1" component="p">{thing.physical_description}</Typography>
-                                    <Typography variant="body1" component="p">{thing.special_properties}</Typography>
+                                    <Typography variant="body1" component="p">Description: {thing.physical_description}</Typography>
+                                    <Typography variant="body1" component="p">Special Properties:{thing.special_properties}</Typography>
                                 </div>
                                 <div>
                                     <img className={classes.image} alt="Image" src={thing.img_url}></img>
