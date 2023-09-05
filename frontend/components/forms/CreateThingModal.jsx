@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function createThingModal(closeThingModal) {
+export default function createThingModal(closeCreateThingModal) {
 
     const [thingName, setThingName] = React.useState('');
     const [thingDescription, setThingDescription] = React.useState('');
@@ -48,7 +48,7 @@ export default function createThingModal(closeThingModal) {
                     },
                 }
             );
-            closeThingModal();
+            closeCreateThingModal();
             if (response.ok) {
                 console.log('New place created successfully!');
             }
