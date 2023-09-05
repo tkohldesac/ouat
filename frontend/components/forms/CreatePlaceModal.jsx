@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function createPlacesModal(closeCreatePlaceModal) {
+export default function createPlacesModal(props) {
+
+    const { closeCreatePlaceModal } = props;
 
     const [placeName, setPlaceName] = React.useState('');
     const [placeDescription, setPlaceDescription] = React.useState('');
@@ -59,69 +61,69 @@ export default function createPlacesModal(closeCreatePlaceModal) {
     };
 
     return (
-        <div>
-            <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
-                <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Place</Typography>
-                <form >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Place Name"
-                                name="placeName"
-                                variant="filled"
-                                value={placeName}
-                                onChange={handlePlaceNameChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Description"
-                                name="placeDescription"
-                                variant="filled"
-                                multiline
-                                minRows={4}
-                                value={placeDescription}
-                                onChange={handlePlaceDescriptionChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Sovereign"
-                                name="placeSovereign"
-                                variant="filled"
-                                value={placeSovereign}
-                                onChange={handlePlaceSovereignChange}
-                            />
-                        </Grid>
 
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                label="Image URL"
-                                name="placeImageUrl"
-                                variant="filled"
-                                value={placeImageUrl}
-                                onChange={handlePlaceImageUrlChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                onClick={createPlace}
-                                variant="contained"
-                                color="primary">
-                                Submit
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </Container>
-        </div >
+        <Container maxWidth="sm" style={{ backgroundColor: '#f4a2fd', paddingTop: '2rem', paddingBottom: '2rem' }}>
+            <Typography variant='h5' style={{ paddingBottom: '1rem', textAlign: 'center', color: 'white' }}>Create a Place</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Place Name"
+                        name="placeName"
+                        variant="filled"
+                        value={placeName}
+                        onChange={handlePlaceNameChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Description"
+                        name="placeDescription"
+                        variant="filled"
+                        multiline
+                        minRows={4}
+                        value={placeDescription}
+                        onChange={handlePlaceDescriptionChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Sovereign"
+                        name="placeSovereign"
+                        variant="filled"
+                        value={placeSovereign}
+                        onChange={handlePlaceSovereignChange}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Image URL"
+                        name="placeImageUrl"
+                        variant="filled"
+                        value={placeImageUrl}
+                        onChange={handlePlaceImageUrlChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        onClick={createPlace}
+                        variant="contained"
+                        color="primary">
+                        Submit
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </Container>
+
     )
 }
