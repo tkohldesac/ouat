@@ -25,7 +25,10 @@ export default function AboutPage() {
 
 
                         <Typography style={{ fontSize: '1.2rem', padding: '5%'}}>
-                            My oldest wanted to start reading books to my wife and I before bed time. She had frequently heard the phrases 'Once Upon A Time' and 'A Long Time Ago', and accidentally mashed them together to create the phrase 'Once Upon A Time Ago...'. I wanted to start recording the stories my family came up with like a tabletop RPG. My solution was to create this lightweight CRUD app to keep track of all of the wacky people, places and things that happened along the way. Maybe the kids will re-read the adventures here 20 years from now and find it interesting. Either way, I learned a lot and I'm happy with it. It's simple and serves my purposes. 
+                            My oldest wanted to start reading books to my wife and I before bed time. She had frequently heard the phrases 'Once Upon A Time' and 'A Long Time Ago', and accidentally mashed them together to create the phrase 'Once Upon A Time Ago'. 
+                            <br />
+                            <br />
+                            I wanted to start recording the stories my family came up with like a tabletop RPG. My solution was to create this lightweight CRUD app to keep track of all of the wacky people, places and things that happened along the way. Maybe the kids will re-read the adventures here 20 years from now and find it interesting. I learned a lot and I'm happy with it. It's simple, efficient and serves my purposes. 
                         </Typography>
                     </Container>
                 </Container>
