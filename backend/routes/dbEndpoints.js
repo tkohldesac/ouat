@@ -112,8 +112,6 @@ router.get('/get-adventure', async (req,res) => {
   }
 });
 
-
-// THIS NEEDS TO CHANGE TO SELECT EVERYTHING. BIG SQL QRY TO GET EVERYTHING OFF People/Places/Things
 router.get('/get-adventures', async (_,res) => {
     const response = await knex('ouata_adventures')
     .select('ouata_adventures.*')
